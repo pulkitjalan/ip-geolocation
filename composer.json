@@ -1,0 +1,27 @@
+{
+    "name": "pulkitjalan/geoip",
+    "description": "Geoip wrapper",
+    "homepage": "https://github.com/pulkitjalan/geoip",
+    "keywords": ["geoip"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pulkit Jalan"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~4|~5",
+        "geoip2/geoip2": "2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PulkitJalan\\GeoIP\\": "src"
+        }
+    },
+    "minimum-stability": "stable"
+}
