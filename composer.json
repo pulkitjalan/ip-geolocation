@@ -1,8 +1,8 @@
 {
     "name": "pulkitjalan/geoip",
-    "description": "Geoip wrapper",
+    "description": "Geoip Wrapper with Laravel Support",
     "homepage": "https://github.com/pulkitjalan/geoip",
-    "keywords": ["geoip"],
+    "keywords": ["geoip", "maxmind", "ip-api"],
     "license": "MIT",
     "authors": [
         {
@@ -12,6 +12,7 @@
     "require": {
         "php": ">=5.4.0",
         "illuminate/support": "~4|~5",
+        "pulkitjalan/requester": "1.*",
         "geoip2/geoip2": "2.*"
     },
     "require-dev": {

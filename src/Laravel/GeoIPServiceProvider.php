@@ -33,7 +33,7 @@ class GeoIPServiceProvider extends ServiceProvider
         $this->app->config->package('pulkitjalan/geoip', realpath(__DIR__.'/config'), 'geoip');
 
         $this->app['geoip'] = $this->app->share(function ($app) {
-            return new GeoIP($app->config->get('geoip::database'));
+            return new GeoIP($app->config->get('geoip::config'));
         });
     }
 
