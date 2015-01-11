@@ -52,6 +52,20 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
     }
 
+    public function testMaxmindInvalidDatabaseException()
+    {
+        $config = [
+            'driver' => 'maxmind',
+            'maxmind' => [
+                'database' => __FILE__,
+            ],
+        ];
+
+        $this->setExpectedException('MaxMind\Db\Reader\InvalidDatabaseException');
+
+        $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
+    }
+
     public function testMaxmindWebApiException()
     {
         $config = [

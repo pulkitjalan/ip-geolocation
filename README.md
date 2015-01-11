@@ -10,7 +10,7 @@ GeoIP
 [![Latest Version](http://img.shields.io/packagist/v/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 [![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 
-This package requires PHP >=5.4
+This package requires PHP >= 5.4
 
 ## Installation
 
@@ -81,6 +81,8 @@ $config = [
 ];
 ```
 
+### Get Data
+
 Here are the avaliable methods to pull out the required information.
 
 Set IP (Optional)
@@ -147,6 +149,26 @@ Get all geo information
 
 ```php
 $geoip->get();
+```
+
+### Update Database
+
+There is an update command avaliable to help with updating and installing a local geoip database. The following will download and install/update the database file to `/path/to/database.mmdb`.
+
+```php
+<?php
+
+use PulkitJalan\GeoIP\GeoIPUpdater
+
+$config = [
+    'driver' => 'maxmind',
+    'maxmind' => [
+        'database' => '/path/to/database.mmdb',
+    ],
+];
+
+$geoipUpdater = new GeoIPUpdater($config);
+$geoipUpdater->update();
 ```
 
 ## Services

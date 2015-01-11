@@ -22,7 +22,10 @@
     "autoload": {
         "psr-4": {
             "PulkitJalan\\GeoIP\\": "src"
-        }
+        },
+        "files": [
+            "helpers.php"
+        ]
     },
     "minimum-stability": "stable"
 }

@@ -2,7 +2,9 @@
 
 namespace PulkitJalan\GeoIP\Laravel;
 
+use PulkitJalan\GeoIP\Laravel\Console\UpdateCommand;
 use Illuminate\Support\ServiceProvider;
+use PulkitJalan\GeoIP\GeoIP;
 
 class GeoIPServiceProvider extends ServiceProvider
 {
@@ -32,9 +34,35 @@ class GeoIPServiceProvider extends ServiceProvider
     {
         $this->app->config->package('pulkitjalan/geoip', realpath(__DIR__.'/config'), 'geoip');
 
+        $this->registerGeoIP();
+
+        $this->registerUpdateCommand();
+    }
+
+    /**
+     * Register the main geoip wrapper
+     *
+     * @return void
+     */
+    protected function registerGeoIP()
+    {
         $this->app['geoip'] = $this->app->share(function ($app) {
             return new GeoIP($app->config->get('geoip::config'));
         });
+    }
+
+    /**
+     * Register the geoip update console command.
+     *
+     * @return void
+     */
+    protected function registerUpdateCommand()
+    {
+        $this->app['command.geoip.update'] = $this->app->share(function ($app) {
+            return new UpdateCommand($app->config->get('geoip::config'));
+        });
+
+        $this->commands(array('command.geoip.update'));
     }
 
     /**
@@ -44,6 +72,6 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['geoip', 'PulkitJalan\GeoIP\GeoIP'];
+        return ['geoip', 'command.geoip.update', 'PulkitJalan\GeoIP\GeoIP'];
     }
 }
