@@ -8,11 +8,6 @@ use PulkitJalan\Requester\Requester;
 class GeoIPUpdater
 {
     /**
-     * @var string
-     */
-    protected $maxmindUrl = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
-
-    /**
      * @var array
      */
     protected $config;
@@ -53,11 +48,13 @@ class GeoIPUpdater
      */
     protected function updateMaxmindDatabase()
     {
+        $maxmindDatabaseUrl = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
+
         $database = array_get($this->config, 'maxmind.database', '/tmp/GeoLite2-City.mmdb');
 
-        $file = $this->requester->url($this->maxmindUrl)->get()->getBody();
+        $file = $this->requester->url($maxmindDatabaseUrl)->get()->getBody();
 
-        file_put_contents($database, gzdecode($file));
+        @file_put_contents($database, gzdecode($file));
 
         return $database;
     }

@@ -179,4 +179,4 @@ You can use the free database from maxmind or their web api service. You can dow
 
 ### IP-API
 
-IP-API is a free service that can also be used instead of the database file or the paid maxmind service. They do have some limitations please have a look at the [docs](http://ip-api.com/docs/) first.
+IP-API is a free service that can also be used instead of the database file or the paid maxmind service. They do have some limitations so please have a look at the [docs](http://ip-api.com/docs/) first.

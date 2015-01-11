@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Laravel\Console;
 
-use Illuminate\Console\Command;
 use PulkitJalan\GeoIP\GeoIPUpdater;
+use Illuminate\Console\Command;
 
 class UpdateCommand extends Command
 {
