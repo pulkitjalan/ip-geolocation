@@ -18,7 +18,7 @@ Install via composer - edit your `composer.json` to require the package.
 
 ```js
 "require": {
-    "pulkitjalan/geoip": "dev-master"
+    "pulkitjalan/geoip": "1.*"
 }
 ```
 
