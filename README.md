@@ -148,7 +148,7 @@ $geoip->getTimezone();
 Get all geo information
 
 ```php
-$geoip->get();
+$geoip->get(); // returns array
 ```
 
 ### Update Database
