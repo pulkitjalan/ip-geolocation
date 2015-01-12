@@ -81,6 +81,10 @@ $config = [
 ];
 ```
 
+### Laravel
+
+Just update the config file in `config/packages/pulkitjalan/geoip/config.php` to get the same effect.
+
 ### Get Data
 
 Here are the avaliable methods to pull out the required information.
@@ -89,66 +93,99 @@ Set IP (Optional)
 
 ```php
 $geoip->setIP('127.0.0.1');
+
+// Laravel
+GeoIP::setIP('127.0.0.1');
 ```
 
 Get latitude
 
 ```php
 $geoip->getLatitude();
+
+// Laravel
+GeoIP::getLatitude();
 ```
 
 Get longitude
 
 ```php
 $geoip->getLongitude();
+
+//Laravel
+GeoIP::getLongitude();
 ```
 
 Get city
 
 ```php
 $geoip->getCity();
+
+//Laravel
+GeoIP::getCity();
 ```
 
 Get country
 
 ```php
 $geoip->getCountry();
+
+//Laravel
+GeoIP::getCountry();
 ```
 
 Get country code
 
 ```php
 $geoip->getCountryCode();
+
+//Laravel
+GeoIP::getCountryCode();
 ```
 
 Get region
 
 ```php
 $geoip->getRegion();
+
+//Laravel
+GeoIP::getRegion();
 ```
 
 Get region code
 
 ```php
 $geoip->getRegionCode();
+
+//Laravel
+GeoIP::getRegionCode();
 ```
 
 Get postal code
 
 ```php
 $geoip->getPostalCode();
+
+//Laravel
+GeoIP::getPostalCode();
 ```
 
 Get timezone
 
 ```php
 $geoip->getTimezone();
+
+//Laravel
+GeoIP::getTimezone();
 ```
 
 Get all geo information
 
 ```php
 $geoip->get(); // returns array
+
+//Laravel
+GeoIP::get(); // returns array
 ```
 
 ### Update Database
@@ -170,6 +207,10 @@ $config = [
 $geoipUpdater = new GeoIPUpdater($config);
 $geoipUpdater->update();
 ```
+
+### Laravel
+
+Once you have registered the service provider, you can use the command `php artasin geoip:update`
 
 ## Services
 

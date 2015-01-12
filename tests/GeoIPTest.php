@@ -26,7 +26,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('BadMethodCallException');
 
-        $geoip = new \PulkitJalan\GeoIP\GeoIP(['driver' => 'ip-api']);
+        $geoip = new \PulkitJalan\GeoIP\GeoIP();
 
         $geoip->setNothing();
     }

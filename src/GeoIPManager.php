@@ -36,7 +36,7 @@ class GeoIPManager
             throw new InvalidDriverException(sprintf('Driver [%s] does not exist.', $driver));
         }
 
-        return $this->{$method}();
+        return $this->{$method}(array_get($this->config, $driver, []));
     }
 
     /**
@@ -44,9 +44,9 @@ class GeoIPManager
      *
      * @return \PulkitJalan\GeoIP\MaxmindDriver
      */
-    protected function createMaxmindDriver()
+    protected function createMaxmindDriver(array $data)
     {
-        return new MaxmindDriver(array_get($this->config, 'maxmind', []));
+        return new MaxmindDriver($data);
     }
 
     /**
@@ -54,8 +54,8 @@ class GeoIPManager
      *
      * @return \PulkitJalan\GeoIP\IPApiDriver
      */
-    protected function createIpApiDriver()
+    protected function createIpApiDriver(array $data)
     {
-        return new IPApiDriver([]);
+        return new IPApiDriver($data);
     }
 }
