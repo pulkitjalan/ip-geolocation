@@ -83,8 +83,26 @@ class GeoIP
      */
     public function get($property = '')
     {
+        $data = $this->getData();
+
+        if (!$property) {
+            return $data;
+        }
+
+        return array_get($data, $property, '');
+    }
+
+    /**
+     * Get an array or single item of geoip data
+     *
+     * @return array
+     * @throws \PulkitJalan\GeoIP\Exceptions\GeoIPException
+     */
+    protected function getData()
+    {
         $ip = $this->getIP();
 
+        // check ip in memory
         $data = array_get($this->store, $ip);
 
         if (!$data) {
@@ -94,14 +112,11 @@ class GeoIP
                 throw new GeoIPException('Failed to get geoip data', 0, $e);
             }
 
+            // cache ip data in memory
             $this->store[$ip] = $data;
         }
 
-        if (!$property) {
-            return $data;
-        }
-
-        return array_get($data, $property, '');
+        return $data;
     }
 
     /**
