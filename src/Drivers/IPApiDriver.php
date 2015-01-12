@@ -71,8 +71,13 @@ class IPApiDriver extends AbstractGeoIPDriver
      */
     protected function create()
     {
+        $protocol = 'http:';
+        if (array_get($this->config, 'secure', false)) {
+            $protocol = 'https:';
+        }
+
         if (array_get($this->config, 'key', false)) {
-            $this->baseUrl = 'http://pro.ip-api.com/json/';
+            $this->baseUrl = $protocol.'://pro.ip-api.com/json/';
             $this->key = array_get($this->config, 'key');
         }
 

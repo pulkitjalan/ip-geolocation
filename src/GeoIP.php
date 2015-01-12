@@ -40,18 +40,6 @@ class GeoIP
     }
 
     /**
-     * Setter for driver
-     *
-     * @return \PulkitJalan\GeoIP\GeoIP
-     */
-    public function setDriver($driver)
-    {
-        $this->driver = $driver;
-
-        return $this;
-    }
-
-    /**
      * Set ip
      *
      * @var string $ip

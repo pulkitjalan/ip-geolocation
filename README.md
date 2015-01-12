@@ -71,6 +71,8 @@ $config = [
     'driver' => 'ip-api',
     'ip-api' => [
         'key' => 'YOUR IP-API KEY',
+        // optionally set secure (https) connection (default: false)
+        'secure' => true
     ],
 ];
 ```

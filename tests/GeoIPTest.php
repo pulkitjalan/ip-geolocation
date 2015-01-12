@@ -124,6 +124,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             'driver' => 'ip-api',
             'ip-api' => [
                 'key' => 'test',
+                'secure' => true,
             ],
         ];
 
@@ -132,7 +133,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
         $geoip = $geoip->setIP($this->validIP);
 
-        $this->assertEquals($geoip->getCountry(), '');
+        $geoip->get();
     }
 
     public function testIpApi()
