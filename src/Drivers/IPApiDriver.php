@@ -10,6 +10,11 @@ class IPApiDriver extends AbstractGeoIPDriver
     /**
      * @var string
      */
+    protected $key;
+
+    /**
+     * @var string
+     */
     protected $baseUrl = 'http://ip-api.com/json/';
 
     /**
@@ -24,7 +29,7 @@ class IPApiDriver extends AbstractGeoIPDriver
     {
         parent::__construct($config);
 
-        $this->requester = with(new Requester(new GuzzleClient()))->retry(2)->every(50);
+        $this->requester = $this->create();
     }
 
     /**
@@ -35,7 +40,7 @@ class IPApiDriver extends AbstractGeoIPDriver
      */
     public function get($ip)
     {
-        $data = $this->requester->url($this->baseUrl.$ip)->get()->json();
+        $data = $this->requester->url($this->getUrl($ip))->get()->json();
 
         if (array_get($data, 'status') === 'fail') {
             return [];
@@ -52,5 +57,25 @@ class IPApiDriver extends AbstractGeoIPDriver
             'timezone' => array_get($data, 'timezone'),
             'postalCode' => array_get($data, 'zip'),
         ];
+    }
+
+    protected function getUrl($ip)
+    {
+        return $this->baseUrl.$ip.(($this->key) ? '?key='.$this->key : '');
+    }
+
+    /**
+     * Create the ip-api driver based on config
+     *
+     * @return mixed
+     */
+    protected function create()
+    {
+        if (array_get($this->config, 'key', false)) {
+            $this->baseUrl = 'http://pro.ip-api.com/json/';
+            $this->key = array_get($this->config, 'key');
+        }
+
+        return with(new Requester(new GuzzleClient()))->retry(2)->every(50);
     }
 }

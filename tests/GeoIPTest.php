@@ -78,9 +78,6 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException');
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
-        $geoip = $geoip->setIP($this->validIP);
-
-        $geoip->get();
     }
 
     public function testMaxmindWebApiAuthenticationException()
@@ -93,7 +90,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException('GeoIp2\Exception\AuthenticationException');
+        $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\GeoIPException');
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
         $geoip = $geoip->setIP($this->validIP);
@@ -118,6 +115,23 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = $geoip->setIP($this->invalidIP);
 
         $this->assertEquals($geoip->get(), []);
+        $this->assertEquals($geoip->getCountry(), '');
+    }
+
+    public function testIpApiProException()
+    {
+        $config = [
+            'driver' => 'ip-api',
+            'ip-api' => [
+                'key' => 'test',
+            ],
+        ];
+
+        $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\GeoIPException');
+
+        $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
+        $geoip = $geoip->setIP($this->validIP);
+
         $this->assertEquals($geoip->getCountry(), '');
     }
 

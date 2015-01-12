@@ -44,19 +44,38 @@ Next run `php artisan config:publish pulkitjalan/geoip` to publish the config fi
 
 ## Usage
 
-The geoip class takes a config array as the first parameter. Example:
+Supported Drivers: [maxmind](https://www.maxmind.com/) and [ip-api](http://ip-api.com/)
+
+The geoip class takes a config array as the first parameter or defaults to using the `ip-api` driver.
+
+Example:
 
 ```php
 <?php
 
 use PulkitJalan\GeoIP\GeoIP
 
-$config = ['driver' => 'ip-api'];
+$geoip = new GeoIP();
+$geoip->setIp('81.2.69.160'); // Optional
 
-$geoip = new GeoIP($config);
+$lat = $geoip->getLatitude(); // 51.5141
+$lon = $geoip->getLongitude(); // -3.1969
 ```
 
-Supported Drivers: [maxmind](https://www.maxmind.com/) and [ip-api](http://ip-api.com/)
+### IP-API
+
+To use the ip-api pro service you can set the options in your config.
+
+```php
+$config = [
+    'driver' => 'ip-api',
+    'ip-api' => [
+        'key' => 'YOUR IP-API KEY',
+    ],
+];
+```
+
+### Maxmind
 
 Maxmind support the database type and also web api type.
 
@@ -83,9 +102,9 @@ $config = [
 
 ### Laravel
 
-Just update the config file in `config/packages/pulkitjalan/geoip/config.php` to get the same effect.
+To use this package in Laravel, simply update the config file in `config/packages/pulkitjalan/geoip/config.php` to get the same effect.
 
-### Get Data
+### Methods
 
 Here are the avaliable methods to pull out the required information.
 

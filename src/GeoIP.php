@@ -2,6 +2,8 @@
 
 namespace PulkitJalan\GeoIP;
 
+use PulkitJalan\GeoIP\Exceptions\GeoIPException;
+
 class GeoIP
 {
     /**
@@ -69,7 +71,7 @@ class GeoIP
      */
     public function getIP()
     {
-        return ($this->ip) ?: array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR'))))));
+        return ($this->ip) ?: array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
     }
 
     /**
@@ -86,7 +88,12 @@ class GeoIP
         $data = array_get($this->store, $ip);
 
         if (!$data) {
-            $data = $this->getDriver()->get($ip);
+            try {
+                $data = $this->getDriver()->get($ip);
+            } catch (\Exception $e) {
+                throw new GeoIPException('Failed to get geoip data', 0, $e);
+            }
+
             $this->store[$ip] = $data;
         }
 
