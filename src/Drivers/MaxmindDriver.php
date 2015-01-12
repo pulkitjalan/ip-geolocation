@@ -3,6 +3,7 @@
 namespace PulkitJalan\GeoIP\Drivers;
 
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 use GeoIp2\Exception\AddressNotFoundException;
 use GeoIp2\WebService\Client;
 use GeoIp2\Database\Reader;
@@ -104,6 +105,10 @@ class MaxmindDriver extends AbstractGeoIPDriver
             throw new InvalidCredentialsException();
         }
 
-        return new Reader($database);
+        try {
+            return new Reader($database);
+        } catch (\MaxMind\Db\Reader\InvalidDatabaseException $e) {
+            throw new InvalidDatabaseException($e->getMessage());
+        }
     }
 }

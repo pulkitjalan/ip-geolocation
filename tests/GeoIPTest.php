@@ -61,7 +61,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException('MaxMind\Db\Reader\InvalidDatabaseException');
+        $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException');
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
     }

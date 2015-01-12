@@ -50,7 +50,7 @@ class GeoIPUpdater
     {
         $maxmindDatabaseUrl = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
 
-        $database = array_get($this->config, 'maxmind.database', '/tmp/GeoLite2-City.mmdb');
+        $database = array_get($this->config, 'maxmind.database', false);
 
         $file = $this->requester->url($maxmindDatabaseUrl)->get()->getBody();
 

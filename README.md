@@ -44,7 +44,7 @@ Next run `php artisan config:publish pulkitjalan/geoip` to publish the config fi
 
 ## Usage
 
-Supported Drivers: [maxmind](https://www.maxmind.com/) and [ip-api](http://ip-api.com/)
+Supported Drivers: [ip-api](http://ip-api.com/) and [maxmind](https://www.maxmind.com/)
 
 The geoip class takes a config array as the first parameter or defaults to using the `ip-api` driver.
 
@@ -71,6 +71,7 @@ $config = [
     'driver' => 'ip-api',
     'ip-api' => [
         'key' => 'YOUR IP-API KEY',
+
         // optionally set secure (https) connection (default: false)
         'secure' => true
     ],
@@ -235,10 +236,10 @@ Once you have registered the service provider, you can use the command `php arta
 
 ## Services
 
+### IP-API
+
+IP-API is a free (or paid) service that can also be used instead of the database file or the paid maxmind service. They do have some limitations on the free service so please have a look at the [docs](http://ip-api.com/docs/) first.
+
 ### Maxmind
 
 You can use the free database from maxmind or their web api service. You can download the free database service [here](http://dev.maxmind.com/geoip/geoip2/geolite2/) or enter your `user id` and `license key` in the config.
-
-### IP-API
-
-IP-API is a free service that can also be used instead of the database file or the paid maxmind service. They do have some limitations so please have a look at the [docs](http://ip-api.com/docs/) first.
