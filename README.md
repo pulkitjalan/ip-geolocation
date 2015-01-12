@@ -56,7 +56,6 @@ Example:
 use PulkitJalan\GeoIP\GeoIP
 
 $geoip = new GeoIP();
-$geoip->setIp('81.2.69.160'); // Optional
 
 $lat = $geoip->getLatitude(); // 51.5141
 $lon = $geoip->getLongitude(); // -3.1969
@@ -66,6 +65,7 @@ $lon = $geoip->getLongitude(); // -3.1969
 
 To use the ip-api pro service you can set the options in your config.
 
+Pro Example:
 ```php
 $config = [
     'driver' => 'ip-api',
