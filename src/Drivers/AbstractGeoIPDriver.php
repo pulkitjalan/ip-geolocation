@@ -2,6 +2,9 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
+use GuzzleHttp\Client as GuzzleClient;
+use PulkitJalan\Requester\Requester;
+
 abstract class AbstractGeoIPDriver
 {
     /**
@@ -10,11 +13,18 @@ abstract class AbstractGeoIPDriver
     protected $config;
 
     /**
+     * @var \PulkitJalan\Requester\Requester
+     */
+    protected $requester;
+
+    /**
      * @param array $config
      */
     public function __construct(array $config)
     {
         $this->config = $config;
+
+        $this->requester = with(new Requester(new GuzzleClient()))->retry(2)->every(50);
     }
 
     /**

@@ -152,4 +152,41 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($geoip->get(), []);
         $this->assertEquals($geoip->getCountry(), '');
     }
+
+    public function testTelize()
+    {
+        $config = [
+            'driver' => 'telize',
+        ];
+
+        $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
+        $geoip = $geoip->setIP($this->validIP);
+
+        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
+
+        $geoip = $geoip->setIP($this->invalidIP);
+
+        $this->assertEquals($geoip->get(), []);
+        $this->assertEquals($geoip->getCountry(), '');
+    }
+
+    public function testTelizeSecure()
+    {
+        $config = [
+            'driver' => 'telize',
+            'telize' => [
+                'secure' => true,
+            ],
+        ];
+
+        $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
+        $geoip = $geoip->setIP($this->validIP);
+
+        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
+
+        $geoip = $geoip->setIP($this->invalidIP);
+
+        $this->assertEquals($geoip->get(), []);
+        $this->assertEquals($geoip->getCountry(), '');
+    }
 }

@@ -2,36 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
-use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\Requester\Requester;
-
 class IPApiDriver extends AbstractGeoIPDriver
 {
-    /**
-     * @var string
-     */
-    protected $key;
-
-    /**
-     * @var string
-     */
-    protected $baseUrl = 'http://ip-api.com/json/';
-
-    /**
-     * @var \PulkitJalan\Requester\Requester
-     */
-    protected $requester;
-
-    /**
-     * @param array $config
-     */
-    public function __construct(array $config)
-    {
-        parent::__construct($config);
-
-        $this->requester = $this->create();
-    }
-
     /**
      * Get array of data using ip-api
      *
@@ -56,31 +28,36 @@ class IPApiDriver extends AbstractGeoIPDriver
             'regionCode' => array_get($data, 'regionName'),
             'timezone' => array_get($data, 'timezone'),
             'postalCode' => array_get($data, 'zip'),
+            'organization' => array_get($data, 'org'),
+            'isp' => array_get($data, 'isp'),
         ];
     }
 
-    protected function getUrl($ip)
-    {
-        return $this->baseUrl.$ip.(($this->key) ? '?key='.$this->key : '');
-    }
-
     /**
-     * Create the ip-api driver based on config
+     * Get the ip-api url add key and
+     * change base url if pro user
      *
-     * @return mixed
+     * @param  string $ip
+     * @return string
      */
-    protected function create()
+    protected function getUrl($ip)
     {
         $protocol = 'http:';
         if (array_get($this->config, 'secure', false)) {
             $protocol = 'https:';
         }
 
+        // default to free service
+        // free service does not support https
+        $baseUrl = 'http://ip-api.com/json/';
+        $key = '';
+
+        // if key is set change to pro service
         if (array_get($this->config, 'key', false)) {
-            $this->baseUrl = $protocol.'://pro.ip-api.com/json/';
-            $this->key = array_get($this->config, 'key');
+            $baseUrl = $protocol.'//pro.ip-api.com/json/';
+            $key = array_get($this->config, 'key');
         }
 
-        return with(new Requester(new GuzzleClient()))->retry(2)->every(50);
+        return $baseUrl.$ip.(($key) ? '?key='.$key : '');
     }
 }

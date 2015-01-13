@@ -4,6 +4,7 @@ namespace PulkitJalan\GeoIP;
 
 use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
 use PulkitJalan\GeoIP\Drivers\MaxmindDriver;
+use PulkitJalan\GeoIP\Drivers\TelizeDriver;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 
 class GeoIPManager
@@ -40,16 +41,6 @@ class GeoIPManager
     }
 
     /**
-     * Get the Maxmind driver
-     *
-     * @return \PulkitJalan\GeoIP\MaxmindDriver
-     */
-    protected function createMaxmindDriver(array $data)
-    {
-        return new MaxmindDriver($data);
-    }
-
-    /**
      * Get the ip-api driver
      *
      * @return \PulkitJalan\GeoIP\IPApiDriver
@@ -57,5 +48,25 @@ class GeoIPManager
     protected function createIpApiDriver(array $data)
     {
         return new IPApiDriver($data);
+    }
+
+    /**
+     * Get the telize driver
+     *
+     * @return \PulkitJalan\GeoIP\TelizeDriver
+     */
+    protected function createTelizeDriver(array $data)
+    {
+        return new TelizeDriver($data);
+    }
+
+    /**
+     * Get the Maxmind driver
+     *
+     * @return \PulkitJalan\GeoIP\MaxmindDriver
+     */
+    protected function createMaxmindDriver(array $data)
+    {
+        return new MaxmindDriver($data);
     }
 }

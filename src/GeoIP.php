@@ -45,7 +45,7 @@ class GeoIP
      * @var string $ip
      * @return PulkitJalan\GeoIP\GeoIP
      */
-    public function setIP($ip)
+    public function setIp($ip)
     {
         $this->ip = $ip;
 
@@ -57,7 +57,7 @@ class GeoIP
      *
      * @return string ipaddress
      */
-    public function getIP()
+    public function getIp()
     {
         return ($this->ip) ?: array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
     }
@@ -88,7 +88,7 @@ class GeoIP
      */
     protected function getData()
     {
-        $ip = $this->getIP();
+        $ip = $this->getIp();
 
         // check ip in memory
         $data = array_get($this->store, $ip);

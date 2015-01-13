@@ -10,7 +10,15 @@ GeoIP
 [![Latest Version](http://img.shields.io/packagist/v/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 [![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 
-This package requires PHP >= 5.4
+## Supported Drivers ([Services](#services))
+
+* [IP-API](http://ip-api.com/)
+* [Telize](http://www.telize.com/)
+* [Maxmind](https://www.maxmind.com/)
+
+## Requirements
+
+* PHP >= 5.4
 
 ## Installation
 
@@ -44,8 +52,6 @@ Next run `php artisan config:publish pulkitjalan/geoip` to publish the config fi
 
 ## Usage
 
-Supported Drivers: [ip-api](http://ip-api.com/) and [maxmind](https://www.maxmind.com/)
-
 The geoip class takes a config array as the first parameter or defaults to using the `ip-api` driver.
 
 Example:
@@ -61,7 +67,7 @@ $lat = $geoip->getLatitude(); // 51.5141
 $lon = $geoip->getLongitude(); // -3.1969
 ```
 
-### IP-API
+#### IP-API
 
 To use the ip-api pro service you can set the options in your config.
 
@@ -78,7 +84,22 @@ $config = [
 ];
 ```
 
-### Maxmind
+#### Telize
+
+To use the telize as the driver set the config, can also use https instead by setting `secure` to `true`.
+
+Secure Example:
+```php
+$config = [
+    'driver' => 'telize',
+    'telize' => [
+        // optionally set secure (https) connection (default: false)
+        'secure' => true
+    ],
+];
+```
+
+#### Maxmind
 
 Maxmind support the database type and also web api type.
 
@@ -107,18 +128,18 @@ $config = [
 
 To use this package in Laravel, simply update the config file in `config/packages/pulkitjalan/geoip/config.php` to get the same effect.
 
-### Methods
+### Available Methods
 
-Here are the avaliable methods to pull out the required information.
-
-Set IP (Optional)
+GeoIP will try to determin the ip using the following http headers: `HTTP_CLIENT_IP`, `HTTP_X_FORWARDED_FOR`, `HTTP_X_FORWARDED`, `HTTP_FORWARDED_FOR`, `HTTP_FORWARDED`, `REMOTE_ADDR` in this order. Optionally use the `setIp` method to set it.
 
 ```php
-$geoip->setIP('127.0.0.1');
+$geoip->setIp('127.0.0.1');
 
 // Laravel
-GeoIP::setIP('127.0.0.1');
+GeoIP::setIp('127.0.0.1');
 ```
+
+There are a number of available methods to pull out the required information. All methods will return an empty string if data is unavailable.
 
 Get latitude
 
@@ -134,7 +155,7 @@ Get longitude
 ```php
 $geoip->getLongitude();
 
-//Laravel
+// Laravel
 GeoIP::getLongitude();
 ```
 
@@ -143,7 +164,7 @@ Get city
 ```php
 $geoip->getCity();
 
-//Laravel
+// Laravel
 GeoIP::getCity();
 ```
 
@@ -152,7 +173,7 @@ Get country
 ```php
 $geoip->getCountry();
 
-//Laravel
+// Laravel
 GeoIP::getCountry();
 ```
 
@@ -161,7 +182,7 @@ Get country code
 ```php
 $geoip->getCountryCode();
 
-//Laravel
+// Laravel
 GeoIP::getCountryCode();
 ```
 
@@ -170,7 +191,7 @@ Get region
 ```php
 $geoip->getRegion();
 
-//Laravel
+// Laravel
 GeoIP::getRegion();
 ```
 
@@ -179,7 +200,7 @@ Get region code
 ```php
 $geoip->getRegionCode();
 
-//Laravel
+// Laravel
 GeoIP::getRegionCode();
 ```
 
@@ -188,7 +209,7 @@ Get postal code
 ```php
 $geoip->getPostalCode();
 
-//Laravel
+// Laravel
 GeoIP::getPostalCode();
 ```
 
@@ -197,8 +218,17 @@ Get timezone
 ```php
 $geoip->getTimezone();
 
-//Laravel
+// Laravel
 GeoIP::getTimezone();
+```
+
+Get isp (not supported on all drivers)
+
+```php
+$geoip->getIsp();
+
+// Laravel
+GeoIP::getIsp();
 ```
 
 Get all geo information
@@ -206,13 +236,13 @@ Get all geo information
 ```php
 $geoip->get(); // returns array
 
-//Laravel
+// Laravel
 GeoIP::get(); // returns array
 ```
 
 ### Update Database
 
-There is an update command avaliable to help with updating and installing a local geoip database. The following will download and install/update the database file to `/path/to/database.mmdb`.
+There is an update command available to help with updating and installing a local geoip database. The following will download and install/update the database file to `/path/to/database.mmdb`.
 
 ```php
 <?php
@@ -236,10 +266,14 @@ Once you have registered the service provider, you can use the command `php arta
 
 ## Services
 
-### IP-API
+#### IP-API
 
 IP-API is a free (or paid) service that can also be used instead of the database file or the paid maxmind service. They do have some limitations on the free service so please have a look at the [docs](http://ip-api.com/docs/) first.
 
-### Maxmind
+#### Telize
+
+Telize is a free service that can be used as an alternative. It currently has no limitations.
+
+#### Maxmind
 
 You can use the free database from maxmind or their web api service. You can download the free database service [here](http://dev.maxmind.com/geoip/geoip2/geolite2/) or enter your `user id` and `license key` in the config.

@@ -60,10 +60,12 @@ class MaxmindDriver extends AbstractGeoIPDriver
      */
     protected function create()
     {
+        // if user_id and license_key are set then use the web service
         if (array_get($this->config, 'user_id', false)) {
             return $this->createWebClient();
         }
 
+        // if database file is set then use database service
         if (array_get($this->config, 'database', false)) {
             return $this->createDatabase();
         }
@@ -105,10 +107,11 @@ class MaxmindDriver extends AbstractGeoIPDriver
             throw new InvalidCredentialsException();
         }
 
+        // catch maxmind exception and throw geoip exception
         try {
             return new Reader($database);
         } catch (\MaxMind\Db\Reader\InvalidDatabaseException $e) {
-            throw new InvalidDatabaseException($e->getMessage());
+            throw new InvalidDatabaseException($e->getMessage(), $e->getCode(), $e);
         }
     }
 }
