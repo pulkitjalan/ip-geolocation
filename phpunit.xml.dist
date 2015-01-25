@@ -18,7 +18,9 @@
         <whitelist>
             <directory suffix=".php">src/</directory>
             <exclude>
-                <directory suffix=".php">src/Laravel/</directory>
+                <file>src/GoogleServiceProvider.php</file>
+                <directory suffix=".php">src/config/</directory>
+                <directory suffix=".php">src/Facades/</directory>
             </exclude>
         </whitelist>
     </filter>
