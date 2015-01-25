@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Laravel\Console;
+namespace PulkitJalan\GeoIP\Console;
 
 use PulkitJalan\GeoIP\GeoIPUpdater;
 use Illuminate\Console\Command;

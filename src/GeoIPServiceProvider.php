@@ -1,10 +1,9 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Laravel;
+namespace PulkitJalan\GeoIP;
 
-use PulkitJalan\GeoIP\Laravel\Console\UpdateCommand;
+use PulkitJalan\GeoIP\Console\UpdateCommand;
 use Illuminate\Support\ServiceProvider;
-use PulkitJalan\GeoIP\GeoIP;
 
 class GeoIPServiceProvider extends ServiceProvider
 {

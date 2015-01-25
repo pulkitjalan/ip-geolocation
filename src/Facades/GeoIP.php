@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Laravel\Facades;
+namespace PulkitJalan\GeoIP\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

@@ -39,13 +39,13 @@ There is a Laravel service provider and facade available.
 Add the following to the `providers` array in your `config/app.php`
 
 ```php
-'PulkitJalan\GeoIP\Laravel\GeoIPServiceProvider'
+'PulkitJalan\GeoIP\GeoIPServiceProvider'
 ```
 
 Next add the following to the `aliases` array in your `config/app.php`
 
 ```php
-'GeoIP' => 'PulkitJalan\GeoIP\Laravel\Facades\GeoIP'
+'GeoIP' => 'PulkitJalan\GeoIP\Facades\GeoIP'
 ```
 
 Next run `php artisan config:publish pulkitjalan/geoip` to publish the config file.
