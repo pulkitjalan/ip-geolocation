@@ -28,9 +28,10 @@ abstract class AbstractGeoIPDriver
     }
 
     /**
-     * Get GeoIP info from IP
+     * Get GeoIP info from IP.
      *
-     * @param  string $ip
+     * @param string $ip
+     *
      * @return array
      */
     abstract public function get($ip);

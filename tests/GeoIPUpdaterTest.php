@@ -1,9 +1,9 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Tests;
+namespace PulkitJalan\GeoIP\tests;
 
-use PHPUnit_Framework_TestCase;
 use Mockery;
+use PHPUnit_Framework_TestCase;
 
 class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
 {
@@ -23,7 +23,7 @@ class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
     {
         $database = __DIR__.'/data/GeoLite2-City.mmdb';
         $config = [
-            'driver' => 'maxmind',
+            'driver'  => 'maxmind',
             'maxmind' => [
                 'database' => $database,
             ],

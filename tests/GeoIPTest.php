@@ -1,9 +1,9 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Tests;
+namespace PulkitJalan\GeoIP\tests;
 
-use PHPUnit_Framework_TestCase;
 use Mockery;
+use PHPUnit_Framework_TestCase;
 
 class GeoIPTest extends PHPUnit_Framework_TestCase
 {
@@ -41,7 +41,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
     public function testMaxmindDatabaseException()
     {
         $config = [
-            'driver' => 'maxmind',
+            'driver'  => 'maxmind',
             'maxmind' => [
                 'database' => __DIR__.'/data/GeoIP2-City.mmdb',
             ],
@@ -55,7 +55,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
     public function testMaxmindInvalidDatabaseException()
     {
         $config = [
-            'driver' => 'maxmind',
+            'driver'  => 'maxmind',
             'maxmind' => [
                 'database' => __FILE__,
             ],
@@ -69,7 +69,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
     public function testMaxmindWebApiException()
     {
         $config = [
-            'driver' => 'maxmind',
+            'driver'  => 'maxmind',
             'maxmind' => [
                 'user_id' => 'test',
             ],
@@ -83,9 +83,9 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
     public function testMaxmindWebApiAuthenticationException()
     {
         $config = [
-            'driver' => 'maxmind',
+            'driver'  => 'maxmind',
             'maxmind' => [
-                'user_id' => 'test',
+                'user_id'     => 'test',
                 'license_key' => 'test',
             ],
         ];
@@ -101,7 +101,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
     public function testMaxmindDatabase()
     {
         $config = [
-            'driver' => 'maxmind',
+            'driver'  => 'maxmind',
             'maxmind' => [
                 'database' => __DIR__.'/data/GeoIP2-City-Test.mmdb',
             ],
@@ -123,7 +123,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $config = [
             'driver' => 'ip-api',
             'ip-api' => [
-                'key' => 'test',
+                'key'    => 'test',
                 'secure' => true,
             ],
         ];

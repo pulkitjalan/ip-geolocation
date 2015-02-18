@@ -2,7 +2,7 @@
 
 if (!function_exists('gzdecode')) {
     /**
-     * gzdecode function
+     * gzdecode function.
      */
     function gzdecode($data)
     {

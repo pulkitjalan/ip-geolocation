@@ -28,7 +28,7 @@ class GeoIPUpdater
     }
 
     /**
-     * Main update function
+     * Main update function.
      *
      * @return bool|string
      */
@@ -42,7 +42,7 @@ class GeoIPUpdater
     }
 
     /**
-     * Update function for maxmind database
+     * Update function for maxmind database.
      *
      * @return string
      */

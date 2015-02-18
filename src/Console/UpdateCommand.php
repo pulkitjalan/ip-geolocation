@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Console;
 
-use PulkitJalan\GeoIP\GeoIPUpdater;
 use Illuminate\Console\Command;
+use PulkitJalan\GeoIP\GeoIPUpdater;
 
 class UpdateCommand extends Command
 {

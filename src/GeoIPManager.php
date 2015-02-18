@@ -2,10 +2,10 @@
 
 namespace PulkitJalan\GeoIP;
 
-use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
+use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDriver;
 use PulkitJalan\GeoIP\Drivers\TelizeDriver;
-use PulkitJalan\GeoIP\Drivers\IPApiDriver;
+use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
 
 class GeoIPManager
 {
@@ -23,7 +23,7 @@ class GeoIPManager
     }
 
     /**
-     * Get the driver based on config
+     * Get the driver based on config.
      *
      * @return \PulkitJalan\GeoIP\AbstractGeoIPDriver
      */
@@ -41,7 +41,7 @@ class GeoIPManager
     }
 
     /**
-     * Get the ip-api driver
+     * Get the ip-api driver.
      *
      * @return \PulkitJalan\GeoIP\IPApiDriver
      */
@@ -51,7 +51,7 @@ class GeoIPManager
     }
 
     /**
-     * Get the telize driver
+     * Get the telize driver.
      *
      * @return \PulkitJalan\GeoIP\TelizeDriver
      */
@@ -61,7 +61,7 @@ class GeoIPManager
     }
 
     /**
-     * Get the Maxmind driver
+     * Get the Maxmind driver.
      *
      * @return \PulkitJalan\GeoIP\MaxmindDriver
      */

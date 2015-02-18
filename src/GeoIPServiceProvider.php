@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP;
 
-use PulkitJalan\GeoIP\Console\UpdateCommand;
 use Illuminate\Support\ServiceProvider;
+use PulkitJalan\GeoIP\Console\UpdateCommand;
 
 class GeoIPServiceProvider extends ServiceProvider
 {
@@ -39,7 +39,7 @@ class GeoIPServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the main geoip wrapper
+     * Register the main geoip wrapper.
      *
      * @return void
      */
@@ -61,7 +61,7 @@ class GeoIPServiceProvider extends ServiceProvider
             return new UpdateCommand($app->config->get('geoip::config'));
         });
 
-        $this->commands(array('command.geoip.update'));
+        $this->commands(['command.geoip.update']);
     }
 
     /**

@@ -2,11 +2,11 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use GeoIp2\WebService\Client;
-use GeoIp2\Database\Reader;
+use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 
 class MaxmindDriver extends AbstractGeoIPDriver
 {
@@ -26,9 +26,10 @@ class MaxmindDriver extends AbstractGeoIPDriver
     }
 
     /**
-     * Get array of data using Maxmind
+     * Get array of data using Maxmind.
      *
-     * @param  string $ip
+     * @param string $ip
+     *
      * @return array
      */
     public function get($ip)
@@ -40,23 +41,24 @@ class MaxmindDriver extends AbstractGeoIPDriver
         }
 
         return [
-            'city' => $data->city->name,
-            'country' => $data->country->name,
+            'city'        => $data->city->name,
+            'country'     => $data->country->name,
             'countryCode' => $data->country->isoCode,
-            'latitude' => $data->location->latitude,
-            'longitude' => $data->location->longitude,
-            'region' => $data->mostSpecificSubdivision->name,
-            'regionCode' => $data->mostSpecificSubdivision->isoCode,
-            'timezone' => $data->location->timeZone,
-            'postalCode' => $data->postal->code,
+            'latitude'    => $data->location->latitude,
+            'longitude'   => $data->location->longitude,
+            'region'      => $data->mostSpecificSubdivision->name,
+            'regionCode'  => $data->mostSpecificSubdivision->isoCode,
+            'timezone'    => $data->location->timeZone,
+            'postalCode'  => $data->postal->code,
         ];
     }
 
     /**
-     * Create the maxmind driver based on config
+     * Create the maxmind driver based on config.
+     *
+     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      *
      * @return mixed
-     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      */
     protected function create()
     {
@@ -74,10 +76,11 @@ class MaxmindDriver extends AbstractGeoIPDriver
     }
 
     /**
-     * Create the maxmind web client
+     * Create the maxmind web client.
+     *
+     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      *
      * @return \GeoIp2\WebService\Client
-     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      */
     protected function createWebClient()
     {
@@ -93,10 +96,11 @@ class MaxmindDriver extends AbstractGeoIPDriver
     }
 
     /**
-     * Create the maxmind database reader
+     * Create the maxmind database reader.
+     *
+     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      *
      * @return \GeoIp2\Database\Reader
-     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      */
     protected function createDatabase()
     {

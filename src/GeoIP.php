@@ -22,7 +22,7 @@ class GeoIP
     protected $store = [];
 
     /**
-     * @var array $config
+     * @var array
      */
     public function __construct(array $config = ['driver' => 'ip-api'])
     {
@@ -30,7 +30,7 @@ class GeoIP
     }
 
     /**
-     * Getter for driver
+     * Getter for driver.
      *
      * @return \PulkitJalan\GeoIP\Contracts\GeoIPInterface
      */
@@ -40,9 +40,10 @@ class GeoIP
     }
 
     /**
-     * Set ip
+     * Set ip.
      *
-     * @var string $ip
+     * @var string
+     *
      * @return PulkitJalan\GeoIP\GeoIP
      */
     public function setIp($ip)
@@ -53,7 +54,7 @@ class GeoIP
     }
 
     /**
-     * Get ip from server info
+     * Get ip from server info.
      *
      * @return string ipaddress
      */
@@ -64,9 +65,10 @@ class GeoIP
 
     /**
      * Get an array or single item of geoip data
-     * Also stores data in memory for further requests
+     * Also stores data in memory for further requests.
      *
-     * @param  string       $property
+     * @param string $property
+     *
      * @return array|string
      */
     public function get($property = '')
@@ -81,10 +83,11 @@ class GeoIP
     }
 
     /**
-     * Get an array or single item of geoip data
+     * Get an array or single item of geoip data.
+     *
+     * @throws \PulkitJalan\GeoIP\Exceptions\GeoIPException
      *
      * @return array
-     * @throws \PulkitJalan\GeoIP\Exceptions\GeoIPException
      */
     protected function getData()
     {
@@ -108,12 +111,14 @@ class GeoIP
     }
 
     /**
-     * Magic call method for get*
+     * Magic call method for get*.
      *
-     * @param  string                  $method
-     * @param  array                   $parameters
-     * @return mixed
+     * @param string $method
+     * @param array  $parameters
+     *
      * @throws \BadMethodCallException
+     *
+     * @return mixed
      */
     public function __call($method, $parameters)
     {
