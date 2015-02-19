@@ -3,6 +3,7 @@
 if (!function_exists('gzdecode')) {
     /**
      * gzdecode function.
+     * @param GuzzleHttp\Stream\StreamInterface|null $data
      */
     function gzdecode($data)
     {
