@@ -22,6 +22,10 @@ class GeoIPServiceProvider extends ServiceProvider
         $this->app['PulkitJalan\GeoIP\GeoIP'] = function ($app) {
             return $app['geoip'];
         };
+
+        $this->publishes([
+            __DIR__.'/config/config.php' => config_path('geoip.php'),
+        ], 'config');
     }
 
     /**
@@ -31,7 +35,7 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->config->package('pulkitjalan/geoip', realpath(__DIR__.'/config'), 'geoip');
+        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'geoip');
 
         $this->registerGeoIP();
 
@@ -46,7 +50,7 @@ class GeoIPServiceProvider extends ServiceProvider
     protected function registerGeoIP()
     {
         $this->app['geoip'] = $this->app->share(function ($app) {
-            return new GeoIP($app->config->get('geoip::config'));
+            return new GeoIP(config('geoip'));
         });
     }
 
@@ -58,7 +62,7 @@ class GeoIPServiceProvider extends ServiceProvider
     protected function registerUpdateCommand()
     {
         $this->app['command.geoip.update'] = $this->app->share(function ($app) {
-            return new UpdateCommand($app->config->get('geoip::config'));
+            return new UpdateCommand(config('geoip'));
         });
 
         $this->commands(['command.geoip.update']);

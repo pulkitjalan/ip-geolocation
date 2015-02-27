@@ -1,11 +1,11 @@
 GeoIP
 =============
 
-> Geoip Wrapper with Laravel Support
+> Geoip Wrapper with Laravel 4 & 5 Support
 
-[![Build Status](http://img.shields.io/travis/pulkitjalan/geoip/1.0.svg?style=flat-square)](https://travis-ci.org/pulkitjalan/geoip)
-[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/pulkitjalan/geoip/1.0.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pulkitjalan/geoip/1.0.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/code-structure/1.0)
+[![Build Status](http://img.shields.io/travis/pulkitjalan/geoip/master.svg?style=flat-square)](https://travis-ci.org/pulkitjalan/geoip)
+[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/pulkitjalan/geoip/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pulkitjalan/geoip/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/code-structure/master)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
 [![Latest Version](http://img.shields.io/packagist/v/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 [![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
@@ -26,7 +26,7 @@ Install via composer - edit your `composer.json` to require the package.
 
 ```js
 "require": {
-    "pulkitjalan/geoip": "1.*"
+    "pulkitjalan/geoip": "2.*"
 }
 ```
 
@@ -48,11 +48,11 @@ Next add the following to the `aliases` array in your `config/app.php`
 'GeoIP' => 'PulkitJalan\GeoIP\Facades\GeoIP'
 ```
 
-Next run `php artisan config:publish pulkitjalan/geoip` to publish the config file.
+Next run `php artisan vendor:publish --provider="pulkitjalan\geoip\GeoIPServiceProvider" --tag="config"` to publish the config file.
 
-#### Looking for a Laravel 5 compatible version?
+#### Looking for a Laravel 4 compatible version?
 
-Checkout the [master branch](https://github.com/pulkitjalan/geoip/tree/master)
+Checkout the [1.0 branch](https://github.com/pulkitjalan/geoip/tree/1.0)
 
 ## Usage
 
@@ -130,7 +130,7 @@ $config = [
 
 ### Laravel
 
-To use this package in Laravel, simply update the config file in `config/packages/pulkitjalan/geoip/config.php` to get the same effect.
+To use this package in Laravel, simply update the config file in `config/geoip.php` to get the same effect. The driver can be set using the `GEOIP_DRIVER` env.
 
 ### Available Methods
 

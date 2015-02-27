@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~4",
-        "illuminate/console": "~4",
+        "illuminate/support": "~5",
+        "illuminate/console": "~5",
         "pulkitjalan/requester": "1.*",
         "geoip2/geoip2": "2.*"
     },
@@ -27,5 +27,10 @@
         "files": [
             "helpers.php"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
     }
 }
