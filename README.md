@@ -3,9 +3,9 @@ GeoIP
 
 > Geoip Wrapper with Laravel Support
 
-[![Build Status](http://img.shields.io/travis/pulkitjalan/geoip.svg?style=flat-square)](https://travis-ci.org/pulkitjalan/geoip)
-[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/pulkitjalan/geoip/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pulkitjalan/geoip/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/code-structure/master)
+[![Build Status](http://img.shields.io/travis/pulkitjalan/geoip/1.0.svg?style=flat-square)](https://travis-ci.org/pulkitjalan/geoip)
+[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/pulkitjalan/geoip/1.0.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pulkitjalan/geoip/1.0.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/code-structure/1.0)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
 [![Latest Version](http://img.shields.io/packagist/v/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 [![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
@@ -49,6 +49,10 @@ Next add the following to the `aliases` array in your `config/app.php`
 ```
 
 Next run `php artisan config:publish pulkitjalan/geoip` to publish the config file.
+
+#### Looking for a Laravel 5 compatible version?
+
+Checkout the [master branch](https://github.com/pulkitjalan/geoip/tree/master)
 
 ## Usage
 

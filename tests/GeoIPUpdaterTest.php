@@ -12,14 +12,14 @@ class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
         Mockery::close();
     }
 
-    public function testNoUpdate()
+    public function test_no_update()
     {
         $geoipUpdater = new \PulkitJalan\GeoIP\GeoIPUpdater([]);
 
         $this->assertFalse($geoipUpdater->update());
     }
 
-    public function testMaxmindUpdater()
+    public function test_maxmind_updater()
     {
         $database = __DIR__.'/data/GeoLite2-City.mmdb';
         $config = [

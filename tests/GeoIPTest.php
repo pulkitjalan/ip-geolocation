@@ -15,14 +15,14 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         Mockery::close();
     }
 
-    public function testInvalidDriverException()
+    public function test_invalid_driver_exception()
     {
         $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\InvalidDriverException');
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP([]);
     }
 
-    public function testBadMethodCallException()
+    public function test_bad_method_call_exception()
     {
         $this->setExpectedException('BadMethodCallException');
 
@@ -31,14 +31,14 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip->setNothing();
     }
 
-    public function testMaxmindException()
+    public function test_maxmind_exception()
     {
         $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException');
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP(['driver' => 'maxmind']);
     }
 
-    public function testMaxmindDatabaseException()
+    public function test_maxmind_database_exception()
     {
         $config = [
             'driver'  => 'maxmind',
@@ -52,7 +52,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
     }
 
-    public function testMaxmindInvalidDatabaseException()
+    public function test_maxmind_invalid_database_exception()
     {
         $config = [
             'driver'  => 'maxmind',
@@ -66,7 +66,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
     }
 
-    public function testMaxmindWebApiException()
+    public function test_maxmind_web_api_exception()
     {
         $config = [
             'driver'  => 'maxmind',
@@ -80,7 +80,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
     }
 
-    public function testMaxmindWebApiAuthenticationException()
+    public function test_maxmind_web_api_authentication_exception()
     {
         $config = [
             'driver'  => 'maxmind',
@@ -98,7 +98,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip->get();
     }
 
-    public function testMaxmindDatabase()
+    public function test_maxmind_database()
     {
         $config = [
             'driver'  => 'maxmind',
@@ -118,7 +118,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($geoip->getCountry(), '');
     }
 
-    public function testIpApiProException()
+    public function test_ip_api_pro_exception()
     {
         $config = [
             'driver' => 'ip-api',
@@ -136,7 +136,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip->get();
     }
 
-    public function testIpApi()
+    public function test_ip_api()
     {
         $config = [
             'driver' => 'ip-api',
@@ -153,7 +153,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($geoip->getCountry(), '');
     }
 
-    public function testTelize()
+    public function test_telize()
     {
         $config = [
             'driver' => 'telize',
@@ -170,7 +170,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($geoip->getCountry(), '');
     }
 
-    public function testTelizeSecure()
+    public function test_telize_secure()
     {
         $config = [
             'driver' => 'telize',
