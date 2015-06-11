@@ -9,7 +9,7 @@ return [
     | Supported: "ip-api", "telize", "maxmind"
     |
     */
-    'driver' => env(GEOIP_DRIVER, 'ip-api'),
+    'driver' => env('GEOIP_DRIVER', 'ip-api'),
 
     /*
     |--------------------------------------------------------------------------
