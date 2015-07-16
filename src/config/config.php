@@ -13,6 +13,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Return random ipaddresses (useful for dev envs)
+    |--------------------------------------------------------------------------
+    */
+    'random' => env('GEOIP_RANDOM', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | IP-API Driver
     |--------------------------------------------------------------------------
     */
@@ -22,7 +29,7 @@ return [
         | IP-API Pro Service Key
         |--------------------------------------------------------------------------
         */
-        'key' => '',
+        'key' => env('GEOIP_IPAPI_KEY'),
 
         /*
         |--------------------------------------------------------------------------
@@ -33,7 +40,7 @@ return [
         | Only applicable with the Pro service
         |
         */
-        'secure' => false,
+        'secure' => env('GEOIP_IPAPI_SECURE'),
     ],
 
     /*
@@ -50,7 +57,7 @@ return [
         | Use http or https
         |
         */
-        'secure' => false,
+        'secure' => env('GEOIP_TELIZE_SECURE'),
     ],
 
     /*
@@ -67,14 +74,14 @@ return [
         | Example: app_path().'/database/maxmind/GeoLite2-City.mmdb'
         |
         */
-        'database' => '',
+        'database' => env('GEOIP_MAXMIND_DATABASE'),
 
         /*
         |--------------------------------------------------------------------------
         | Maxmind Web Service Info
         |--------------------------------------------------------------------------
         */
-        'user_id'     => '',
-        'license_key' => '',
+        'user_id'     => env('GEOIP_MAXMIND_USER_ID'),
+        'license_key' => env('GEOIP_MAXMIND_LICENSE_KEY'),
     ],
 ];
