@@ -17,6 +17,11 @@ class GeoIP
     protected $driver;
 
     /**
+     * @var boolean
+     */
+    protected $random;
+
+    /**
      * @var array
      */
     protected $store = [];
@@ -27,6 +32,7 @@ class GeoIP
     public function __construct(array $config = ['driver' => 'ip-api'])
     {
         $this->driver = with(new GeoIPManager($config))->getDriver();
+        $this->random = array_get($config, 'randon', false);
     }
 
     /**
@@ -60,7 +66,15 @@ class GeoIP
      */
     public function getIp()
     {
-        return ($this->ip) ?: array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
+        if ($this->ip) {
+            return $this->ip;
+        }
+
+        if ($this->random) {
+            return long2ip(rand(0, '4294967295'));
+        }
+
+        return array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
     }
 
     /**
@@ -92,6 +106,7 @@ class GeoIP
     protected function getData()
     {
         $ip = $this->getIp();
+        $this->setIp($ip);
 
         // check ip in memory
         $data = array_get($this->store, $ip);
