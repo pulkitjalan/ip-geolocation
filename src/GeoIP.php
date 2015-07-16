@@ -66,15 +66,15 @@ class GeoIP
      */
     public function getIp()
     {
-        if ($this->ip) {
-            return $this->ip;
+        if (!$this->ip) {
+            if ($this->random) {
+                $this->ip = long2ip(rand(0, '4294967295'));
+            } else {
+                $this->ip = array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
+            }
         }
 
-        if ($this->random) {
-            return long2ip(rand(0, '4294967295'));
-        }
-
-        return array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
+        return $this->ip;
     }
 
     /**

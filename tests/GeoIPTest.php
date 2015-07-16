@@ -7,8 +7,8 @@ use PHPUnit_Framework_TestCase;
 
 class GeoIPTest extends PHPUnit_Framework_TestCase
 {
-    protected $validIP = '81.2.69.160';
-    protected $invalidIP = '127.0.0.1';
+    protected $validIp = '81.2.69.160';
+    protected $invalidIp = '127.0.0.1';
 
     public function tearDown()
     {
@@ -93,9 +93,23 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\GeoIPException');
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
-        $geoip = $geoip->setIP($this->validIP);
+        $geoip = $geoip->setIp($this->validIp);
 
         $geoip->get();
+    }
+
+    public function test_get_random_ipaddress()
+    {
+        $config = [
+            'driver' => 'ip-api',
+            'random' => true,
+        ];
+
+        $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
+        $ip = $geoip->getIp();
+
+        $this->assertNotEquals($ip, $this->invalidIp);
+        $this->assertTrue(!(filter_var($ip, FILTER_VALIDATE_IP)) === False);
     }
 
     public function test_maxmind_database()
@@ -108,11 +122,11 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         ];
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
-        $geoip = $geoip->setIP($this->validIP);
+        $geoip = $geoip->setIp($this->validIp);
 
         $this->assertEquals($geoip->getCountry(), 'United Kingdom');
 
-        $geoip = $geoip->setIP($this->invalidIP);
+        $geoip = $geoip->setIp($this->invalidIp);
 
         $this->assertEquals($geoip->get(), []);
         $this->assertEquals($geoip->getCountry(), '');
@@ -131,7 +145,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('PulkitJalan\GeoIP\Exceptions\GeoIPException');
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
-        $geoip = $geoip->setIP($this->validIP);
+        $geoip = $geoip->setIp($this->validIp);
 
         $geoip->get();
     }
@@ -143,11 +157,11 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         ];
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
-        $geoip = $geoip->setIP($this->validIP);
+        $geoip = $geoip->setIp($this->validIp);
 
         $this->assertEquals($geoip->getCountry(), 'United Kingdom');
 
-        $geoip = $geoip->setIP($this->invalidIP);
+        $geoip = $geoip->setIp($this->invalidIp);
 
         $this->assertEquals($geoip->get(), []);
         $this->assertEquals($geoip->getCountry(), '');
@@ -160,11 +174,11 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         ];
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
-        $geoip = $geoip->setIP($this->validIP);
+        $geoip = $geoip->setIp($this->validIp);
 
         $this->assertEquals($geoip->getCountry(), 'United Kingdom');
 
-        $geoip = $geoip->setIP($this->invalidIP);
+        $geoip = $geoip->setIp($this->invalidIp);
 
         $this->assertEquals($geoip->get(), []);
         $this->assertEquals($geoip->getCountry(), '');
@@ -180,11 +194,11 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         ];
 
         $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
-        $geoip = $geoip->setIP($this->validIP);
+        $geoip = $geoip->setIp($this->validIp);
 
         $this->assertEquals($geoip->getCountry(), 'United Kingdom');
 
-        $geoip = $geoip->setIP($this->invalidIP);
+        $geoip = $geoip->setIp($this->invalidIp);
 
         $this->assertEquals($geoip->get(), []);
         $this->assertEquals($geoip->getCountry(), '');
