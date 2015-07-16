@@ -32,7 +32,7 @@ class GeoIP
     public function __construct(array $config = ['driver' => 'ip-api'])
     {
         $this->driver = with(new GeoIPManager($config))->getDriver();
-        $this->random = array_get($config, 'randon', false);
+        $this->random = array_get($config, 'random', false);
     }
 
     /**
