@@ -112,6 +112,20 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(!(filter_var($ip, FILTER_VALIDATE_IP)) === False);
     }
 
+    public function test_get_non_random_ipaddress()
+    {
+        $config = [
+            'driver' => 'ip-api',
+            'random' => false,
+        ];
+
+        $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
+        $ip = $geoip->getIp();
+
+        $this->assertEquals($ip, $this->invalidIp);
+        $this->assertTrue(!(filter_var($ip, FILTER_VALIDATE_IP)) === False);
+    }
+
     public function test_maxmind_database()
     {
         $config = [
