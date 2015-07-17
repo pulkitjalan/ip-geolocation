@@ -7,6 +7,7 @@ use PHPUnit_Framework_TestCase;
 
 class GeoIPTest extends PHPUnit_Framework_TestCase
 {
+    protected $multipleIps = '81.2.69.160,127.0.0.1';
     protected $validIp = '81.2.69.160';
     protected $invalidIp = '127.0.0.1';
 
@@ -123,6 +124,20 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $ip = $geoip->getIp();
 
         $this->assertEquals($ip, $this->invalidIp);
+        $this->assertTrue(!(filter_var($ip, FILTER_VALIDATE_IP)) === False);
+    }
+
+    public function test_get_multiple_ipaddress()
+    {
+        $config = [
+            'driver' => 'ip-api',
+        ];
+
+        $geoip = new \PulkitJalan\GeoIP\GeoIP($config);
+        $geoip->setIp($this->multipleIps);
+        $ip = $geoip->getIp();
+
+        $this->assertEquals($ip, $this->validIp);
         $this->assertTrue(!(filter_var($ip, FILTER_VALIDATE_IP)) === False);
     }
 
