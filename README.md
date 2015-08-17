@@ -48,7 +48,7 @@ Next add the following to the `aliases` array in your `config/app.php`
 'GeoIP' => 'PulkitJalan\GeoIP\Facades\GeoIP'
 ```
 
-Next run `php artisan vendor:publish --provider="pulkitjalan\geoip\GeoIPServiceProvider" --tag="config"` to publish the config file.
+Next run `php artisan vendor:publish --provider="pulkitjalan\geoip\GeoIPServiceProvider"` to publish the config file.
 
 #### Looking for a Laravel 4 compatible version?
 
