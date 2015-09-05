@@ -4,6 +4,7 @@ namespace PulkitJalan\GeoIP;
 
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\Requester\Requester;
+use Exception;
 
 class GeoIPUpdater
 {
@@ -52,10 +53,49 @@ class GeoIPUpdater
 
         $database = array_get($this->config, 'maxmind.database', false);
 
+        if (!file_exists($dir = pathinfo($database, PATHINFO_DIRNAME))) {
+            mkdir($dir, 0777, true);
+        }
+
         $file = $this->requester->url($maxmindDatabaseUrl)->get()->getBody();
 
-        @file_put_contents($database, gzdecode($file));
+        try {
+            file_put_contents($database, $this->gzdecode($file));
+        } catch (Exception $e) {
+            return false;
+        }
 
         return $database;
+    }
+
+    /**
+     * gzdecode function.
+     * 
+     * @param mixed $data
+     * @return mixed
+     */
+    protected function gzdecode($data)
+    {
+        do {
+            $tempName = uniqid('temp ');
+        } while (file_exists($tempName));
+
+        if (file_put_contents($tempName, $data)) {
+            try {
+                ob_start();
+                @readgzfile($tempName);
+                $uncompressed = ob_get_clean();
+            } catch (Exception $e) {
+                $ex = $e;
+            }
+
+            unlink($tempName);
+
+            if (isset($ex)) {
+                throw $ex;
+            }
+
+            return $uncompressed;
+        }
     }
 }

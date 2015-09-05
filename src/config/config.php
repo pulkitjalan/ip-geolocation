@@ -40,7 +40,7 @@ return [
         | Only applicable with the Pro service
         |
         */
-        'secure' => env('GEOIP_IPAPI_SECURE'),
+        'secure' => env('GEOIP_IPAPI_SECURE', true),
     ],
 
     /*
@@ -57,7 +57,7 @@ return [
         | Use http or https
         |
         */
-        'secure' => env('GEOIP_TELIZE_SECURE'),
+        'secure' => env('GEOIP_TELIZE_SECURE', true),
     ],
 
     /*
@@ -74,7 +74,7 @@ return [
         | Example: app_path().'/database/maxmind/GeoLite2-City.mmdb'
         |
         */
-        'database' => env('GEOIP_MAXMIND_DATABASE'),
+        'database' => base_path().'/'.env('GEOIP_MAXMIND_DATABASE', 'database/geoip/GeoLite2-City.mmdb'),
 
         /*
         |--------------------------------------------------------------------------

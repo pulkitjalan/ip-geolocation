@@ -39,16 +39,16 @@ There is a Laravel service provider and facade available.
 Add the following to the `providers` array in your `config/app.php`
 
 ```php
-'PulkitJalan\GeoIP\GeoIPServiceProvider'
+PulkitJalan\GeoIP\GeoIPServiceProvider::class
 ```
 
 Next add the following to the `aliases` array in your `config/app.php`
 
 ```php
-'GeoIP' => 'PulkitJalan\GeoIP\Facades\GeoIP'
+'GeoIP' => PulkitJalan\GeoIP\Facades\GeoIP:class
 ```
 
-Next run `php artisan vendor:publish --provider="pulkitjalan\geoip\GeoIPServiceProvider"` to publish the config file.
+Next run `php artisan vendor:publish --provider="PulkitJalan\GeoIP\GeoIPServiceProvider" --tag="config"` to publish the config file.
 
 #### Looking for a Laravel 4 compatible version?
 
