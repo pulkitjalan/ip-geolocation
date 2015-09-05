@@ -45,7 +45,7 @@ PulkitJalan\GeoIP\GeoIPServiceProvider::class
 Next add the following to the `aliases` array in your `config/app.php`
 
 ```php
-'GeoIP' => PulkitJalan\GeoIP\Facades\GeoIP:class
+'GeoIP' => PulkitJalan\GeoIP\Facades\GeoIP::class
 ```
 
 Next run `php artisan vendor:publish --provider="PulkitJalan\GeoIP\GeoIPServiceProvider" --tag="config"` to publish the config file.
