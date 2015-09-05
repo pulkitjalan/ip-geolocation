@@ -21,11 +21,11 @@ class GeoIPUpdater
     /**
      * @param array $config
      */
-    public function __construct(array $config)
+    public function __construct(array $config, Requester $requester = null)
     {
         $this->config = $config;
 
-        $this->requester = with(new Requester(new GuzzleClient()))->retry(2)->every(50);
+        $this->requester = $requester ?: with(new Requester(new GuzzleClient()))->retry(2)->every(50);
     }
 
     /**

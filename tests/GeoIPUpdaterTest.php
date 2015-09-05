@@ -35,4 +35,22 @@ class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
 
         unlink($database);
     }
+
+    public function test_maxmind_updater_dir_not_exist()
+    {
+        $database = __DIR__.'/data/new_dir/GeoLite2-City.mmdb';
+        $config = [
+            'driver'  => 'maxmind',
+            'maxmind' => [
+                'database' => $database,
+            ],
+        ];
+
+        $geoipUpdater = new \PulkitJalan\GeoIP\GeoIPUpdater($config);
+
+        $this->assertEquals($geoipUpdater->update(), $database);
+
+        unlink($database);
+        rmdir(pathinfo($database, PATHINFO_DIRNAME));
+    }
 }
