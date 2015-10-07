@@ -23,7 +23,10 @@
     "autoload": {
         "psr-4": {
             "PulkitJalan\\GeoIP\\": "src"
-        }
+        },
+        "files": [
+            "helpers.php"
+        ]
     },
     "extra": {
         "branch-alias": {
