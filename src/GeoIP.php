@@ -17,7 +17,7 @@ class GeoIP
     protected $driver;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $random;
 
@@ -66,7 +66,7 @@ class GeoIP
      */
     public function getIp()
     {
-        if (!$this->ip) {
+        if (! $this->ip) {
             if ($this->random) {
                 $this->ip = long2ip(rand(0, '4294967295'));
             } else {
@@ -94,7 +94,7 @@ class GeoIP
     {
         $data = $this->getData();
 
-        if (!$property) {
+        if (! $property) {
             return $data;
         }
 
@@ -116,7 +116,7 @@ class GeoIP
         // check ip in memory
         $data = array_get($this->store, $ip);
 
-        if (!$data) {
+        if (! $data) {
             try {
                 $data = $this->getDriver()->get($ip);
             } catch (\Exception $e) {

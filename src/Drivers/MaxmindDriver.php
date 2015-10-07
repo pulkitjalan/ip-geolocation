@@ -84,11 +84,11 @@ class MaxmindDriver extends AbstractGeoIPDriver
      */
     protected function createWebClient()
     {
-        $userId  = array_get($this->config, 'user_id', false);
-        $licenseKey  = array_get($this->config, 'license_key', false);
+        $userId = array_get($this->config, 'user_id', false);
+        $licenseKey = array_get($this->config, 'license_key', false);
 
         // check and make sure they are set
-        if (!$userId || !$licenseKey) {
+        if (! $userId || ! $licenseKey) {
             throw new InvalidCredentialsException();
         }
 
@@ -107,7 +107,7 @@ class MaxmindDriver extends AbstractGeoIPDriver
         $database = array_get($this->config, 'database', false);
 
         // check if file exists first
-        if (!$database || !file_exists($database)) {
+        if (! $database || ! file_exists($database)) {
             throw new InvalidCredentialsException();
         }
 

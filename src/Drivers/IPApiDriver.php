@@ -13,7 +13,7 @@ class IPApiDriver extends AbstractGeoIPDriver
      */
     public function get($ip)
     {
-        $data = $this->requester->url($this->getUrl($ip))->get()->json();
+        $data = json_decode($this->guzzle->get($this->getUrl($ip))->getBody(), true);
 
         if (array_get($data, 'status') === 'fail') {
             return [];

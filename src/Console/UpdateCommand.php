@@ -47,7 +47,7 @@ class UpdateCommand extends Command
     {
         $result = $this->geoIPUpdater->update();
 
-        if (!$result) {
+        if (! $result) {
             $this->error('Update failed!');
 
             return;

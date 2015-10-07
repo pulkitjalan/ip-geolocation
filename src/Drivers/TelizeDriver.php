@@ -16,7 +16,7 @@ class TelizeDriver extends AbstractGeoIPDriver
     public function get($ip)
     {
         try {
-            $data = $this->requester->url($this->getUrl($ip))->get()->json();
+            $data = json_decode($this->guzzle->get($this->getUrl($ip))->getBody(), true);
         } catch (RequestException $e) {
             return [];
         }

@@ -1,9 +1,10 @@
 <?php
 
-namespace PulkitJalan\GeoIP\tests;
+namespace PulkitJalan\GeoIP\Tests;
 
 use Mockery;
 use PHPUnit_Framework_TestCase;
+use PulkitJalan\GeoIP\GeoIPUpdater;
 
 class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
 {
@@ -14,7 +15,7 @@ class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
 
     public function test_no_update()
     {
-        $geoipUpdater = new \PulkitJalan\GeoIP\GeoIPUpdater([]);
+        $geoipUpdater = new GeoIPUpdater([]);
 
         $this->assertFalse($geoipUpdater->update());
     }
@@ -29,7 +30,7 @@ class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $geoipUpdater = new \PulkitJalan\GeoIP\GeoIPUpdater($config);
+        $geoipUpdater = new GeoIPUpdater($config);
 
         $this->assertEquals($geoipUpdater->update(), $database);
 
@@ -46,7 +47,7 @@ class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $geoipUpdater = new \PulkitJalan\GeoIP\GeoIPUpdater($config);
+        $geoipUpdater = new GeoIPUpdater($config);
 
         $this->assertEquals($geoipUpdater->update(), $database);
 
