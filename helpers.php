@@ -12,6 +12,6 @@ if (! function_exists('geoip')) {
             return app('geoip');
         }
 
-        return app('geoip')->get.ucwords(camel_case($key));
+        return app('geoip')->{'get'.ucwords(camel_case($key))}();
     }
 }
