@@ -15,11 +15,14 @@ class TelizeDriver extends AbstractGeoIPDriver
      */
     public function get($ip)
     {
+
         try {
-            $data = json_decode($this->guzzle->get($this->getUrl($ip))->getBody(), true);
+            $data = $this->requester->headers(['X-Mashape-Key' => array_get($this->config, 'key'), 'Accept' => 'application/json'])->url($this->getUrl($ip))->get()->json();
         } catch (RequestException $e) {
             return [];
         }
+
+        dd($data);
 
         return [
             'city'        => array_get($data, 'city'),
@@ -31,7 +34,7 @@ class TelizeDriver extends AbstractGeoIPDriver
             'regionCode'  => array_get($data, 'region_code'),
             'timezone'    => array_get($data, 'timezone'),
             'postalCode'  => array_get($data, 'postal_code'),
-            'isp'         => array_get($data, 'isp'),
+            'isp'         => array_get($data, 'organization'), // unsure what to return here; previously it was 'isp', but that does not exist anylonger.
         ];
     }
 
@@ -49,7 +52,7 @@ class TelizeDriver extends AbstractGeoIPDriver
             $protocol = 'https:';
         }
 
-        $baseUrl = $protocol.'//www.telize.com/geoip/';
+        $baseUrl = $protocol.'//telize-v1.p.mashape.com/geoip/';
 
         return $baseUrl.$ip;
     }
