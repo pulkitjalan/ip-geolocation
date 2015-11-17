@@ -17,7 +17,12 @@ class TelizeDriver extends AbstractGeoIPDriver
     {
 
         try {
-            $data = $this->requester->headers(['X-Mashape-Key' => array_get($this->config, 'key'), 'Accept' => 'application/json'])->url($this->getUrl($ip))->get()->json();
+            $data = json_decode($this->guzzle->get($this->getUrl($ip), [
+                'headers' => [
+                                'X-Mashape-Key' => array_get($this->config, 'key'),
+                                'Accept' => 'application/json'
+                            ]
+            ])->getBody(), true);
         } catch (RequestException $e) {
             return [];
         }
