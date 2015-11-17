@@ -22,8 +22,6 @@ class TelizeDriver extends AbstractGeoIPDriver
             return [];
         }
 
-        dd($data);
-
         return [
             'city'        => array_get($data, 'city'),
             'country'     => array_get($data, 'country'),
