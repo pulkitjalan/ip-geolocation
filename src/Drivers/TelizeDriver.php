@@ -36,8 +36,7 @@ class TelizeDriver extends AbstractGeoIPDriver
             'region'      => array_get($data, 'region'),
             'regionCode'  => array_get($data, 'region_code'),
             'timezone'    => array_get($data, 'timezone'),
-            'postalCode'  => array_get($data, 'postal_code'),
-            'isp'         => array_get($data, 'organization'), // unsure what to return here; previously it was 'isp', but that does not exist anylonger.
+            'postalCode'  => array_get($data, 'postal_code')
         ];
     }
 
