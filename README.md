@@ -13,7 +13,7 @@ GeoIP
 ## Supported Drivers ([Services](#services))
 
 * [IP-API](http://ip-api.com/)
-* [Telize](http://www.telize.com/)
+* [Telize](https://market.mashape.com/fcambus/telize/)
 * [Maxmind](https://www.maxmind.com/)
 
 ## Requirements
@@ -90,16 +90,12 @@ $config = [
 
 #### Telize
 
-To use the telize as the driver set the config, can also use https instead by setting `secure` to `true`.
+To use the telize as the driver set the config.
 
 Secure Example:
 ```php
 $config = [
     'driver' => 'telize',
-    'telize' => [
-        // optionally set secure (https) connection (default: false)
-        'secure' => true
-    ],
 ];
 ```
 
@@ -244,6 +240,15 @@ $geoip->get(); // returns array
 GeoIP::get(); // returns array
 ```
 
+Get raw geo information
+
+```php
+$geoip->getRaw(); // different drivers will return different data types
+
+// Laravel
+GeoIP::getRaw(); // different drivers will return different data types
+```
+
 ### Update Database
 
 There is an update command available to help with updating and installing a local geoip database. The following will download and install/update the database file to `/path/to/database.mmdb`.
@@ -276,7 +281,7 @@ IP-API is a free (or paid) service that can also be used instead of the database
 
 #### Telize
 
-Telize is a free service that can be used as an alternative. It currently has no limitations.
+Telize offers a JSON IP and GeoIP REST API allowing to get a visitor IP address and to query location information from any IP address. It outputs JSON-encoded IP geolocation data, and supports both Cross-origin resource sharing (CORS) and JSONP.
 
 #### Maxmind
 
