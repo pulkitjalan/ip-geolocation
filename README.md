@@ -90,12 +90,15 @@ $config = [
 
 #### Telize
 
-To use the telize as the driver set the config.
+To use the telize as the driver set the config, and your api key.
 
-Secure Example:
+Example:
 ```php
 $config = [
     'driver' => 'telize',
+    'telize' => [
+        'key' => 'YOUR IP-API KEY',
+    ],
 ];
 ```
 
