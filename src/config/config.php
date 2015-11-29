@@ -28,6 +28,9 @@ return [
         |--------------------------------------------------------------------------
         | IP-API Pro Service Key
         |--------------------------------------------------------------------------
+        |
+        | Check out pro here: https://signup.ip-api.com/
+        |
         */
         'key' => env('GEOIP_IPAPI_KEY'),
 
@@ -46,7 +49,6 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Telize Driver
-    | Get your API key here: https://market.mashape.com/fcambus/telize
     |--------------------------------------------------------------------------
     */
     'telize' => [
@@ -54,19 +56,12 @@ return [
         |--------------------------------------------------------------------------
         | Telize Service Key
         |--------------------------------------------------------------------------
+        |
+        | Get your API key here: https://market.mashape.com/fcambus/telize
+        |
         */
-       
-         'key' => env('GEOIP_TELIZE_KEY'),
 
-        /*
-        |--------------------------------------------------------------------------
-        | Telize Secure connection
-        |--------------------------------------------------------------------------
-        |
-        | Use http or https
-        |
-        */
-        'secure' => env('GEOIP_TELIZE_SECURE', true),
+         'key' => env('GEOIP_TELIZE_KEY'),
     ],
 
     /*

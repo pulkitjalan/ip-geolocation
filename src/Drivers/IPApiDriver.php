@@ -13,25 +13,35 @@ class IPApiDriver extends AbstractGeoIPDriver
      */
     public function get($ip)
     {
-        $data = json_decode($this->guzzle->get($this->getUrl($ip))->getBody(), true);
+        $data = $this->getRaw($ip);
 
-        if (array_get($data, 'status') === 'fail') {
-            return [];
+        if (empty($data)) {
+            return $this->getDefault();
         }
 
         return [
-            'city'         => array_get($data, 'city'),
-            'country'      => array_get($data, 'country'),
-            'countryCode'  => array_get($data, 'countryCode'),
-            'latitude'     => array_get($data, 'lat'),
-            'longitude'    => array_get($data, 'lon'),
-            'region'       => array_get($data, 'region'),
-            'regionCode'   => array_get($data, 'regionName'),
-            'timezone'     => array_get($data, 'timezone'),
-            'postalCode'   => array_get($data, 'zip'),
-            'organization' => array_get($data, 'org'),
-            'isp'          => array_get($data, 'isp'),
+            'city' => array_get($data, 'city'),
+            'country' => array_get($data, 'country'),
+            'countryCode' => array_get($data, 'countryCode'),
+            'latitude' => array_get($data, 'lat'),
+            'longitude' => array_get($data, 'lon'),
+            'region' => array_get($data, 'region'),
+            'regionCode' => array_get($data, 'regionName'),
+            'timezone' => array_get($data, 'timezone'),
+            'postalCode' => array_get($data, 'zip'),
         ];
+    }
+
+    /**
+     * Get the raw GeoIP info using ip-api.
+     * 
+     * @param  string $ip
+     * 
+     * @return array
+     */
+    public function getRaw($ip)
+    {
+        return json_decode($this->guzzle->get($this->getUrl($ip))->getBody(), true);
     }
 
     /**

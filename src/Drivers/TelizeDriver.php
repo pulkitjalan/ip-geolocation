@@ -3,9 +3,22 @@
 namespace PulkitJalan\GeoIP\Drivers;
 
 use GuzzleHttp\Exception\RequestException;
+use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class TelizeDriver extends AbstractGeoIPDriver
 {
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        parent::__construct($config);
+
+        if (! array_get($this->config, 'key')) {
+            throw new InvalidCredentialsException();
+        }
+    }
+
     /**
      * Get array of data using telize.
      *
@@ -15,29 +28,46 @@ class TelizeDriver extends AbstractGeoIPDriver
      */
     public function get($ip)
     {
+        $data = $this->getRaw($ip);
 
-        try {
-            $data = json_decode($this->guzzle->get($this->getUrl($ip), [
-                'headers' => [
-                                'X-Mashape-Key' => array_get($this->config, 'key'),
-                                'Accept' => 'application/json'
-                            ]
-            ])->getBody(), true);
-        } catch (RequestException $e) {
-            return [];
+        if (empty($data)) {
+            return $this->getDefault();
         }
 
         return [
-            'city'        => array_get($data, 'city'),
-            'country'     => array_get($data, 'country'),
+            'city' => array_get($data, 'city'),
+            'country' => array_get($data, 'country'),
             'countryCode' => array_get($data, 'country_code'),
-            'latitude'    => array_get($data, 'latitude'),
-            'longitude'   => array_get($data, 'longitude'),
-            'region'      => array_get($data, 'region'),
-            'regionCode'  => array_get($data, 'region_code'),
-            'timezone'    => array_get($data, 'timezone'),
-            'postalCode'  => array_get($data, 'postal_code')
+            'latitude' => array_get($data, 'latitude'),
+            'longitude' => array_get($data, 'longitude'),
+            'region' => array_get($data, 'region'),
+            'regionCode' => array_get($data, 'region_code'),
+            'timezone' => array_get($data, 'timezone'),
+            'postalCode' => array_get($data, 'postal_code'),
         ];
+    }
+
+    /**
+     * Get the raw GeoIP info using telize.
+     * 
+     * @param  string $ip
+     * 
+     * @return array
+     */
+    public function getRaw($ip)
+    {
+        try {
+            return json_decode($this->guzzle->get($this->getUrl($ip), [
+                'headers' => [
+                    'X-Mashape-Key' => array_get($this->config, 'key'),
+                    'Accept' => 'application/json',
+                ],
+            ])->getBody(), true);
+        } catch (RequestException $e) {
+            // ignore
+        }
+
+        return [];
     }
 
     /**
@@ -49,13 +79,6 @@ class TelizeDriver extends AbstractGeoIPDriver
      */
     protected function getUrl($ip)
     {
-        $protocol = 'http:';
-        if (array_get($this->config, 'secure', false)) {
-            $protocol = 'https:';
-        }
-
-        $baseUrl = $protocol.'//telize-v1.p.mashape.com/geoip/';
-
-        return $baseUrl.$ip;
+        return 'https://telize-v1.p.mashape.com/geoip/'.$ip;
     }
 }

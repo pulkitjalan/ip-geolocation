@@ -115,7 +115,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new GeoIP($config);
         $ip = $geoip->getIp();
 
-        $this->assertNotEquals($ip, $this->invalidIp);
+        $this->assertNotEquals($this->invalidIp, $ip);
         $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
     }
 
@@ -129,7 +129,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new GeoIP($config);
         $ip = $geoip->getIp();
 
-        $this->assertEquals($ip, $this->invalidIp);
+        $this->assertEquals($this->invalidIp, $ip);
         $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
     }
 
@@ -143,7 +143,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip->setIp($this->multipleIps);
         $ip = $geoip->getIp();
 
-        $this->assertEquals($ip, $this->validIp);
+        $this->assertEquals($this->validIp, $ip);
         $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
     }
 
@@ -159,12 +159,23 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
 
-        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
+        $this->assertEquals('United Kingdom', $geoip->getCountry());
 
         $geoip = $geoip->setIp($this->invalidIp);
 
-        $this->assertEquals($geoip->get(), []);
-        $this->assertEquals($geoip->getCountry(), '');
+        $this->assertEquals([
+            'city' => null,
+            'country' => null,
+            'countryCode' => null,
+            'latitude' => null,
+            'longitude' => null,
+            'region' => null,
+            'regionCode' => null,
+            'timezone' => null,
+            'postalCode' => null,
+        ], $geoip->get());
+
+        $this->assertEquals('', $geoip->getCountry());
     }
 
     public function test_ip_api_pro_exception()
@@ -198,44 +209,32 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
 
         $geoip = $geoip->setIp($this->invalidIp);
 
-        $this->assertEquals($geoip->get(), []);
-        $this->assertEquals($geoip->getCountry(), '');
+        $this->assertEquals([
+            'city' => null,
+            'country' => null,
+            'countryCode' => null,
+            'latitude' => null,
+            'longitude' => null,
+            'region' => null,
+            'regionCode' => null,
+            'timezone' => null,
+            'postalCode' => null,
+        ], $geoip->get());
+
+        $this->assertEquals('', $geoip->getCountry());
     }
 
-    public function test_telize()
+    public function test_telize_exception_without_key()
     {
         $config = [
             'driver' => 'telize',
         ];
 
-        $geoip = new GeoIP($config);
-        $geoip = $geoip->setIp($this->validIp);
-
-        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
-
-        $geoip = $geoip->setIp($this->invalidIp);
-
-        $this->assertEquals($geoip->get(), []);
-        $this->assertEquals($geoip->getCountry(), '');
-    }
-
-    public function test_telize_secure()
-    {
-        $config = [
-            'driver' => 'telize',
-            'telize' => [
-                'secure' => true,
-            ],
-        ];
+        $this->setExpectedException(InvalidCredentialsException::class);
 
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
 
-        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
-
-        $geoip = $geoip->setIp($this->invalidIp);
-
-        $this->assertEquals($geoip->get(), []);
-        $this->assertEquals($geoip->getCountry(), '');
+        $geoip->get();
     }
 }

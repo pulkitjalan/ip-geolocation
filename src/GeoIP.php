@@ -29,6 +29,11 @@ class GeoIP
     /**
      * @var array
      */
+    protected $storeRaw = [];
+
+    /**
+     * @var array
+     */
     public function __construct(array $config = ['driver' => 'ip-api'])
     {
         $this->driver = with(new GeoIPManager($config))->getDriver();
@@ -99,6 +104,35 @@ class GeoIP
         }
 
         return array_get($data, $property, '');
+    }
+
+    /**
+     * Get the raw geoip data from the driver.
+     *
+     * @param string
+     *
+     * @return mixed
+     */
+    public function getRaw()
+    {
+        $ip = $this->getIp();
+        $this->setIp($ip);
+
+        // check ip in memory
+        $data = array_get($this->storeRaw, $ip);
+
+        if (! $data) {
+            try {
+                $data = $this->getDriver()->getRaw($ip);
+            } catch (\Exception $e) {
+                throw new GeoIPException('Failed to get raw geoip data', 0, $e);
+            }
+
+            // cache ip data in memory
+            $this->storeRaw[$ip] = $data;
+        }
+
+        return $data;
     }
 
     /**

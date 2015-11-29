@@ -34,23 +34,41 @@ class MaxmindDriver extends AbstractGeoIPDriver
      */
     public function get($ip)
     {
-        try {
-            $data = $this->maxmind->city($ip);
-        } catch (AddressNotFoundException $e) {
-            return [];
+        $data = $this->getRaw($ip);
+
+        if (empty($data)) {
+            return $this->getDefault();
         }
 
         return [
-            'city'        => $data->city->name,
-            'country'     => $data->country->name,
+            'city' => $data->city->name,
+            'country' => $data->country->name,
             'countryCode' => $data->country->isoCode,
-            'latitude'    => $data->location->latitude,
-            'longitude'   => $data->location->longitude,
-            'region'      => $data->mostSpecificSubdivision->name,
-            'regionCode'  => $data->mostSpecificSubdivision->isoCode,
-            'timezone'    => $data->location->timeZone,
-            'postalCode'  => $data->postal->code,
+            'latitude' => $data->location->latitude,
+            'longitude' => $data->location->longitude,
+            'region' => $data->mostSpecificSubdivision->name,
+            'regionCode' => $data->mostSpecificSubdivision->isoCode,
+            'timezone' => $data->location->timeZone,
+            'postalCode' => $data->postal->code,
         ];
+    }
+
+    /**
+     * Get the raw GeoIP info using Maxmind.
+     * 
+     * @param  string $ip
+     * 
+     * @return mixed
+     */
+    public function getRaw($ip)
+    {
+        try {
+            return $this->maxmind->city($ip);
+        } catch (AddressNotFoundException $e) {
+            // ignore
+        }
+
+        return [];
     }
 
     /**
