@@ -274,7 +274,7 @@ $geoipUpdater->update();
 
 ### Laravel
 
-Once you have registered the service provider, you can use the command `php artasin geoip:update`
+Once you have registered the service provider, you can use the command `php artisan geoip:update`
 
 ## Services
 
