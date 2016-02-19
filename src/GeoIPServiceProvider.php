@@ -23,9 +23,11 @@ class GeoIPServiceProvider extends ServiceProvider
             return $app['geoip'];
         };
 
-        $this->publishes([
-            __DIR__.'/config/config.php' => config_path('geoip.php'),
-        ], 'config');
+        if (function_exists('config_path')) {
+            $this->publishes([
+                __DIR__.'/config/config.php' => config_path('geoip.php'),
+            ], 'config');
+        }
     }
 
     /**
