@@ -25,8 +25,8 @@ class IPApiDriver extends AbstractGeoIPDriver
             'countryCode' => array_get($data, 'countryCode'),
             'latitude' => array_get($data, 'lat'),
             'longitude' => array_get($data, 'lon'),
-            'region' => array_get($data, 'region'),
-            'regionCode' => array_get($data, 'regionName'),
+            'region' => array_get($data, 'regionName'),
+            'regionCode' => array_get($data, 'region'),
             'timezone' => array_get($data, 'timezone'),
             'postalCode' => array_get($data, 'zip'),
         ];
