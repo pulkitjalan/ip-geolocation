@@ -103,8 +103,22 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = $geoip->setIp($this->validIp);
 
         $geoip->get();
+    }
+
+    public function test_maxmind_web_api_authentication_exception_getRaw()
+    {
+        $config = [
+            'driver'  => 'maxmind',
+            'maxmind' => [
+                'user_id'     => 'test',
+                'license_key' => 'test',
+            ],
+        ];
 
         $this->setExpectedException(GeoIPException::class);
+
+        $geoip = new GeoIP($config);
+        $geoip = $geoip->setIp($this->validIp);
 
         $geoip->getRaw();
     }
@@ -200,8 +214,22 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = $geoip->setIp($this->validIp);
 
         $geoip->get();
+    }
+
+    public function test_ip_api_pro_exception_getRaw()
+    {
+        $config = [
+            'driver' => 'ip-api',
+            'ip-api' => [
+                'key'    => 'test',
+                'secure' => true,
+            ],
+        ];
 
         $this->setExpectedException(GeoIPException::class);
+
+        $geoip = new GeoIP($config);
+        $geoip = $geoip->setIp($this->validIp);
 
         $geoip->getRaw();
     }
