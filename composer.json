@@ -2,7 +2,7 @@
     "name": "pulkitjalan/geoip",
     "description": "Geoip Wrapper with Laravel 4 & 5 Support",
     "homepage": "https://github.com/pulkitjalan/geoip",
-    "keywords": ["geoip", "maxmind", "ip-api", "telize"],
+    "keywords": ["geoip", "freegeoip", "ip-api", "maxmind", "telize"],
     "license": "MIT",
     "authors": [
         {
