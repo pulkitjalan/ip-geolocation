@@ -55,7 +55,8 @@ class GeoIP
      *
      * @var string
      *
-     * @return PulkitJalan\GeoIP\GeoIP
+     * @param string $ip
+     * @return GeoIP
      */
     public function setIp($ip)
     {
