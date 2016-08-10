@@ -161,6 +161,8 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('United Kingdom', $geoip->getCountry());
 
+        $this->assertInstanceOf('GeoIp2\Model\City', $geoip->getRaw());
+
         $geoip = $geoip->setIp($this->invalidIp);
 
         $this->assertEquals([
@@ -208,6 +210,10 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($geoip->getCountry(), 'United Kingdom');
 
         $geoip = $geoip->setIp($this->invalidIp);
+
+        $this->assertArraySubset([
+            'status' => 'fail',
+        ], $geoip->getRaw());
 
         $this->assertEquals([
             'city' => null,
