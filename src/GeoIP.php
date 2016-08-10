@@ -74,7 +74,7 @@ class GeoIP
     {
         if (! $this->ip) {
             if ($this->random) {
-                $this->ip = long2ip(mt_rand(0, 4294967295));
+                $this->ip = long2ip(mt_rand());
             } else {
                 $this->ip = array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
             }
