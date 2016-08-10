@@ -103,6 +103,10 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = $geoip->setIp($this->validIp);
 
         $geoip->get();
+
+        $this->setExpectedException(GeoIPException::class);
+
+        $geoip->getRaw();
     }
 
     public function test_get_random_ipaddress()
@@ -196,6 +200,10 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = $geoip->setIp($this->validIp);
 
         $geoip->get();
+
+        $this->setExpectedException(GeoIPException::class);
+
+        $geoip->getRaw();
     }
 
     public function test_ip_api()

@@ -48,7 +48,7 @@ class GeoIPUpdater
      */
     protected function updateMaxmindDatabase()
     {
-        $maxmindDatabaseUrl = 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz';
+        $maxmindDatabaseUrl = array_get($this->config, 'maxmind.download', 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz');
 
         $database = array_get($this->config, 'maxmind.database', false);
 
@@ -56,29 +56,14 @@ class GeoIPUpdater
             mkdir($dir, 0777, true);
         }
 
-        $file = $this->guzzle->get($maxmindDatabaseUrl)->getBody();
-
         try {
-            file_put_contents($database, $this->gzdecode($file));
+            $file = $this->guzzle->get($maxmindDatabaseUrl)->getBody();
+
+            file_put_contents($database, gzdecode($file));
         } catch (Exception $e) {
             return false;
         }
 
         return $database;
-    }
-
-    /**
-     * gzdecode function.
-     * 
-     * @param \Psr\Http\Message\StreamInterface $data
-     * @return string
-     */
-    protected function gzdecode($data)
-    {
-        if (!function_exists('gzdecode')) {
-            return gzinflate(substr($data, 10, -8));
-        }
-
-        return gzdecode($data);
     }
 }

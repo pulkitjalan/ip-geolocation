@@ -37,6 +37,22 @@ class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
         unlink($database);
     }
 
+    public function test_maxmind_updater_invalid_url()
+    {
+        $database = __DIR__.'/data/GeoLite2-City.mmdb';
+        $config = [
+            'driver'  => 'maxmind',
+            'maxmind' => [
+                'database' => $database,
+                'download' => 'http://example.com/maxmind_database.mmdb.gz'
+            ],
+        ];
+
+        $geoipUpdater = new GeoIPUpdater($config);
+
+        $this->assertFalse($geoipUpdater->update());
+    }
+
     public function test_maxmind_updater_dir_not_exist()
     {
         $database = __DIR__.'/data/new_dir/GeoLite2-City.mmdb';
