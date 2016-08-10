@@ -30,7 +30,7 @@ class GeoIPUpdater
     /**
      * Main update function.
      *
-     * @return bool|string
+     * @return string|false
      */
     public function update()
     {
@@ -70,8 +70,8 @@ class GeoIPUpdater
     /**
      * gzdecode function.
      * 
-     * @param mixed $data
-     * @return mixed
+     * @param \Psr\Http\Message\StreamInterface $data
+     * @return string|null
      */
     protected function gzdecode($data)
     {
