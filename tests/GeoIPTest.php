@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Tests;
+namespace PulkitJalan\geoip\tests;
 
 use Mockery;
 use PHPUnit_Framework_TestCase;
@@ -163,6 +163,39 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($this->validIp, $ip);
         $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
+    }
+
+    public function test_freegeoip_database()
+    {
+        $config = [
+            'driver'  => 'freegeoip',
+            'freegeoip' => [
+                'secure' => true,
+            ],
+        ];
+
+        $geoip = new GeoIP($config);
+        $geoip = $geoip->setIp($this->validIp);
+
+        $this->assertEquals('United Kingdom', $geoip->getCountry());
+
+        $this->assertEquals($this->validIp, array_get($geoip->getRaw(), 'ip'));
+
+        $geoip = $geoip->setIp($this->invalidIp);
+
+        $this->assertEquals([
+            'city' => null,
+            'country' => null,
+            'countryCode' => null,
+            'latitude' => null,
+            'longitude' => null,
+            'region' => null,
+            'regionCode' => null,
+            'timezone' => null,
+            'postalCode' => null,
+        ], $geoip->get());
+
+        $this->assertEquals('', $geoip->getCountry());
     }
 
     public function test_maxmind_database()

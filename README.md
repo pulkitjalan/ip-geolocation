@@ -12,9 +12,10 @@ GeoIP
 
 ## Supported Drivers ([Services](#services))
 
+* [FreeGeoIP](https://freegeoip.net/)
 * [IP-API](http://ip-api.com/)
-* [Telize](https://market.mashape.com/fcambus/telize/)
 * [Maxmind](https://www.maxmind.com/)
+* [Telize](https://market.mashape.com/fcambus/telize/)
 
 ## Requirements
 
@@ -71,6 +72,31 @@ $lat = $geoip->getLatitude(); // 51.5141
 $lon = $geoip->getLongitude(); // -3.1969
 ```
 
+#### FreeGeoIP
+
+To use the freegeoip as the driver set the config.
+
+Example:
+```php
+$config = [
+    'driver' => 'freegeoip',
+    'freegeoip' => [
+        'secure' => true,
+    ],
+];
+```
+
+Custom install example:
+```php
+$config = [
+    'driver' => 'freegeoip',
+    'freegeoip' => [
+        'url' => 'freegeoip.example.com', // or with a port (freegeoip.example.com:8080)
+        'secure' => true, // or false
+    ],
+];
+```
+
 #### IP-API
 
 To use the ip-api pro service you can set the options in your config.
@@ -84,20 +110,6 @@ $config = [
 
         // optionally set secure (https) connection (default: false)
         'secure' => true
-    ],
-];
-```
-
-#### Telize
-
-To use the telize as the driver set the config, and your api key.
-
-Example:
-```php
-$config = [
-    'driver' => 'telize',
-    'telize' => [
-        'key' => 'YOUR IP-API KEY',
     ],
 ];
 ```
@@ -123,6 +135,20 @@ $config = [
     'maxmind' => [
         'user_id' => 'YOUR MAXMIND USER ID',
         'license_key' => 'YOUR MAXMIND LICENSE KEY'
+    ],
+];
+```
+
+#### Telize
+
+To use the telize as the driver set the config, and your api key.
+
+Example:
+```php
+$config = [
+    'driver' => 'telize',
+    'telize' => [
+        'key' => 'YOUR IP-API KEY',
     ],
 ];
 ```
@@ -278,14 +304,18 @@ Once you have registered the service provider, you can use the command `php arti
 
 ## Services
 
+#### FreeGeoIP
+
+Freegeoip is a free service that can also be used instead of the database file or the paid maxmind service. They do have some limitations so please have a look at the [website](https://freegeoip.net/) first. You can also run a [custom install](https://github.com/fiorix/freegeoip) and use that instead.
+
 #### IP-API
 
 IP-API is a free (or paid) service that can also be used instead of the database file or the paid maxmind service. They do have some limitations on the free service so please have a look at the [docs](http://ip-api.com/docs/) first.
 
-#### Telize
-
-Telize offers a JSON IP and GeoIP REST API allowing to get a visitor IP address and to query location information from any IP address. It outputs JSON-encoded IP geolocation data, and supports both Cross-origin resource sharing (CORS) and JSONP.
-
 #### Maxmind
 
 You can use the free database from maxmind or their web api service. You can download the free database service [here](http://dev.maxmind.com/geoip/geoip2/geolite2/) or enter your `user id` and `license key` in the config.
+
+#### Telize
+
+Telize offers a JSON IP and GeoIP REST API allowing to get a visitor IP address and to query location information from any IP address. It outputs JSON-encoded IP geolocation data, and supports both Cross-origin resource sharing (CORS) and JSONP.

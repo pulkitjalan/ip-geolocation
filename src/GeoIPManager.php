@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\GeoIP;
 
+use PulkitJalan\GeoIP\Drivers\FreeGeoIPDriver;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDriver;
 use PulkitJalan\GeoIP\Drivers\TelizeDriver;
@@ -41,6 +42,16 @@ class GeoIPManager
     }
 
     /**
+     * Get the freegeoip driver.
+     *
+     * @return \PulkitJalan\GeoIP\FreeGeoIPDriver
+     */
+    protected function createFreegeoipDriver(array $data)
+    {
+        return new FreeGeoIPDriver($data);
+    }
+
+    /**
      * Get the ip-api driver.
      *
      * @return \PulkitJalan\GeoIP\IPApiDriver
@@ -51,16 +62,6 @@ class GeoIPManager
     }
 
     /**
-     * Get the telize driver.
-     *
-     * @return \PulkitJalan\GeoIP\TelizeDriver
-     */
-    protected function createTelizeDriver(array $data)
-    {
-        return new TelizeDriver($data);
-    }
-
-    /**
      * Get the Maxmind driver.
      *
      * @return \PulkitJalan\GeoIP\MaxmindDriver
@@ -68,5 +69,15 @@ class GeoIPManager
     protected function createMaxmindDriver(array $data)
     {
         return new MaxmindDriver($data);
+    }
+
+    /**
+     * Get the telize driver.
+     *
+     * @return \PulkitJalan\GeoIP\TelizeDriver
+     */
+    protected function createTelizeDriver(array $data)
+    {
+        return new TelizeDriver($data);
     }
 }
