@@ -230,6 +230,39 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('', $geoip->getCountry());
     }
+    public function test_maxmind_database_locale()
+    {
+        $config = [
+            'driver'  => 'maxmind',
+            'locale'  => 'zh-CN',
+            'maxmind' => [
+                'database' => __DIR__.'/data/GeoIP2-City-Test.mmdb',
+            ],
+        ];
+
+        $geoip = new GeoIP($config);
+        $geoip = $geoip->setIp($this->validIp);
+
+        $this->assertEquals('英国', $geoip->getCountry());
+
+        $this->assertInstanceOf('GeoIp2\Model\City', $geoip->getRaw());
+
+        $geoip = $geoip->setIp($this->invalidIp);
+
+        $this->assertEquals([
+            'city' => null,
+            'country' => null,
+            'countryCode' => null,
+            'latitude' => null,
+            'longitude' => null,
+            'region' => null,
+            'regionCode' => null,
+            'timezone' => null,
+            'postalCode' => null,
+        ], $geoip->get());
+
+        $this->assertEquals('', $geoip->getCountry());
+    }
 
     public function test_ip_api_pro_exception()
     {

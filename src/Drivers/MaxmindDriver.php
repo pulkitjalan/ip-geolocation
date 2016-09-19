@@ -32,32 +32,33 @@ class MaxmindDriver extends AbstractGeoIPDriver
      *
      * @return array
      */
-    public function get($ip)
+    public function get($ip, $locale = null)
     {
         $data = $this->getRaw($ip);
 
         if (empty($data)) {
             return $this->getDefault();
         }
-
-        return [
-            'city' => $data->city->name,
-            'country' => $data->country->name,
+        $array_geo = [
+            'city' => $this->getLocaleName($data, 'city', $locale),
+            'country' => $this->getLocaleName($data, 'country', $locale),
             'countryCode' => $data->country->isoCode,
             'latitude' => (float) number_format($data->location->latitude, 5),
             'longitude' => (float) number_format($data->location->longitude, 5),
-            'region' => $data->mostSpecificSubdivision->name,
+            'region' => $this->getLocaleName($data, 'mostSpecificSubdivision', $locale),
             'regionCode' => $data->mostSpecificSubdivision->isoCode,
             'timezone' => $data->location->timeZone,
             'postalCode' => $data->postal->code,
         ];
+
+        return $array_geo;
     }
 
     /**
      * Get the raw GeoIP info using Maxmind.
-     * 
+     *
      * @param  string $ip
-     * 
+     *
      * @return mixed
      */
     public function getRaw($ip)
@@ -69,6 +70,23 @@ class MaxmindDriver extends AbstractGeoIPDriver
         }
 
         return [];
+    }
+    /**
+     * get name by locale.
+     * @author Guixing Bai
+     * @param  object $data     [description]
+     * @param  string $property [description]
+     * @return string           [description]
+     */
+    protected function getLocaleName($data, $property, $locale)
+    {
+        $name = $data->{$property}->name;
+        $names = $data->{$property}->names;
+        if (! is_null($names) && array_key_exists($locale, $names)) {
+            $name = $names[$locale];
+        }
+
+        return $name;
     }
 
     /**

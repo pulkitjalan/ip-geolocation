@@ -22,6 +22,11 @@ class GeoIP
     protected $random;
 
     /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * @var array
      */
     protected $store = [];
@@ -37,6 +42,7 @@ class GeoIP
     public function __construct(array $config = ['driver' => 'ip-api'])
     {
         $this->driver = with(new GeoIPManager($config))->getDriver();
+        $this->locale = array_get($config, 'locale', null);
         $this->random = array_get($config, 'random', false);
     }
 
@@ -124,7 +130,7 @@ class GeoIP
 
         if (! $data) {
             try {
-                $data = $this->getDriver()->getRaw($ip);
+                $data = $this->getDriver()->getRaw($ip, $this->locale);
             } catch (\Exception $e) {
                 throw new GeoIPException('Failed to get raw geoip data', 0, $e);
             }
@@ -153,7 +159,7 @@ class GeoIP
 
         if (! $data) {
             try {
-                $data = $this->getDriver()->get($ip);
+                $data = $this->getDriver()->get($ip, $this->locale);
             } catch (\Exception $e) {
                 throw new GeoIPException('Failed to get geoip data', 0, $e);
             }
