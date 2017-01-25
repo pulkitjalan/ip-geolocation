@@ -63,7 +63,7 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     protected function registerUpdateCommand()
     {
-        $this->app['command.geoip.update'] = $this->app->share(function ($app) {
+        $this->app->singleton('geoip', function() {
             return new UpdateCommand(config('geoip'));
         });
 
