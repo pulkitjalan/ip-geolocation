@@ -19,9 +19,13 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['PulkitJalan\GeoIP\GeoIP'] = function ($app) {
-            return $app['geoip'];
+        $this->app['geoip'] = function ($app) {
+            return $app['PulkitJalan\GeoIP\GeoIP'];
         };
+
+        if ($this->app->runningInConsole()) {
+            $this->commands(['PulkitJalan\GeoIP\Console\UpdateCommand']);
+        }
 
         if (function_exists('config_path')) {
             $this->publishes([
@@ -32,8 +36,6 @@ class GeoIPServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -46,28 +48,22 @@ class GeoIPServiceProvider extends ServiceProvider
 
     /**
      * Register the main geoip wrapper.
-     *
-     * @return void
      */
     protected function registerGeoIP()
     {
-        $this->app->singleton('geoip', function() {
-            return new GeoIP(config('geoip'));
+        $this->app->singleton('PulkitJalan\GeoIP\GeoIP', function ($app) {
+            return new GeoIP($app['config']['geoip']);
         });
     }
 
     /**
      * Register the geoip update console command.
-     *
-     * @return void
      */
     protected function registerUpdateCommand()
     {
-        $this->app->singleton('geoip', function() {
-            return new UpdateCommand(config('geoip'));
+        $this->app->singleton('PulkitJalan\GeoIP\Console\UpdateCommand', function ($app) {
+            return new UpdateCommand($app['config']['geoip']);
         });
-
-        $this->commands(['command.geoip.update']);
     }
 
     /**
@@ -77,6 +73,10 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['geoip', 'command.geoip.update', 'PulkitJalan\GeoIP\GeoIP'];
+        return [
+            'PulkitJalan\GeoIP\GeoIP',
+            'PulkitJalan\GeoIP\Console\UpdateCommand',
+            'geoip',
+        ];
     }
 }

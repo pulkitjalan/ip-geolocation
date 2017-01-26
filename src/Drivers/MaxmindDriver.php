@@ -55,9 +55,9 @@ class MaxmindDriver extends AbstractGeoIPDriver
 
     /**
      * Get the raw GeoIP info using Maxmind.
-     * 
-     * @param  string $ip
-     * 
+     *
+     * @param string $ip
+     *
      * @return mixed
      */
     public function getRaw($ip)
@@ -106,7 +106,7 @@ class MaxmindDriver extends AbstractGeoIPDriver
         $licenseKey = array_get($this->config, 'license_key', false);
 
         // check and make sure they are set
-        if (! $userId || ! $licenseKey) {
+        if (!$userId || !$licenseKey) {
             throw new InvalidCredentialsException();
         }
 
@@ -125,7 +125,7 @@ class MaxmindDriver extends AbstractGeoIPDriver
         $database = array_get($this->config, 'database', false);
 
         // check if file exists first
-        if (! $database || ! file_exists($database)) {
+        if (!$database || !file_exists($database)) {
             throw new InvalidCredentialsException();
         }
 

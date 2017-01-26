@@ -40,14 +40,12 @@ class UpdateCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function fire()
     {
         $result = $this->geoIPUpdater->update();
 
-        if (! $result) {
+        if (!$result) {
             $this->error('Update failed!');
 
             return;

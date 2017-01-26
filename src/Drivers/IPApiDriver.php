@@ -34,9 +34,9 @@ class IPApiDriver extends AbstractGeoIPDriver
 
     /**
      * Get the raw GeoIP info using ip-api.
-     * 
-     * @param  string $ip
-     * 
+     *
+     * @param string $ip
+     *
      * @return array
      */
     public function getRaw($ip)

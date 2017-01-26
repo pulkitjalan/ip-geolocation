@@ -37,16 +37,16 @@ abstract class AbstractGeoIPDriver
 
     /**
      * Get the raw GeoIP info from the driver.
-     * 
-     * @param  string $ip
-     * 
+     *
+     * @param string $ip
+     *
      * @return mixed
      */
     abstract public function getRaw($ip);
 
     /**
-     * Get the default values (all null)
-     * 
+     * Get the default values (all null).
+     *
      * @return array
      */
     protected function getDefault()

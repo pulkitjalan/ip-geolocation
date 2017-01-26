@@ -56,6 +56,7 @@ class GeoIP
      * @var string
      *
      * @param string $ip
+     *
      * @return GeoIP
      */
     public function setIp($ip)
@@ -72,7 +73,7 @@ class GeoIP
      */
     public function getIp()
     {
-        if (! $this->ip) {
+        if (!$this->ip) {
             if ($this->random) {
                 $this->ip = long2ip(mt_rand());
             } else {
@@ -100,7 +101,7 @@ class GeoIP
     {
         $data = $this->getData();
 
-        if (! $property) {
+        if (!$property) {
             return $data;
         }
 
@@ -122,7 +123,7 @@ class GeoIP
         // check ip in memory
         $data = array_get($this->storeRaw, $ip);
 
-        if (! $data) {
+        if (!$data) {
             try {
                 $data = $this->getDriver()->getRaw($ip);
             } catch (\Exception $e) {
@@ -151,7 +152,7 @@ class GeoIP
         // check ip in memory
         $data = array_get($this->store, $ip);
 
-        if (! $data) {
+        if (!$data) {
             try {
                 $data = $this->getDriver()->get($ip);
             } catch (\Exception $e) {

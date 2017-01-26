@@ -14,7 +14,7 @@ class TelizeDriver extends AbstractGeoIPDriver
     {
         parent::__construct($config);
 
-        if (! array_get($this->config, 'key')) {
+        if (!array_get($this->config, 'key')) {
             throw new InvalidCredentialsException();
         }
     }
@@ -49,9 +49,9 @@ class TelizeDriver extends AbstractGeoIPDriver
 
     /**
      * Get the raw GeoIP info using telize.
-     * 
-     * @param  string $ip
-     * 
+     *
+     * @param string $ip
+     *
      * @return array
      */
     public function getRaw($ip)

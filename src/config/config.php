@@ -94,7 +94,7 @@ return [
         | Maxmind Web Service Info
         |--------------------------------------------------------------------------
         */
-        'user_id'     => env('GEOIP_MAXMIND_USER_ID'),
+        'user_id' => env('GEOIP_MAXMIND_USER_ID'),
         'license_key' => env('GEOIP_MAXMIND_LICENSE_KEY'),
     ],
 

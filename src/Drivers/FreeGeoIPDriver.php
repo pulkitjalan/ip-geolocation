@@ -34,9 +34,9 @@ class FreeGeoIPDriver extends AbstractGeoIPDriver
 
     /**
      * Get the raw GeoIP info using freegeoip.
-     * 
-     * @param  string $ip
-     * 
+     *
+     * @param string $ip
+     *
      * @return array
      */
     public function getRaw($ip)
@@ -45,7 +45,7 @@ class FreeGeoIPDriver extends AbstractGeoIPDriver
     }
 
     /**
-     * Get the freegeoip url
+     * Get the freegeoip url.
      *
      * @param string $ip
      *

@@ -34,7 +34,7 @@ class GeoIPManager
 
         $method = 'create'.ucfirst(camel_case($driver)).'Driver';
 
-        if (! method_exists($this, $method)) {
+        if (!method_exists($this, $method)) {
             throw new InvalidDriverException(sprintf('Driver [%s] not supported.', $driver));
         }
 
