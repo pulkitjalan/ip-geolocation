@@ -48,6 +48,8 @@ class MaxmindDriver extends AbstractGeoIPDriver
             'longitude' => (float) number_format($data->location->longitude, 5),
             'region' => $data->mostSpecificSubdivision->name,
             'regionCode' => $data->mostSpecificSubdivision->isoCode,
+            'continent' => $data->continent->name,
+            'continentCode' => $data->continent->code,
             'timezone' => $data->location->timeZone,
             'postalCode' => $data->postal->code,
         ];
