@@ -54,8 +54,6 @@ class UpdateCommand extends Command
         $this->info('New update file ('.$result.') installed.');
     }
     
-    
-
     /**
      * Compatibility with old versions of Laravel.
      */
