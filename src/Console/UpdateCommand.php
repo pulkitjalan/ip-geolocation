@@ -41,7 +41,7 @@ class UpdateCommand extends Command
     /**
      * Execute the console command.
      */
-    public function fire()
+    public function handle()
     {
         $result = $this->geoIPUpdater->update();
 
@@ -52,5 +52,15 @@ class UpdateCommand extends Command
         }
 
         $this->info('New update file ('.$result.') installed.');
+    }
+    
+    
+
+    /**
+     * Compatibility with old versions of Laravel.
+     */
+    public function fire()
+    {
+        $this->handle();
     }
 }
