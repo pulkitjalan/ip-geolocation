@@ -58,6 +58,6 @@ class FreeGeoIPDriver extends AbstractGeoIPDriver
             $protocol = 'https://';
         }
         $key = array_get($this->config, 'key', '');
-        return $protocol.array_get($this->config, 'url', 'freegeoip.net').'/'.$ip.'?access_key='.$key.'&output=json&legacy=1';
+        return $protocol.array_get($this->config, 'url', 'api.ipstack.com').'/'.$ip.'?access_key='.$key.'&output=json&legacy=1';
     }
 }
