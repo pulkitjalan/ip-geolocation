@@ -24,7 +24,7 @@ class GeoIPUpdaterTest extends TestCase
     {
         $database = __DIR__.'/data/GeoLite2-City.mmdb';
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
                 'database' => $database,
             ],
@@ -41,10 +41,10 @@ class GeoIPUpdaterTest extends TestCase
     {
         $database = __DIR__.'/data/GeoLite2-City.mmdb';
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
                 'database' => $database,
-                'download' => 'http://example.com/maxmind_database.mmdb.gz'
+                'download' => 'http://example.com/maxmind_database.mmdb.gz',
             ],
         ];
 
@@ -57,7 +57,7 @@ class GeoIPUpdaterTest extends TestCase
     {
         $database = __DIR__.'/data/new_dir/GeoLite2-City.mmdb';
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
                 'database' => $database,
             ],

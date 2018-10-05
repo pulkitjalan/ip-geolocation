@@ -50,17 +50,6 @@ return [
         |
         */
         'key' => env('GEOIP_IPAPI_KEY'),
-
-        /*
-        |--------------------------------------------------------------------------
-        | IP-API Secure connection
-        |--------------------------------------------------------------------------
-        |
-        | Use http or https
-        | Only applicable with the Pro service
-        |
-        */
-        'secure' => env('GEOIP_IPAPI_SECURE', true),
     ],
 
     /*

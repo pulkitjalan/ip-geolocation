@@ -12,7 +12,7 @@ GeoIP
 
 ## Supported Drivers ([Services](#services))
 
-* [FreeGeoIP](https://freegeoip.net/)
+* [IPStack](https://ipstack.com/)
 * [IP-API](http://ip-api.com/)
 * [Maxmind](https://www.maxmind.com/)
 * [Telize](https://market.mashape.com/fcambus/telize/)
@@ -23,15 +23,11 @@ GeoIP
 
 ## Installation
 
-Install via composer - edit your `composer.json` to require the package.
+Install via composer
 
-```js
-"require": {
-    "pulkitjalan/geoip": "2.*"
-}
+```bash
+composer require pulkitjalan/geoip
 ```
-
-Then run `composer update` in your terminal to pull it in.
 
 ### Laravel
 
@@ -72,27 +68,16 @@ $lat = $geoip->getLatitude(); // 51.5141
 $lon = $geoip->getLongitude(); // -3.1969
 ```
 
-#### FreeGeoIP
+#### IPStack
 
-To use the freegeoip as the driver set the config.
+To use the ipstack as the driver set the config.
 
 Example:
 ```php
 $config = [
-    'driver' => 'freegeoip',
-    'freegeoip' => [
-        'secure' => true,
-    ],
-];
-```
-
-Custom install example:
-```php
-$config = [
-    'driver' => 'freegeoip',
-    'freegeoip' => [
-        'url' => 'freegeoip.example.com', // or with a port (freegeoip.example.com:8080)
-        'secure' => true, // or false
+    'driver' => 'ipstack',
+    'ipstack' => [
+        'key' => 'YOUR IPSTACK KEY',
     ],
 ];
 ```
@@ -107,9 +92,6 @@ $config = [
     'driver' => 'ip-api',
     'ip-api' => [
         'key' => 'YOUR IP-API KEY',
-
-        // optionally set secure (https) connection (default: false)
-        'secure' => true
     ],
 ];
 ```
@@ -148,7 +130,7 @@ Example:
 $config = [
     'driver' => 'telize',
     'telize' => [
-        'key' => 'YOUR IP-API KEY',
+        'key' => 'YOUR TELIZE KEY',
     ],
 ];
 ```
@@ -300,13 +282,13 @@ $geoipUpdater->update();
 
 ### Laravel
 
-Once you have registered the service provider, you can use the command `php artisan geoip:update`
+Once you have registered the service provider (supports auto discovery), you can use the command `php artisan geoip:update`
 
 ## Services
 
-#### FreeGeoIP
+#### IPStack
 
-Freegeoip is a free service that can also be used instead of the database file or the paid maxmind service. They do have some limitations so please have a look at the [website](https://freegeoip.net/) first. You can also run a [custom install](https://github.com/fiorix/freegeoip) and use that instead.
+IPStack offers a JSON IP and GeoIP REST API allowing to get a visitor IP address and to query location information from any IP address.
 
 #### IP-API
 

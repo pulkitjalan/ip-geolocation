@@ -48,7 +48,7 @@ class GeoIPTest extends TestCase
     public function test_maxmind_database_exception()
     {
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
                 'database' => __DIR__.'/data/GeoIP2-City.mmdb',
             ],
@@ -62,7 +62,7 @@ class GeoIPTest extends TestCase
     public function test_maxmind_invalid_database_exception()
     {
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
                 'database' => __FILE__,
             ],
@@ -76,7 +76,7 @@ class GeoIPTest extends TestCase
     public function test_maxmind_web_api_exception()
     {
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
                 'user_id' => 'test',
             ],
@@ -90,9 +90,9 @@ class GeoIPTest extends TestCase
     public function test_maxmind_web_api_authentication_exception()
     {
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
-                'user_id'     => 'test',
+                'user_id' => 'test',
                 'license_key' => 'test',
             ],
         ];
@@ -108,9 +108,9 @@ class GeoIPTest extends TestCase
     public function test_maxmind_web_api_authentication_exception_getRaw()
     {
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
-                'user_id'     => 'test',
+                'user_id' => 'test',
                 'license_key' => 'test',
             ],
         ];
@@ -182,7 +182,7 @@ class GeoIPTest extends TestCase
     public function test_maxmind_database()
     {
         $config = [
-            'driver'  => 'maxmind',
+            'driver' => 'maxmind',
             'maxmind' => [
                 'database' => __DIR__.'/data/GeoIP2-City-Test.mmdb',
             ],
@@ -217,8 +217,7 @@ class GeoIPTest extends TestCase
         $config = [
             'driver' => 'ip-api',
             'ip-api' => [
-                'key'    => 'test',
-                'secure' => true,
+                'key' => 'test',
             ],
         ];
 
@@ -235,8 +234,7 @@ class GeoIPTest extends TestCase
         $config = [
             'driver' => 'ip-api',
             'ip-api' => [
-                'key'    => 'test',
-                'secure' => true,
+                'key' => 'test',
             ],
         ];
 
