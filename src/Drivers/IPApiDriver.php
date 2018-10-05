@@ -15,7 +15,7 @@ class IPApiDriver extends AbstractGeoIPDriver
     {
         $data = $this->getRaw($ip);
 
-        if (empty($data) || array_get($data, 'status') === 'fail') {
+        if (empty($data) || (array_get($data, 'status') === 'fail')) {
             return $this->getDefault();
         }
 

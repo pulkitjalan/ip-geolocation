@@ -3,15 +3,15 @@
 namespace PulkitJalan\geoip\tests;
 
 use Mockery;
-use PHPUnit_Framework_TestCase;
-use PulkitJalan\GeoIP\Exceptions\GeoIPException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
-use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
-use PulkitJalan\GeoIP\GeoIP;
 use BadMethodCallException;
+use PulkitJalan\GeoIP\GeoIP;
+use PHPUnit\Framework\TestCase;
+use PulkitJalan\GeoIP\Exceptions\GeoIPException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
-class GeoIPTest extends PHPUnit_Framework_TestCase
+class GeoIPTest extends TestCase
 {
     protected $multipleIps = '81.2.69.160,127.0.0.1';
     protected $validIp = '81.2.69.160';
@@ -24,14 +24,14 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
 
     public function test_invalid_driver_exception()
     {
-        $this->setExpectedException(InvalidDriverException::class);
+        $this->expectException(InvalidDriverException::class);
 
         $geoip = new GeoIP([]);
     }
 
     public function test_bad_method_call_exception()
     {
-        $this->setExpectedException(BadMethodCallException::class);
+        $this->expectException(BadMethodCallException::class);
 
         $geoip = new GeoIP();
 
@@ -40,7 +40,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
 
     public function test_maxmind_exception()
     {
-        $this->setExpectedException(InvalidCredentialsException::class);
+        $this->expectException(InvalidCredentialsException::class);
 
         $geoip = new GeoIP(['driver' => 'maxmind']);
     }
@@ -54,7 +54,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException(InvalidCredentialsException::class);
+        $this->expectException(InvalidCredentialsException::class);
 
         $geoip = new GeoIP($config);
     }
@@ -68,7 +68,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException(InvalidDatabaseException::class);
+        $this->expectException(InvalidDatabaseException::class);
 
         $geoip = new GeoIP($config);
     }
@@ -82,7 +82,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException(InvalidCredentialsException::class);
+        $this->expectException(InvalidCredentialsException::class);
 
         $geoip = new GeoIP($config);
     }
@@ -97,7 +97,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException(GeoIPException::class);
+        $this->expectException(GeoIPException::class);
 
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
@@ -115,7 +115,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException(GeoIPException::class);
+        $this->expectException(GeoIPException::class);
 
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
@@ -165,37 +165,18 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
     }
 
-    public function test_freegeoip_database()
+    public function test_ipstack_exception_without_key()
     {
         $config = [
-            'driver'  => 'freegeoip',
-            'freegeoip' => [
-                'secure' => true,
-            ],
+            'driver' => 'ipstack',
         ];
+
+        $this->expectException(InvalidCredentialsException::class);
 
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
 
-        $this->assertEquals('United Kingdom', $geoip->getCountry());
-
-        $this->assertEquals($this->validIp, array_get($geoip->getRaw(), 'ip'));
-
-        $geoip = $geoip->setIp($this->invalidIp);
-
-        $this->assertEquals([
-            'city' => null,
-            'country' => null,
-            'countryCode' => null,
-            'latitude' => null,
-            'longitude' => null,
-            'region' => null,
-            'regionCode' => null,
-            'timezone' => null,
-            'postalCode' => null,
-        ], $geoip->get());
-
-        $this->assertEquals('', $geoip->getCountry());
+        $geoip->get();
     }
 
     public function test_maxmind_database()
@@ -241,7 +222,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException(GeoIPException::class);
+        $this->expectException(GeoIPException::class);
 
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
@@ -259,7 +240,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             ],
         ];
 
-        $this->setExpectedException(GeoIPException::class);
+        $this->expectException(GeoIPException::class);
 
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
@@ -276,7 +257,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
 
-        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
+        $this->assertEquals($geoip->getCountry(), 'United States');
 
         $geoip = $geoip->setIp($this->invalidIp);
 
@@ -305,7 +286,7 @@ class GeoIPTest extends PHPUnit_Framework_TestCase
             'driver' => 'telize',
         ];
 
-        $this->setExpectedException(InvalidCredentialsException::class);
+        $this->expectException(InvalidCredentialsException::class);
 
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);

@@ -52,7 +52,7 @@ class GeoIPUpdater
 
         $database = array_get($this->config, 'maxmind.database', false);
 
-        if (!file_exists($dir = pathinfo($database, PATHINFO_DIRNAME))) {
+        if (! file_exists($dir = pathinfo($database, PATHINFO_DIRNAME))) {
             mkdir($dir, 0777, true);
         }
 

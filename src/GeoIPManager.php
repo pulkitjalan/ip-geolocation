@@ -2,7 +2,7 @@
 
 namespace PulkitJalan\GeoIP;
 
-use PulkitJalan\GeoIP\Drivers\FreeGeoIPDriver;
+use PulkitJalan\GeoIP\Drivers\IpStackDriver;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDriver;
 use PulkitJalan\GeoIP\Drivers\TelizeDriver;
@@ -34,7 +34,7 @@ class GeoIPManager
 
         $method = 'create'.ucfirst(camel_case($driver)).'Driver';
 
-        if (!method_exists($this, $method)) {
+        if (! method_exists($this, $method)) {
             throw new InvalidDriverException(sprintf('Driver [%s] not supported.', $driver));
         }
 
@@ -44,11 +44,11 @@ class GeoIPManager
     /**
      * Get the freegeoip driver.
      *
-     * @return \PulkitJalan\GeoIP\FreeGeoIPDriver
+     * @return \PulkitJalan\GeoIP\IpStackDriver
      */
-    protected function createFreegeoipDriver(array $data)
+    protected function createIpStackDriver(array $data)
     {
-        return new FreeGeoIPDriver($data);
+        return new IpStackDriver($data);
     }
 
     /**

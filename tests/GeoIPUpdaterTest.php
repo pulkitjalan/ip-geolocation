@@ -3,10 +3,10 @@
 namespace PulkitJalan\GeoIP\Tests;
 
 use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\GeoIPUpdater;
 
-class GeoIPUpdaterTest extends PHPUnit_Framework_TestCase
+class GeoIPUpdaterTest extends TestCase
 {
     public function tearDown()
     {

@@ -45,7 +45,7 @@ class UpdateCommand extends Command
     {
         $result = $this->geoIPUpdater->update();
 
-        if (!$result) {
+        if (! $result) {
             $this->error('Update failed!');
 
             return;
@@ -53,7 +53,7 @@ class UpdateCommand extends Command
 
         $this->info('New update file ('.$result.') installed.');
     }
-    
+
     /**
      * Compatibility with old versions of Laravel.
      */

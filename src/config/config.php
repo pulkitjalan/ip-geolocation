@@ -6,7 +6,7 @@ return [
     | GeoIP Driver Type
     |--------------------------------------------------------------------------
     |
-    | Supported: "freegeoip", "ip-api", "maxmind", "telize"
+    | Supported: "ipstack", "ip-api", "maxmind", "telize"
     |
     */
     'driver' => env('GEOIP_DRIVER', 'ip-api'),
@@ -20,39 +20,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Free GeoIP Driver
+    | IPStack Driver
     |--------------------------------------------------------------------------
     */
-    'freegeoip' => [
+    'ipstack' => [
         /*
         |--------------------------------------------------------------------------
-        | Free GeoIP url
+        | IPStack Access Key
         |--------------------------------------------------------------------------
         |
-        | Url to self hosted freegeoip (including port) without protocol
+        | Get your access key here: https://ipstack.com/product
         |
         */
-        'url' => env('GEOIP_FREEGEOIP_URL'),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Free GeoIP Secure connection
-        |--------------------------------------------------------------------------
-        |
-        | Use http or https
-        |
-        */
-        'secure' => env('GEOIP_FREEGEOIP_SECURE', true),
-
-        /*
-        |--------------------------------------------------------------------------
-        | Free IP STACK KEY
-        |--------------------------------------------------------------------------
-        |
-        | IPSTACK key
-        |
-        */
-        'key' => env('GEOIP_KEY', true),
+        'key' => env('GEOIP_IPSTACK_KEY'),
     ],
 
     /*
@@ -122,7 +102,6 @@ return [
         | Get your API key here: https://market.mashape.com/fcambus/telize
         |
         */
-
-         'key' => env('GEOIP_TELIZE_KEY'),
+        'key' => env('GEOIP_TELIZE_KEY'),
     ],
 ];
