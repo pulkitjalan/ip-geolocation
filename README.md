@@ -1,7 +1,7 @@
 GeoIP
 =============
 
-> Geoip Wrapper with Laravel 4 & 5 Support
+> Geoip Wrapper with Laravel Support
 
 [![Build Status](http://img.shields.io/travis/pulkitjalan/geoip/master.svg?style=flat-square)](https://travis-ci.org/pulkitjalan/geoip)
 [![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/pulkitjalan/geoip/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/)
@@ -19,7 +19,7 @@ GeoIP
 
 ## Requirements
 
-* PHP >= 5.5
+* PHP >= 7.0
 
 ## Installation
 
