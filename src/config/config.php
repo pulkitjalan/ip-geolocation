@@ -33,6 +33,7 @@ return [
         |
         */
         'key' => env('GEOIP_IPSTACK_KEY'),
+        'http' => env('GEOIP_IPSTACK_HTTP', false),
     ],
 
     /*
