@@ -33,7 +33,7 @@ class GeoIPManager
     {
         $driver = ($driver) ?: Arr::get($this->config, 'driver', '');
 
-        $method = 'create'.ucfirst(camel_case($driver)).'Driver';
+        $method = 'create'.ucfirst(Str::camel($driver)).'Driver';
 
         if (! method_exists($this, $method)) {
             throw new InvalidDriverException(sprintf('Driver [%s] not supported.', $driver));
