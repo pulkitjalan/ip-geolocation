@@ -3,6 +3,7 @@
 namespace PulkitJalan\GeoIP;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use PulkitJalan\GeoIP\Drivers\IpStackDriver;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDriver;
