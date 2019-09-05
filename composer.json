@@ -1,5 +1,5 @@
 {
-    "name": "pulkitjalan/geoip",
+    "name": "mweghorst/geoip",
     "description": "Geoip Wrapper with Laravel Support",
     "homepage": "https://github.com/pulkitjalan/geoip",
     "keywords": ["geoip", "ipstack", "ip-api", "maxmind", "telize"],
@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": ">=7.0",
-        "illuminate/support": "~5",
-        "illuminate/console": "~5",
+        "illuminate/support": "~5|~6",
+        "illuminate/console": "~5|~6",
         "guzzlehttp/guzzle": "~6",
         "geoip2/geoip2": "^2.0"
     },
