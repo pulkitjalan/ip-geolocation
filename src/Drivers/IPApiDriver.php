@@ -2,6 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
+use Illuminate\Support\Arr;
+
 class IPApiDriver extends AbstractGeoIPDriver
 {
     /**
@@ -15,20 +17,20 @@ class IPApiDriver extends AbstractGeoIPDriver
     {
         $data = $this->getRaw($ip);
 
-        if (empty($data) || (array_get($data, 'status') === 'fail')) {
+        if (empty($data) || (Arr::get($data, 'status') === 'fail')) {
             return $this->getDefault();
         }
 
         return [
-            'city' => array_get($data, 'city'),
-            'country' => array_get($data, 'country'),
-            'countryCode' => array_get($data, 'countryCode'),
-            'latitude' => (float) number_format(array_get($data, 'lat'), 5),
-            'longitude' => (float) number_format(array_get($data, 'lon'), 5),
-            'region' => array_get($data, 'regionName'),
-            'regionCode' => array_get($data, 'region'),
-            'timezone' => array_get($data, 'timezone'),
-            'postalCode' => array_get($data, 'zip'),
+            'city' => Arr::get($data, 'city'),
+            'country' => Arr::get($data, 'country'),
+            'countryCode' => Arr::get($data, 'countryCode'),
+            'latitude' => (float) number_format(Arr::get($data, 'lat'), 5),
+            'longitude' => (float) number_format(Arr::get($data, 'lon'), 5),
+            'region' => Arr::get($data, 'regionName'),
+            'regionCode' => Arr::get($data, 'region'),
+            'timezone' => Arr::get($data, 'timezone'),
+            'postalCode' => Arr::get($data, 'zip'),
         ];
     }
 
@@ -60,9 +62,9 @@ class IPApiDriver extends AbstractGeoIPDriver
         $key = '';
 
         // if key is set change to pro service
-        if (array_get($this->config, 'key', false)) {
+        if (Arr::get($this->config, 'key', false)) {
             $baseUrl = 'https://pro.ip-api.com/json/';
-            $key = array_get($this->config, 'key');
+            $key = Arr::get($this->config, 'key');
         }
 
         return $baseUrl.$ip.(($key) ? '?key='.$key : '');
