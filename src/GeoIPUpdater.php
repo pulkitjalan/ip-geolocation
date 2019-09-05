@@ -4,6 +4,7 @@ namespace PulkitJalan\GeoIP;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Arr;
 
 class GeoIPUpdater
 {
@@ -48,9 +49,9 @@ class GeoIPUpdater
      */
     protected function updateMaxmindDatabase()
     {
-        $maxmindDatabaseUrl = array_get($this->config, 'maxmind.download', 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz');
+        $maxmindDatabaseUrl = Arr::get($this->config, 'maxmind.download', 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz');
 
-        $database = array_get($this->config, 'maxmind.database', false);
+        $database = Arr::get($this->config, 'maxmind.database', false);
 
         if (! file_exists($dir = pathinfo($database, PATHINFO_DIRNAME))) {
             mkdir($dir, 0777, true);
