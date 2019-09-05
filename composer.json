@@ -1,5 +1,5 @@
 {
-    "name": "pulkitjalan/geoip",
+    "name": "mweghorst/geoip",
     "description": "Geoip Wrapper with Laravel Support",
     "homepage": "https://github.com/pulkitjalan/geoip",
     "keywords": ["geoip", "ipstack", "ip-api", "maxmind", "telize"],
