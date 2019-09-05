@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\GeoIP;
 
+use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\Drivers\IpStackDriver;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDriver;
@@ -30,7 +31,7 @@ class GeoIPManager
      */
     public function getDriver($driver = null)
     {
-        $driver = ($driver) ?: array_get($this->config, 'driver', '');
+        $driver = ($driver) ?: Arr::get($this->config, 'driver', '');
 
         $method = 'create'.ucfirst(camel_case($driver)).'Driver';
 
@@ -38,7 +39,7 @@ class GeoIPManager
             throw new InvalidDriverException(sprintf('Driver [%s] not supported.', $driver));
         }
 
-        return $this->{$method}(array_get($this->config, $driver, []));
+        return $this->{$method}(Arr::get($this->config, $driver, []));
     }
 
     /**
