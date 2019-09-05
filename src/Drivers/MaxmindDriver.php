@@ -5,6 +5,7 @@ namespace PulkitJalan\GeoIP\Drivers;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use GeoIp2\WebService\Client;
+use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 
@@ -83,12 +84,12 @@ class MaxmindDriver extends AbstractGeoIPDriver
     protected function create()
     {
         // if user_id and license_key are set then use the web service
-        if (array_get($this->config, 'user_id', false)) {
+        if (Arr::get($this->config, 'user_id', false)) {
             return $this->createWebClient();
         }
 
         // if database file is set then use database service
-        if (array_get($this->config, 'database', false)) {
+        if (Arr::get($this->config, 'database', false)) {
             return $this->createDatabase();
         }
 
@@ -104,8 +105,8 @@ class MaxmindDriver extends AbstractGeoIPDriver
      */
     protected function createWebClient()
     {
-        $userId = array_get($this->config, 'user_id', false);
-        $licenseKey = array_get($this->config, 'license_key', false);
+        $userId = Arr::get($this->config, 'user_id', false);
+        $licenseKey = Arr::get($this->config, 'license_key', false);
 
         // check and make sure they are set
         if (! $userId || ! $licenseKey) {
@@ -124,7 +125,7 @@ class MaxmindDriver extends AbstractGeoIPDriver
      */
     protected function createDatabase()
     {
-        $database = array_get($this->config, 'database', false);
+        $database = Arr::get($this->config, 'database', false);
 
         // check if file exists first
         if (! $database || ! file_exists($database)) {
