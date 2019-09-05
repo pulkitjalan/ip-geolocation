@@ -35,7 +35,7 @@ class GeoIPUpdater
      */
     public function update()
     {
-        if (array_get($this->config, 'maxmind.database', false)) {
+        if (Arr::get($this->config, 'maxmind.database', false)) {
             return $this->updateMaxmindDatabase();
         }
 
