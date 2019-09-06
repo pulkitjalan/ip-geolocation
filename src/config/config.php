@@ -92,5 +92,6 @@ return [
         |
         */
         'key' => env('GEOIP_TELIZE_KEY'),
+        'secure' => env('GEOIP_IPSTACK_SECURE', true),
     ],
 ];
