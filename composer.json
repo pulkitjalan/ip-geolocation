@@ -2,7 +2,13 @@
     "name": "pulkitjalan/geoip",
     "description": "Geoip Wrapper with Laravel Support",
     "homepage": "https://github.com/pulkitjalan/geoip",
-    "keywords": ["geoip", "ipstack", "ip-api", "maxmind", "telize"],
+    "keywords": [
+        "geoip",
+        "ipstack",
+        "ip-api",
+        "maxmind",
+        "telize"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -27,6 +33,12 @@
         "files": [
             "helpers.php"
         ]
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
