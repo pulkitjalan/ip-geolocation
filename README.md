@@ -47,9 +47,9 @@ Next add the following to the `aliases` array in your `config/app.php`
 
 Next run `php artisan vendor:publish --provider="PulkitJalan\GeoIP\GeoIPServiceProvider" --tag="config"` to publish the config file.
 
-#### Looking for a Laravel 4 compatible version?
+#### Using an older version of PHP / Laravel?
 
-Checkout the [1.0 branch](https://github.com/pulkitjalan/geoip/tree/1.0)
+If you are on a PHP version below 7.2 or a Laravel version below 5.8 just use an older version of this package.
 
 ## Usage
 

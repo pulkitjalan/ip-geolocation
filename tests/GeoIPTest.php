@@ -4,6 +4,7 @@ namespace PulkitJalan\geoip\tests;
 
 use Mockery;
 use BadMethodCallException;
+use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\GeoIP;
 use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\Exceptions\GeoIPException;
@@ -255,13 +256,11 @@ class GeoIPTest extends TestCase
         $geoip = new GeoIP($config);
         $geoip = $geoip->setIp($this->validIp);
 
-        $this->assertEquals($geoip->getCountry(), 'United States');
+        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
 
         $geoip = $geoip->setIp($this->invalidIp);
 
-        $this->assertArraySubset([
-            'status' => 'fail',
-        ], $geoip->getRaw());
+        $this->assertEquals('fail', Arr::get($geoip->getRaw(), 'status'));
 
         $this->assertEquals([
             'city' => null,
