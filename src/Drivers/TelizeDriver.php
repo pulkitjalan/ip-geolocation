@@ -3,6 +3,7 @@
 namespace PulkitJalan\GeoIP\Drivers;
 
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class TelizeDriver extends AbstractGeoIPDriver
@@ -35,15 +36,15 @@ class TelizeDriver extends AbstractGeoIPDriver
         }
 
         return [
-            'city' => array_get($data, 'city'),
-            'country' => array_get($data, 'country'),
-            'countryCode' => array_get($data, 'country_code'),
-            'latitude' => (float) number_format(array_get($data, 'latitude'), 5),
-            'longitude' => (float) number_format(array_get($data, 'longitude'), 5),
-            'region' => array_get($data, 'region'),
-            'regionCode' => array_get($data, 'region_code'),
-            'timezone' => array_get($data, 'timezone'),
-            'postalCode' => array_get($data, 'postal_code'),
+            'city' => Arr::get($data, 'city'),
+            'country' => Arr::get($data, 'country'),
+            'countryCode' => Arr::get($data, 'country_code'),
+            'latitude' => (float) number_format(Arr::get($data, 'latitude'), 5),
+            'longitude' => (float) number_format(Arr::get($data, 'longitude'), 5),
+            'region' => Arr::get($data, 'region'),
+            'regionCode' => Arr::get($data, 'region_code'),
+            'timezone' => Arr::get($data, 'timezone'),
+            'postalCode' => Arr::get($data, 'postal_code'),
         ];
     }
 
@@ -59,7 +60,7 @@ class TelizeDriver extends AbstractGeoIPDriver
         try {
             return json_decode($this->guzzle->get($this->getUrl($ip), [
                 'headers' => [
-                    'X-Mashape-Key' => array_get($this->config, 'key'),
+                    'X-Mashape-Key' => Arr::get($this->config, 'key'),
                     'Accept' => 'application/json',
                 ],
             ])->getBody(), true);

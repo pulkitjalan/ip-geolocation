@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": ">=7.0",
-        "illuminate/support": "~5",
-        "illuminate/console": "~5",
+        "illuminate/support": "~5|~6",
+        "illuminate/console": "~5|~6",
         "guzzlehttp/guzzle": "~6",
         "geoip2/geoip2": "^2.0"
     },

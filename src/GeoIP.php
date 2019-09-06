@@ -2,6 +2,8 @@
 
 namespace PulkitJalan\GeoIP;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use PulkitJalan\GeoIP\Exceptions\GeoIPException;
 
 class GeoIP
@@ -37,7 +39,7 @@ class GeoIP
     public function __construct(array $config = ['driver' => 'ip-api'])
     {
         $this->driver = with(new GeoIPManager($config))->getDriver();
-        $this->random = array_get($config, 'random', false);
+        $this->random = Arr::get($config, 'random', false);
     }
 
     /**
@@ -77,7 +79,7 @@ class GeoIP
             if ($this->random) {
                 $this->ip = long2ip(mt_rand());
             } else {
-                $this->ip = array_get($_SERVER, 'HTTP_CLIENT_IP', array_get($_SERVER, 'HTTP_X_FORWARDED_FOR', array_get($_SERVER, 'HTTP_X_FORWARDED', array_get($_SERVER, 'HTTP_FORWARDED_FOR', array_get($_SERVER, 'HTTP_FORWARDED', array_get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
+                $this->ip = Arr::get($_SERVER, 'HTTP_CLIENT_IP', Arr::get($_SERVER, 'HTTP_X_FORWARDED_FOR', Arr::get($_SERVER, 'HTTP_X_FORWARDED', Arr::get($_SERVER, 'HTTP_FORWARDED_FOR', Arr::get($_SERVER, 'HTTP_FORWARDED', Arr::get($_SERVER, 'REMOTE_ADDR', '127.0.0.1'))))));
             }
         }
 
@@ -105,7 +107,7 @@ class GeoIP
             return $data;
         }
 
-        return array_get($data, $property, '');
+        return Arr::get($data, $property, '');
     }
 
     /**
@@ -121,7 +123,7 @@ class GeoIP
         $this->setIp($ip);
 
         // check ip in memory
-        $data = array_get($this->storeRaw, $ip);
+        $data = Arr::get($this->storeRaw, $ip);
 
         if (! $data) {
             try {
@@ -150,7 +152,7 @@ class GeoIP
         $this->setIp($ip);
 
         // check ip in memory
-        $data = array_get($this->store, $ip);
+        $data = Arr::get($this->store, $ip);
 
         if (! $data) {
             try {
@@ -178,7 +180,7 @@ class GeoIP
      */
     public function __call($method, $parameters)
     {
-        if (starts_with($method, 'get')) {
+        if (Str::startsWith($method, 'get')) {
             $param = lcfirst(ltrim($method, 'get'));
 
             return $this->get($param);
