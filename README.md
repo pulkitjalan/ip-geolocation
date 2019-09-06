@@ -78,6 +78,7 @@ $config = [
     'driver' => 'ipstack',
     'ipstack' => [
         'key' => 'YOUR IPSTACK KEY',
+        'secure' => true, // (optional) use https
     ],
 ];
 ```
