@@ -74,6 +74,12 @@ class IpStackDriver extends AbstractGeoIPDriver
      */
     protected function getUrl($ip)
     {
-        return 'https://api.ipstack.com/'.$ip.'?access_key='.array_get($this->config, 'key');
+        $protocol = 'https';
+
+        if (!empty(array_get($this->config, 'http'))) {
+            $protocol = 'http';
+        }
+
+        return $protocol.'://api.ipstack.com/'.$ip.'?access_key='.array_get($this->config, 'key');
     }
 }
