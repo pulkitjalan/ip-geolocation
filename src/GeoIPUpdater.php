@@ -3,8 +3,8 @@
 namespace PulkitJalan\GeoIP;
 
 use Exception;
-use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Arr;
+use GuzzleHttp\Client as GuzzleClient;
 
 class GeoIPUpdater
 {

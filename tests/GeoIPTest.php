@@ -17,7 +17,7 @@ class GeoIPTest extends TestCase
     protected $validIp = '81.2.69.160';
     protected $invalidIp = '127.0.0.1';
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

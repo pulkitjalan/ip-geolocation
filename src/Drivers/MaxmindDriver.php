@@ -3,11 +3,11 @@
 namespace PulkitJalan\GeoIP\Drivers;
 
 use GeoIp2\Database\Reader;
-use GeoIp2\Exception\AddressNotFoundException;
-use GeoIp2\WebService\Client;
 use Illuminate\Support\Arr;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use GeoIp2\WebService\Client;
+use GeoIp2\Exception\AddressNotFoundException;
 use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class MaxmindDriver extends AbstractGeoIPDriver
 {

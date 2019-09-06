@@ -8,7 +8,7 @@ use PulkitJalan\GeoIP\GeoIPUpdater;
 
 class GeoIPUpdaterTest extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

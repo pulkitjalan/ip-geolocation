@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Arr;
+use GuzzleHttp\Exception\RequestException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class IpStackDriver extends AbstractGeoIPDriver
@@ -15,7 +15,7 @@ class IpStackDriver extends AbstractGeoIPDriver
     {
         parent::__construct($config);
 
-        if (! array_get($this->config, 'key')) {
+        if (! Arr::get($this->config, 'key')) {
             throw new InvalidCredentialsException();
         }
     }

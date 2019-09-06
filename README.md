@@ -19,7 +19,7 @@ GeoIP
 
 ## Requirements
 
-* PHP >= 7.0
+* PHP >= 7.2
 
 ## Installation
 
