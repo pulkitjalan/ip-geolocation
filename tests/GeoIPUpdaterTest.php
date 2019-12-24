@@ -7,8 +7,6 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\GeoIPUpdater;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\ClientException;
-use Psr\Http\Message\ResponseInterface;
 use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
