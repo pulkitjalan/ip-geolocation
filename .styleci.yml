@@ -1,6 +1,6 @@
 preset: laravel
 
-enable:
+enabled:
   - length_ordered_imports
 
 disabled:
