@@ -3,9 +3,11 @@
 namespace PulkitJalan\GeoIP\Tests;
 
 use Mockery;
+use Exception;
 use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\GeoIPUpdater;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
@@ -51,16 +53,11 @@ class GeoIPUpdaterTest extends TestCase
         ];
 
         $client = Mockery::mock(GuzzleClient::class);
-        $response = Mockery::mock(ResponseInterface::class);
 
         $client->shouldReceive('get')
             ->once()
-            ->with('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
-            ->andReturn($response);
-
-        $response->shouldReceive('getBody')
-            ->once()
-            ->andReturn(gzencode('test'));
+            ->withSomeOfArgs('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
+            ->andReturnTrue();
 
         $geoipUpdater = new GeoIPUpdater($config, $client);
 
@@ -82,16 +79,11 @@ class GeoIPUpdaterTest extends TestCase
         ];
 
         $client = Mockery::mock(GuzzleClient::class);
-        $response = Mockery::mock(ResponseInterface::class);
 
         $client->shouldReceive('get')
             ->once()
-            ->with('http://example.com/maxmind_database.mmdb.gz?license_key=test')
-            ->andReturn($response);
-
-        $response->shouldReceive('getBody')
-            ->once()
-            ->andReturn(false);
+            ->withSomeOfArgs('http://example.com/maxmind_database.mmdb.gz?license_key=test')
+            ->andThrow(new Exception);
 
         $geoipUpdater = new GeoIPUpdater($config, $client);
 
@@ -110,16 +102,11 @@ class GeoIPUpdaterTest extends TestCase
         ];
 
         $client = Mockery::mock(GuzzleClient::class);
-        $response = Mockery::mock(ResponseInterface::class);
 
         $client->shouldReceive('get')
             ->once()
-            ->with('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
-            ->andReturn($response);
-
-        $response->shouldReceive('getBody')
-            ->once()
-            ->andReturn(gzencode('test'));
+            ->withSomeOfArgs('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
+            ->andReturnTrue();
 
         $geoipUpdater = new GeoIPUpdater($config, $client);
 

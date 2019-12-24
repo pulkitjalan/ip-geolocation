@@ -66,9 +66,15 @@ class GeoIPUpdater
         }
 
         try {
-            $file = $this->guzzle->get($maxmindDatabaseUrl)->getBody();
+            // Download database temp dir
+            $tempFile = tempnam(sys_get_temp_dir(), 'maxmind');
+            $this->guzzle->get($maxmindDatabaseUrl, ['save_to' => $tempFile]);
 
-            file_put_contents($database, gzdecode($file));
+            // Save database to final location
+            file_put_contents($database, gzopen($tempFile, 'r'));
+
+            // Delete temp file
+            @unlink($tempFile);
         } catch (Exception $e) {
             return false;
         }
