@@ -2,7 +2,6 @@
 
 namespace PulkitJalan\geoip\tests;
 
-use Mockery;
 use BadMethodCallException;
 use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\GeoIP;
@@ -17,11 +16,6 @@ class GeoIPTest extends TestCase
     protected $multipleIps = '81.2.69.160,127.0.0.1';
     protected $validIp = '81.2.69.160';
     protected $invalidIp = '127.0.0.1';
-
-    public function tearDown(): void
-    {
-        Mockery::close();
-    }
 
     public function test_invalid_driver_exception()
     {
