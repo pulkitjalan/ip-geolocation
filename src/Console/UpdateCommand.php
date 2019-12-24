@@ -4,6 +4,8 @@ namespace PulkitJalan\GeoIP\Console;
 
 use Illuminate\Console\Command;
 use PulkitJalan\GeoIP\GeoIPUpdater;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class UpdateCommand extends Command
 {
@@ -43,7 +45,17 @@ class UpdateCommand extends Command
      */
     public function handle()
     {
-        $result = $this->geoIPUpdater->update();
+        try {
+            $result = $this->geoIPUpdater->update();
+        } catch (InvalidDatabaseException $e) {
+            $this->error('Database update config not setup properly');
+
+            return;
+        } catch (InvalidCredentialsException $e) {
+            $this->error('The license key is required to update');
+
+            return;
+        }
 
         if (! $result) {
             $this->error('Update failed!');

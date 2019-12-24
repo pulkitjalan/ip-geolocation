@@ -5,6 +5,8 @@ namespace PulkitJalan\GeoIP;
 use Exception;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class GeoIPUpdater
 {
@@ -25,7 +27,7 @@ class GeoIPUpdater
     {
         $this->config = $config;
 
-        $this->guzzle = $guzzle ?: new GuzzleClient();
+        $this->guzzle = $guzzle ?? new GuzzleClient();
     }
 
     /**
@@ -35,11 +37,15 @@ class GeoIPUpdater
      */
     public function update()
     {
-        if (Arr::get($this->config, 'maxmind.database', false)) {
-            return $this->updateMaxmindDatabase();
+        if (! Arr::get($this->config, 'maxmind_database.database', false)) {
+            throw new InvalidDatabaseException();
         }
 
-        return false;
+        if (! Arr::get($this->config, 'maxmind_database.license_key', false)) {
+            throw new InvalidCredentialsException();
+        }
+
+        return $this->updateMaxmindDatabase();
     }
 
     /**
@@ -49,9 +55,11 @@ class GeoIPUpdater
      */
     protected function updateMaxmindDatabase()
     {
-        $maxmindDatabaseUrl = Arr::get($this->config, 'maxmind.download', 'http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz');
+        $maxmindDatabaseUrl = Arr::get($this->config, 'maxmind_database.download', 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=');
 
-        $database = Arr::get($this->config, 'maxmind.database', false);
+        $maxmindDatabaseUrl = $maxmindDatabaseUrl.Arr::get($this->config, 'maxmind_database.license_key');
+
+        $database = Arr::get($this->config, 'maxmind_database.database', false);
 
         if (! file_exists($dir = pathinfo($database, PATHINFO_DIRNAME))) {
             mkdir($dir, 0777, true);

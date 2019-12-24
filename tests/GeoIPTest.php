@@ -49,8 +49,8 @@ class GeoIPTest extends TestCase
     public function test_maxmind_database_exception()
     {
         $config = [
-            'driver' => 'maxmind',
-            'maxmind' => [
+            'driver' => 'maxmind_database',
+            'maxmind_database' => [
                 'database' => __DIR__.'/data/GeoIP2-City.mmdb',
             ],
         ];
@@ -63,8 +63,8 @@ class GeoIPTest extends TestCase
     public function test_maxmind_invalid_database_exception()
     {
         $config = [
-            'driver' => 'maxmind',
-            'maxmind' => [
+            'driver' => 'maxmind_database',
+            'maxmind_database' => [
                 'database' => __FILE__,
             ],
         ];
@@ -77,8 +77,8 @@ class GeoIPTest extends TestCase
     public function test_maxmind_web_api_exception()
     {
         $config = [
-            'driver' => 'maxmind',
-            'maxmind' => [
+            'driver' => 'maxmind_api',
+            'maxmind_api' => [
                 'user_id' => 'test',
             ],
         ];
@@ -91,8 +91,8 @@ class GeoIPTest extends TestCase
     public function test_maxmind_web_api_authentication_exception()
     {
         $config = [
-            'driver' => 'maxmind',
-            'maxmind' => [
+            'driver' => 'maxmind_api',
+            'maxmind_api' => [
                 'user_id' => 'test',
                 'license_key' => 'test',
             ],
@@ -109,8 +109,8 @@ class GeoIPTest extends TestCase
     public function test_maxmind_web_api_authentication_exception_getRaw()
     {
         $config = [
-            'driver' => 'maxmind',
-            'maxmind' => [
+            'driver' => 'maxmind_api',
+            'maxmind_api' => [
                 'user_id' => 'test',
                 'license_key' => 'test',
             ],

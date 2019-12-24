@@ -7,7 +7,9 @@ use Illuminate\Support\Str;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 use PulkitJalan\GeoIP\Drivers\TelizeDriver;
 use PulkitJalan\GeoIP\Drivers\IpStackDriver;
-use PulkitJalan\GeoIP\Drivers\MaxmindDriver;
+use PulkitJalan\GeoIP\Drivers\MaxmindApiDriver;
+use PulkitJalan\GeoIP\Drivers\AbstractGeoIPDriver;
+use PulkitJalan\GeoIP\Drivers\MaxmindDatabaseDriver;
 use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
 
 class GeoIPManager
@@ -30,9 +32,9 @@ class GeoIPManager
      *
      * @return \PulkitJalan\GeoIP\AbstractGeoIPDriver
      */
-    public function getDriver($driver = null)
+    public function getDriver($driver = null): AbstractGeoIPDriver
     {
-        $driver = ($driver) ?: Arr::get($this->config, 'driver', '');
+        $driver = $driver ?? Arr::get($this->config, 'driver', '');
 
         $method = 'create'.ucfirst(Str::camel($driver)).'Driver';
 
@@ -44,11 +46,11 @@ class GeoIPManager
     }
 
     /**
-     * Get the freegeoip driver.
+     * Get the ip stack driver.
      *
      * @return \PulkitJalan\GeoIP\IpStackDriver
      */
-    protected function createIpStackDriver(array $data)
+    protected function createIpStackDriver(array $data): IpStackDriver
     {
         return new IpStackDriver($data);
     }
@@ -58,7 +60,7 @@ class GeoIPManager
      *
      * @return \PulkitJalan\GeoIP\IPApiDriver
      */
-    protected function createIpApiDriver(array $data)
+    protected function createIpApiDriver(array $data): IPApiDriver
     {
         return new IPApiDriver($data);
     }
@@ -68,9 +70,19 @@ class GeoIPManager
      *
      * @return \PulkitJalan\GeoIP\MaxmindDriver
      */
-    protected function createMaxmindDriver(array $data)
+    protected function createMaxmindDatabaseDriver(array $data): MaxmindDatabaseDriver
     {
-        return new MaxmindDriver($data);
+        return new MaxmindDatabaseDriver($data);
+    }
+
+    /**
+     * Get the Maxmind driver.
+     *
+     * @return \PulkitJalan\GeoIP\MaxmindDriver
+     */
+    protected function createMaxmindApiDriver(array $data): MaxmindApiDriver
+    {
+        return new MaxmindApiDriver($data);
     }
 
     /**
@@ -78,7 +90,7 @@ class GeoIPManager
      *
      * @return \PulkitJalan\GeoIP\TelizeDriver
      */
-    protected function createTelizeDriver(array $data)
+    protected function createTelizeDriver(array $data): TelizeDriver
     {
         return new TelizeDriver($data);
     }
