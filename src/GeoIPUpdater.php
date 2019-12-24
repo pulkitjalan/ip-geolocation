@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\GeoIP;
 
+use PharData;
 use Exception;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
@@ -65,16 +66,33 @@ class GeoIPUpdater
             mkdir($dir, 0777, true);
         }
 
+        $tempDir = pathinfo($database, PATHINFO_DIRNAME);
+
         try {
             // Download database temp dir
-            $tempFile = tempnam(sys_get_temp_dir(), 'maxmind');
-            $this->guzzle->get($maxmindDatabaseUrl, ['save_to' => $tempFile]);
+            $tempFile = $tempDir.'/geoip';
+            $this->guzzle->get($maxmindDatabaseUrl, ['save_to' => $tempFile.'.tar.gz']);
+
+            $p = new PharData($tempFile.'.tar.gz');
+            $p->decompress();
+
+            // Extract from the tar
+            $phar = new PharData($tempFile.'.tar');
+            $phar->extractTo($tempDir);
+
+            $dir = head(glob("$tempDir/GeoLite2-City_*"));
+
+            @unlink($database);
+            @unlink($tempFile.'.tar');
 
             // Save database to final location
-            file_put_contents($database, gzopen($tempFile, 'r'));
+            rename($dir.'/GeoLite2-City.mmdb', $database);
 
             // Delete temp file
             @unlink($tempFile);
+
+            array_map('unlink', glob("$dir/*.*"));
+            @rmdir($dir);
         } catch (Exception $e) {
             return false;
         }

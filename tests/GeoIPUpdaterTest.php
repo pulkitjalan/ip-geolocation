@@ -2,7 +2,9 @@
 
 namespace PulkitJalan\GeoIP\Tests;
 
+use Phar;
 use Mockery;
+use PharData;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\GeoIPUpdater;
@@ -50,6 +52,14 @@ class GeoIPUpdaterTest extends TestCase
             ],
         ];
 
+        // create the file
+        $p = new PharData(__DIR__.'/data/test.tar');
+        $p->addEmptyDir('GeoLite2-City_today');
+        $p['GeoLite2-City_today/GeoLite2-City.mmdb'] = 'test';
+        $p->compress(Phar::GZ);
+        unlink(__DIR__.'/data/test.tar');
+        rename(__DIR__.'/data/test.tar.gz', __DIR__.'/data/geoip.tar.gz');
+
         $client = Mockery::mock(GuzzleClient::class);
 
         $client->shouldReceive('get')
@@ -62,6 +72,7 @@ class GeoIPUpdaterTest extends TestCase
         $this->assertEquals($geoipUpdater->update(), $database);
 
         unlink($database);
+        unlink(__DIR__.'/data/geoip.tar.gz');
     }
 
     public function test_maxmind_updater_invalid_url()
@@ -86,31 +97,5 @@ class GeoIPUpdaterTest extends TestCase
         $geoipUpdater = new GeoIPUpdater($config, $client);
 
         $this->assertFalse($geoipUpdater->update());
-    }
-
-    public function test_maxmind_updater_dir_not_exist()
-    {
-        $database = __DIR__.'/data/new_dir/GeoLite2-City.mmdb';
-        $config = [
-            'driver' => 'maxmind_database',
-            'maxmind_database' => [
-                'database' => $database,
-                'license_key' => 'test',
-            ],
-        ];
-
-        $client = Mockery::mock(GuzzleClient::class);
-
-        $client->shouldReceive('get')
-            ->once()
-            ->withSomeOfArgs('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
-            ->andReturnTrue();
-
-        $geoipUpdater = new GeoIPUpdater($config, $client);
-
-        $this->assertEquals($geoipUpdater->update(), $database);
-
-        unlink($database);
-        rmdir(pathinfo($database, PATHINFO_DIRNAME));
     }
 }
