@@ -39,11 +39,18 @@ class GeoIPTest extends TestCase
         $geoip->setNothing();
     }
 
-    public function test_maxmind_exception()
+    public function test_maxmind_database_config_exception()
     {
         $this->expectException(InvalidCredentialsException::class);
 
-        $geoip = new GeoIP(['driver' => 'maxmind']);
+        $geoip = new GeoIP(['driver' => 'maxmind_database']);
+    }
+
+    public function test_maxmind_api_config_exception()
+    {
+        $this->expectException(InvalidCredentialsException::class);
+
+        $geoip = new GeoIP(['driver' => 'maxmind_api']);
     }
 
     public function test_maxmind_database_exception()
@@ -183,8 +190,8 @@ class GeoIPTest extends TestCase
     public function test_maxmind_database()
     {
         $config = [
-            'driver' => 'maxmind',
-            'maxmind' => [
+            'driver' => 'maxmind_database',
+            'maxmind_database' => [
                 'database' => __DIR__.'/data/GeoIP2-City-Test.mmdb',
             ],
         ];

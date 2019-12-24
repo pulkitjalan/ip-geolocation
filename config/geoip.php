@@ -49,7 +49,6 @@ return [
 
         // The license key is required for database updates
         'license_key' => env('GEOIP_MAXMIND_LICENSE_KEY'),
-        'download' => 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=',
     ],
 
     /*
