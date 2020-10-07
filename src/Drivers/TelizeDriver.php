@@ -4,7 +4,6 @@ namespace PulkitJalan\GeoIP\Drivers;
 
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\RequestException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class TelizeDriver extends AbstractGeoIPDriver
@@ -58,18 +57,16 @@ class TelizeDriver extends AbstractGeoIPDriver
      */
     public function getRaw($ip)
     {
-        try {
-            return json_decode($this->guzzle->get($this->getUrl($ip), [
-                'headers' => [
-                    'X-Mashape-Key' => Arr::get($this->config, 'key'),
-                    'Accept' => 'application/json',
-                ],
-            ])->getBody(), true);
-        } catch (RequestException $e) {
-            // ignore
-        }
+        $data = json_decode($this->guzzle->get($this->getUrl($ip), [
+            'headers' => [
+                'X-Mashape-Key' => Arr::get($this->config, 'key'),
+                'Accept' => 'application/json',
+            ],
+        ])->getBody(), true);
 
-        return [];
+        var_dump($data);
+
+        return $data;
     }
 
     /**
