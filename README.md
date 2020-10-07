@@ -6,8 +6,8 @@ GeoIP
 [![Latest Stable Version](https://poser.pugx.org/pulkitjalan/geoip/v/stable?format=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 [![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
 [![Build Status](http://img.shields.io/travis/pulkitjalan/geoip/master.svg?style=flat-square)](https://travis-ci.org/pulkitjalan/geoip)
-[![Quality Score](http://img.shields.io/scrutinizer/g/pulkitjalan/geoip/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pulkitjalan/geoip/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/pulkitjalan/geoip/code-structure/master)
+![Run Tests](https://github.com/pulkitjalan/geoip/workflows/Run%20Tests%20-%20Current/badge.svg?branch=master)
+[![Coverage](https://codecov.io/gh/pulkitjalan/geoip/branch/master/graph/badge.svg?token=JTB1ASXAB0)](https://codecov.io/gh/pulkitjalan/geoip)
 [![StyleCI](https://styleci.io/repos/28853821/shield)](https://styleci.io/repos/28853821)
 [![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
 
