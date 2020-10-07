@@ -3,9 +3,9 @@
 namespace PulkitJalan\GeoIP\Console;
 
 use Illuminate\Console\Command;
-use PulkitJalan\GeoIP\GeoIPUpdater;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use PulkitJalan\GeoIP\GeoIPUpdater;
 
 class UpdateCommand extends Command
 {

@@ -2,16 +2,16 @@
 
 namespace PulkitJalan\GeoIP\Tests;
 
-use Phar;
-use Mockery;
-use PharData;
 use Exception;
-use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
-use PulkitJalan\GeoIP\GeoIPUpdater;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use GuzzleHttp\Psr7\Response;
+use Mockery;
+use Phar;
+use PharData;
+use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use PulkitJalan\GeoIP\GeoIPUpdater;
 
 class GeoIPUpdaterTest extends TestCase
 {

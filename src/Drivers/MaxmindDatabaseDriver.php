@@ -4,9 +4,9 @@ namespace PulkitJalan\GeoIP\Drivers;
 
 use GeoIp2\Database\Reader;
 use Illuminate\Support\Arr;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 use MaxMind\Db\Reader\InvalidDatabaseException as MaxMindInvalidDatabaseException;
+use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 
 class MaxmindDatabaseDriver extends MaxmindDriver
 {
