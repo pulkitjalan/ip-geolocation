@@ -36,6 +36,7 @@ return [
     'ip-api' => [
         // Check out pro here: https://signup.ip-api.com/
         'key' => env('GEOIP_IPAPI_KEY'),
+        'lang' => env('GEOIP_IPSTACK_LANG'),
     ],
 
     /*
