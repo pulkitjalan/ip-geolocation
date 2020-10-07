@@ -1,6 +1,6 @@
 name: "Run Tests - Older"
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   test:
