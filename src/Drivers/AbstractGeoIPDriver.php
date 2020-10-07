@@ -27,18 +27,6 @@ abstract class AbstractGeoIPDriver
     }
 
     /**
-     * Guzzle client setter
-     *
-     * @return self
-     */
-    public function setGuzzleClient(GuzzleClient $guzzle)
-    {
-        $this->guzzle = $guzzle;
-
-        return $this;
-    }
-
-    /**
      * Get GeoIP info from IP.
      *
      * @param string $ip
