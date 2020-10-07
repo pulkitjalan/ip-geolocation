@@ -4,7 +4,6 @@ namespace PulkitJalan\GeoIP\Drivers;
 
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\RequestException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class IpStackDriver extends AbstractGeoIPDriver
