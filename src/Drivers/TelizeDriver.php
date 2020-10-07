@@ -57,16 +57,12 @@ class TelizeDriver extends AbstractGeoIPDriver
      */
     public function getRaw($ip)
     {
-        $data = json_decode($this->guzzle->get($this->getUrl($ip), [
+        return json_decode($this->guzzle->get($this->getUrl($ip), [
             'headers' => [
                 'X-Mashape-Key' => Arr::get($this->config, 'key'),
                 'Accept' => 'application/json',
             ],
         ])->getBody(), true);
-
-        var_dump($data);
-
-        return $data;
     }
 
     /**
