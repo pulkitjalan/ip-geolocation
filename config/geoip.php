@@ -36,7 +36,7 @@ return [
     'ip-api' => [
         // Check out pro here: https://signup.ip-api.com/
         'key' => env('GEOIP_IPAPI_KEY'),
-        'lang' => env('GEOIP_IPSTACK_LANG'),
+        'lang' => env('GEOIP_IPAPI_LANG'),
     ],
 
     /*
@@ -70,6 +70,6 @@ return [
     'telize' => [
         // Get your API key here: https://market.mashape.com/fcambus/telize
         'key' => env('GEOIP_TELIZE_KEY'),
-        'secure' => env('GEOIP_IPSTACK_SECURE', true),
+        'secure' => env('GEOIP_TELIZE_SECURE', true),
     ],
 ];

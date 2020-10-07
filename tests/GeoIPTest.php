@@ -80,7 +80,7 @@ class GeoIPTest extends TestCase
         $config = [
             'driver' => 'maxmind_api',
             'maxmind_api' => [
-                'user_id' => 'test',
+                'user_id' => 1234,
             ],
         ];
 
@@ -94,7 +94,7 @@ class GeoIPTest extends TestCase
         $config = [
             'driver' => 'maxmind_api',
             'maxmind_api' => [
-                'user_id' => 'test',
+                'user_id' => 1234,
                 'license_key' => 'test',
             ],
         ];
@@ -112,7 +112,7 @@ class GeoIPTest extends TestCase
         $config = [
             'driver' => 'maxmind_api',
             'maxmind_api' => [
-                'user_id' => 'test',
+                'user_id' => 1234,
                 'license_key' => 'test',
             ],
         ];

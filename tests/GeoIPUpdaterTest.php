@@ -6,6 +6,7 @@ use Phar;
 use Mockery;
 use PharData;
 use Exception;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\GeoIPUpdater;
 use GuzzleHttp\Client as GuzzleClient;
@@ -65,7 +66,7 @@ class GeoIPUpdaterTest extends TestCase
         $client->shouldReceive('get')
             ->once()
             ->withSomeOfArgs('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
-            ->andReturnTrue();
+            ->andReturn(new Response);
 
         $geoipUpdater = new GeoIPUpdater($config, $client);
 

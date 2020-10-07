@@ -25,6 +25,6 @@ class MaxmindApiDriver extends MaxmindDriver
             throw new InvalidCredentialsException();
         }
 
-        return new Client($userId, $licenseKey);
+        return new Client((int) $userId, $licenseKey);
     }
 }
