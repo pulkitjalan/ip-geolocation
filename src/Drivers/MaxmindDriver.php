@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
+use GuzzleHttp\Client as GuzzleClient;
 use GeoIp2\Exception\AddressNotFoundException;
 
 abstract class MaxmindDriver extends AbstractGeoIPDriver
@@ -14,9 +15,9 @@ abstract class MaxmindDriver extends AbstractGeoIPDriver
     /**
      * @param array $config
      */
-    public function __construct(array $config)
+    public function __construct(array $config, GuzzleClient $guzzle = null)
     {
-        parent::__construct($config);
+        parent::__construct($config, $guzzle);
 
         $this->maxmind = $this->create();
     }

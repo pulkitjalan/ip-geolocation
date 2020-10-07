@@ -4,6 +4,7 @@ namespace PulkitJalan\GeoIP;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\GeoIP\Exceptions\GeoIPException;
 
 class GeoIP
@@ -36,9 +37,9 @@ class GeoIP
     /**
      * @var array
      */
-    public function __construct(array $config = ['driver' => 'ip-api'])
+    public function __construct(array $config = ['driver' => 'ip-api'], GuzzleClient $guzzle = null)
     {
-        $this->driver = with(new GeoIPManager($config))->getDriver();
+        $this->driver = with(new GeoIPManager($config, $guzzle))->getDriver();
         $this->random = Arr::get($config, 'random', false);
     }
 

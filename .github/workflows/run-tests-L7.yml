@@ -30,7 +30,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, iconv
-          coverage: xdebug
+          coverage: none
 
       - name: Install dependencies
         run: |
@@ -39,8 +39,3 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit tests
-
-      - uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: build

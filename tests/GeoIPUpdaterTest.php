@@ -7,19 +7,13 @@ use Mockery;
 use PharData;
 use Exception;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use PulkitJalan\GeoIP\GeoIPUpdater;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
-class GeoIPUpdaterTest extends TestCase
+class GeoIPUpdaterTest extends AbstractTestCase
 {
-    public function tearDown(): void
-    {
-        Mockery::close();
-    }
-
     public function test_no_database()
     {
         $this->expectException(InvalidDatabaseException::class);

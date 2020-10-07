@@ -4,6 +4,7 @@ namespace PulkitJalan\GeoIP;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
 use PulkitJalan\GeoIP\Drivers\TelizeDriver;
 use PulkitJalan\GeoIP\Drivers\IpStackDriver;
@@ -20,11 +21,17 @@ class GeoIPManager
     protected $config;
 
     /**
+     * @var \GuzzleHttp\Client
+     */
+    protected $guzzle;
+
+    /**
      * @param array $config
      */
-    public function __construct(array $config)
+    public function __construct(array $config, GuzzleClient $guzzle = null)
     {
         $this->config = $config;
+        $this->guzzle = $guzzle;
     }
 
     /**
@@ -52,7 +59,7 @@ class GeoIPManager
      */
     protected function createIpStackDriver(array $data): IpStackDriver
     {
-        return new IpStackDriver($data);
+        return new IpStackDriver($data, $this->guzzle);
     }
 
     /**
@@ -62,7 +69,7 @@ class GeoIPManager
      */
     protected function createIpApiDriver(array $data): IPApiDriver
     {
-        return new IPApiDriver($data);
+        return new IPApiDriver($data, $this->guzzle);
     }
 
     /**
@@ -72,7 +79,7 @@ class GeoIPManager
      */
     protected function createMaxmindDatabaseDriver(array $data): MaxmindDatabaseDriver
     {
-        return new MaxmindDatabaseDriver($data);
+        return new MaxmindDatabaseDriver($data, $this->guzzle);
     }
 
     /**
@@ -82,7 +89,7 @@ class GeoIPManager
      */
     protected function createMaxmindApiDriver(array $data): MaxmindApiDriver
     {
-        return new MaxmindApiDriver($data);
+        return new MaxmindApiDriver($data, $this->guzzle);
     }
 
     /**
@@ -92,6 +99,6 @@ class GeoIPManager
      */
     protected function createTelizeDriver(array $data): TelizeDriver
     {
-        return new TelizeDriver($data);
+        return new TelizeDriver($data, $this->guzzle);
     }
 }
