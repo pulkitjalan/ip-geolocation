@@ -38,12 +38,9 @@ jobs:
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
       - name: Execute tests
-        run: |
-          vendor/bin/phpunit tests
-          ls -la
-          ls -la build
+        run: vendor/bin/phpunit tests
 
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: build/coverage.xml
+          directory: build
