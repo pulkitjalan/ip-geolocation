@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Arr;
+use GuzzleHttp\Exception\RequestException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class TelizeDriver extends AbstractGeoIPDriver
