@@ -38,9 +38,9 @@ jobs:
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
       - name: Execute tests
-        run: vendor/bin/phpunit --coverage-xml ./coverage tests
+        run: vendor/bin/phpunit --coverage-xml ./ tests
 
       - uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage
+          file: coverage.xml
