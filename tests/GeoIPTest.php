@@ -3,13 +3,9 @@
 namespace PulkitJalan\GeoIP\Tests;
 
 use BadMethodCallException;
-use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\GeoIP;
 use PHPUnit\Framework\TestCase;
-use PulkitJalan\GeoIP\Exceptions\GeoIPException;
 use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class GeoIPTest extends TestCase
 {
