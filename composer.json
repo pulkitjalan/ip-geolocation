@@ -36,7 +36,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PulkitJalan\\GeoIP\\Test\\": "tests"
+            "PulkitJalan\\GeoIP\\Tests\\": "tests"
         }
     },
     "extra": {

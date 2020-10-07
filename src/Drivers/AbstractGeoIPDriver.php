@@ -19,11 +19,11 @@ abstract class AbstractGeoIPDriver
     /**
      * @param array $config
      */
-    public function __construct(array $config)
+    public function __construct(array $config, GuzzleClient $guzzle = null)
     {
         $this->config = $config;
 
-        $this->guzzle = new GuzzleClient();
+        $this->guzzle = $guzzle ?? new GuzzleClient();
     }
 
     /**
