@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\geoip\tests;
+namespace PulkitJalan\GeoIP\Tests;
 
 use BadMethodCallException;
 use Illuminate\Support\Arr;
