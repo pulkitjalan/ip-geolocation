@@ -71,7 +71,7 @@ class GeoIPUpdater
         try {
             // Download database temp dir
             $tempFile = $tempDir.'/geoip';
-            $this->guzzle->get($maxmindDatabaseUrl, ['save_to' => $tempFile.'.tar.gz']);
+            $this->guzzle->get($maxmindDatabaseUrl, ['sink' => $tempFile.'.tar.gz']);
 
             $p = new PharData($tempFile.'.tar.gz');
             $p->decompress();
