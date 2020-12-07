@@ -9,13 +9,13 @@ use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 class IpStackDriver extends AbstractGeoIPDriver
 {
     /**
-     * @param array $config
+     * @param  array  $config
      */
     public function __construct(array $config, GuzzleClient $guzzle = null)
     {
         parent::__construct($config, $guzzle);
 
-        if (! Arr::get($this->config, 'key')) {
+        if (!Arr::get($this->config, 'key')) {
             throw new InvalidCredentialsException();
         }
     }
@@ -23,7 +23,7 @@ class IpStackDriver extends AbstractGeoIPDriver
     /**
      * Get array of data using ipstack.
      *
-     * @param string $ip
+     * @param  string  $ip
      *
      * @return array
      */
@@ -51,7 +51,7 @@ class IpStackDriver extends AbstractGeoIPDriver
     /**
      * Get the raw GeoIP info using ipstack.
      *
-     * @param string $ip
+     * @param  string  $ip
      *
      * @return array
      */
@@ -59,7 +59,7 @@ class IpStackDriver extends AbstractGeoIPDriver
     {
         $data = json_decode($this->guzzle->get($this->getUrl($ip))->getBody(), true);
 
-        if (Arr::get($data, 'success') === false && Arr::get($data, 'error.type' === 'invalid_access_key')) {
+        if (Arr::get($data, 'success') === false && Arr::get($data, 'error.type') === 'invalid_access_key') {
             throw new InvalidCredentialsException();
         }
 
@@ -69,7 +69,7 @@ class IpStackDriver extends AbstractGeoIPDriver
     /**
      * Get the ipstack url.
      *
-     * @param string $ip
+     * @param  string  $ip
      *
      * @return string
      */
