@@ -15,7 +15,7 @@ class IpStackDriver extends AbstractGeoIPDriver
     {
         parent::__construct($config, $guzzle);
 
-        if (!Arr::get($this->config, 'key')) {
+        if (! Arr::get($this->config, 'key')) {
             throw new InvalidCredentialsException();
         }
     }
