@@ -17,8 +17,8 @@
     ],
     "require": {
         "php": "^7.2.5|^8.0",
-        "illuminate/support": "^5.8|^6|^7|^8",
-        "illuminate/console": "^5.8|^6|^7|^8",
+        "illuminate/support": "^5.8|^6|^7|^8|^9",
+        "illuminate/console": "^5.8|^6|^7|^8|^9",
         "guzzlehttp/guzzle": "^6.5|^7",
         "geoip2/geoip2": "^2.11"
     },
