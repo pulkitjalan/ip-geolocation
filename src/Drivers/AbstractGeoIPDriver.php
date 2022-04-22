@@ -17,7 +17,7 @@ abstract class AbstractGeoIPDriver
     protected $guzzle;
 
     /**
-     * @param array $config
+     * @param  array  $config
      */
     public function __construct(array $config, GuzzleClient $guzzle = null)
     {
@@ -29,8 +29,7 @@ abstract class AbstractGeoIPDriver
     /**
      * Get GeoIP info from IP.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return array
      */
     abstract public function get($ip);
@@ -38,8 +37,7 @@ abstract class AbstractGeoIPDriver
     /**
      * Get the raw GeoIP info from the driver.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return mixed
      */
     abstract public function getRaw($ip);

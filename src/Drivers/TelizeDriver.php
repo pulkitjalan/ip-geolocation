@@ -9,7 +9,7 @@ use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 class TelizeDriver extends AbstractGeoIPDriver
 {
     /**
-     * @param array $config
+     * @param  array  $config
      */
     public function __construct(array $config, GuzzleClient $guzzle = null)
     {
@@ -23,8 +23,7 @@ class TelizeDriver extends AbstractGeoIPDriver
     /**
      * Get array of data using telize.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return array
      */
     public function get($ip)
@@ -51,8 +50,7 @@ class TelizeDriver extends AbstractGeoIPDriver
     /**
      * Get the raw GeoIP info using telize.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return array
      */
     public function getRaw($ip)
@@ -68,8 +66,7 @@ class TelizeDriver extends AbstractGeoIPDriver
     /**
      * Get the telize url.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return string
      */
     protected function getUrl($ip)

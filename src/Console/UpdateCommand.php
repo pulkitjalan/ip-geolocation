@@ -31,7 +31,7 @@ class UpdateCommand extends Command
     /**
      * Create a new console command instance.
      *
-     * @param Config $config
+     * @param  Config  $config
      */
     public function __construct(array $config)
     {

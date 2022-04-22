@@ -13,7 +13,7 @@ abstract class MaxmindDriver extends AbstractGeoIPDriver
     protected $maxmind;
 
     /**
-     * @param array $config
+     * @param  array  $config
      */
     public function __construct(array $config, GuzzleClient $guzzle = null)
     {
@@ -25,8 +25,7 @@ abstract class MaxmindDriver extends AbstractGeoIPDriver
     /**
      * Get array of data using Maxmind.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return array
      */
     public function get($ip)
@@ -55,8 +54,7 @@ abstract class MaxmindDriver extends AbstractGeoIPDriver
     /**
      * Get the raw GeoIP info using Maxmind.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return mixed
      */
     public function getRaw($ip)
@@ -73,9 +71,9 @@ abstract class MaxmindDriver extends AbstractGeoIPDriver
     /**
      * Create the maxmind driver based on config.
      *
-     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
-     *
      * @return mixed
+     *
+     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      */
     abstract protected function create();
 }
