@@ -9,8 +9,7 @@ class IPApiDriver extends AbstractGeoIPDriver
     /**
      * Get array of data using ip-api.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return array
      */
     public function get($ip)
@@ -37,8 +36,7 @@ class IPApiDriver extends AbstractGeoIPDriver
     /**
      * Get the raw GeoIP info using ip-api.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return array
      */
     public function getRaw($ip)
@@ -50,8 +48,7 @@ class IPApiDriver extends AbstractGeoIPDriver
      * Get the ip-api url add key and
      * change base url if pro user.
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return string
      */
     protected function getUrl($ip)

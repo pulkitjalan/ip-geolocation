@@ -11,9 +11,9 @@ class MaxmindApiDriver extends MaxmindDriver
     /**
      * Create the maxmind web client.
      *
-     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
-     *
      * @return \GeoIp2\WebService\Client
+     *
+     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
      */
     protected function create()
     {

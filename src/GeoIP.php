@@ -58,8 +58,7 @@ class GeoIP
      *
      * @var string
      *
-     * @param string $ip
-     *
+     * @param  string  $ip
      * @return GeoIP
      */
     public function setIp($ip)
@@ -96,8 +95,7 @@ class GeoIP
      * Get an array or single item of geoip data
      * Also stores data in memory for further requests.
      *
-     * @param string $property
-     *
+     * @param  string  $property
      * @return array|string
      */
     public function get($property = '')
@@ -115,7 +113,6 @@ class GeoIP
      * Get the raw geoip data from the driver.
      *
      * @param string
-     *
      * @return mixed
      */
     public function getRaw()
@@ -143,9 +140,9 @@ class GeoIP
     /**
      * Get an array or single item of geoip data.
      *
-     * @throws \PulkitJalan\GeoIP\Exceptions\GeoIPException
-     *
      * @return array
+     *
+     * @throws \PulkitJalan\GeoIP\Exceptions\GeoIPException
      */
     protected function getData()
     {
@@ -172,12 +169,11 @@ class GeoIP
     /**
      * Magic call method for get*.
      *
-     * @param string $method
-     * @param array  $parameters
+     * @param  string  $method
+     * @param  array  $parameters
+     * @return mixed
      *
      * @throws \BadMethodCallException
-     *
-     * @return mixed
      */
     public function __call($method, $parameters)
     {

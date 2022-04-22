@@ -24,7 +24,6 @@ class IpStackDriver extends AbstractGeoIPDriver
      * Get array of data using ipstack.
      *
      * @param  string  $ip
-     *
      * @return array
      */
     public function get($ip)
@@ -52,7 +51,6 @@ class IpStackDriver extends AbstractGeoIPDriver
      * Get the raw GeoIP info using ipstack.
      *
      * @param  string  $ip
-     *
      * @return array
      */
     public function getRaw($ip)
@@ -70,7 +68,6 @@ class IpStackDriver extends AbstractGeoIPDriver
      * Get the ipstack url.
      *
      * @param  string  $ip
-     *
      * @return string
      */
     protected function getUrl($ip)

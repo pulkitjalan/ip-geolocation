@@ -26,7 +26,7 @@ class GeoIPManager
     protected $guzzle;
 
     /**
-     * @param array $config
+     * @param  array  $config
      */
     public function __construct(array $config, GuzzleClient $guzzle = null)
     {
