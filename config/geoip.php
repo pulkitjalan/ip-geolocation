@@ -60,6 +60,10 @@ return [
     'maxmind_api' => [
         'user_id' => env('GEOIP_MAXMIND_USER_ID'),
         'license_key' => env('GEOIP_MAXMIND_LICENSE_KEY'),
+        //maxmind api will default to paid service. Use 'geolite.info' for free GeoLite2 Web service. https://github.com/maxmind/GeoIP2-php#usage-1
+        'host' => env('GEOIP_MAXMIND_HOST'),
+        //local required on client call but defaults to 'en' for english.
+        'locales' => ['en'],
     ],
 
     /*
