@@ -50,7 +50,7 @@ class IPApiDriverTest extends AbstractTestCase
         $ip = $geoip->getIp();
 
         $this->assertEquals($this->validIp, $ip);
-        $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
+        $this->assertTrue(! filter_var($ip, FILTER_VALIDATE_IP) === false);
     }
 
     public function test_get_random_ipaddress()
@@ -64,7 +64,7 @@ class IPApiDriverTest extends AbstractTestCase
         $ip = $geoip->getIp();
 
         $this->assertNotEquals($this->invalidIp, $ip);
-        $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
+        $this->assertTrue(! filter_var($ip, FILTER_VALIDATE_IP) === false);
     }
 
     public function test_get_non_random_ipaddress()
@@ -78,7 +78,7 @@ class IPApiDriverTest extends AbstractTestCase
         $ip = $geoip->getIp();
 
         $this->assertEquals($this->invalidIp, $ip);
-        $this->assertTrue(! (filter_var($ip, FILTER_VALIDATE_IP)) === false);
+        $this->assertTrue(! filter_var($ip, FILTER_VALIDATE_IP) === false);
     }
 
     public function test_ip_api_pro_exception()
