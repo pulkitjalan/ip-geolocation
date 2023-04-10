@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
-use GeoIp2\WebService\Client;
 use Illuminate\Support\Arr;
+use GeoIp2\WebService\Client;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class MaxmindApiDriver extends MaxmindDriver
