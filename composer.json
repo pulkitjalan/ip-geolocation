@@ -4,10 +4,8 @@
     "homepage": "https://github.com/pulkitjalan/geoip",
     "keywords": [
         "geoip",
-        "ipstack",
         "ip-api",
-        "maxmind",
-        "telize"
+        "maxmind"
     ],
     "license": "MIT",
     "authors": [

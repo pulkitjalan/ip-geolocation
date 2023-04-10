@@ -6,8 +6,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
-use PulkitJalan\GeoIP\Drivers\TelizeDriver;
-use PulkitJalan\GeoIP\Drivers\IpStackDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindApiDriver;
 use PulkitJalan\GeoIP\Drivers\AbstractGeoIPDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDatabaseDriver;
@@ -53,16 +51,6 @@ class GeoIPManager
     }
 
     /**
-     * Get the ip stack driver.
-     *
-     * @return \PulkitJalan\GeoIP\IpStackDriver
-     */
-    protected function createIpStackDriver(array $data): IpStackDriver
-    {
-        return new IpStackDriver($data, $this->guzzle);
-    }
-
-    /**
      * Get the ip-api driver.
      *
      * @return \PulkitJalan\GeoIP\IPApiDriver
@@ -90,15 +78,5 @@ class GeoIPManager
     protected function createMaxmindApiDriver(array $data): MaxmindApiDriver
     {
         return new MaxmindApiDriver($data, $this->guzzle);
-    }
-
-    /**
-     * Get the telize driver.
-     *
-     * @return \PulkitJalan\GeoIP\TelizeDriver
-     */
-    protected function createTelizeDriver(array $data): TelizeDriver
-    {
-        return new TelizeDriver($data, $this->guzzle);
     }
 }

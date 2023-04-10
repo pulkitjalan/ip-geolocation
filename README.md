@@ -13,14 +13,12 @@ GeoIP
 
 ## Supported Drivers ([Services](#services))
 
-* [IPStack](https://ipstack.com/)
 * [IP-API](http://ip-api.com/)
 * [Maxmind](https://www.maxmind.com/)
-* [Telize](https://market.mashape.com/fcambus/telize/)
 
 ## Requirements
 
-* PHP >= 7.2
+* PHP >= 8.0
 
 ## Installation
 
@@ -50,7 +48,7 @@ Next run `php artisan vendor:publish --provider="PulkitJalan\GeoIP\GeoIPServiceP
 
 #### Using an older version of PHP / Laravel?
 
-If you are on a PHP version below 7.2 or a Laravel version below 5.8 just use an older version of this package.
+If you are on a PHP version below 8.0 or a Laravel version below 9.0, use an older version of this package.
 
 ## Usage
 
@@ -67,21 +65,6 @@ $geoip = new GeoIP();
 
 $lat = $geoip->getLatitude(); // 51.5141
 $lon = $geoip->getLongitude(); // -3.1969
-```
-
-#### IPStack
-
-To use the ipstack as the driver set the config.
-
-Example:
-```php
-$config = [
-    'driver' => 'ipstack',
-    'ipstack' => [
-        'key' => 'YOUR IPSTACK KEY',
-        'secure' => true, // (optional) use https
-    ],
-];
 ```
 
 #### IP-API
@@ -123,20 +106,6 @@ $config = [
     'maxmind_api' => [
         'user_id' => 'YOUR MAXMIND USER ID',
         'license_key' => 'YOUR MAXMIND LICENSE KEY'
-    ],
-];
-```
-
-#### Telize
-
-To use telize as the driver set the config, and your api key.
-
-Example:
-```php
-$config = [
-    'driver' => 'telize',
-    'telize' => [
-        'key' => 'YOUR TELIZE KEY',
     ],
 ];
 ```
@@ -292,10 +261,6 @@ Once you have registered the service provider (supports auto discovery), you can
 
 ## Services
 
-#### IPStack
-
-IPStack offers a JSON IP and GeoIP REST API allowing to get a visitor IP address and to query location information from any IP address.
-
 #### IP-API
 
 IP-API is a free (or paid) service that can also be used instead of the database file or the paid maxmind service. They do have some limitations on the free service so please have a look at the [docs](http://ip-api.com/docs/) first.
@@ -303,7 +268,3 @@ IP-API is a free (or paid) service that can also be used instead of the database
 #### Maxmind
 
 You can use the free database from maxmind (license_key required) or their web api service. You can signup and get a free license code [here](https://www.maxmind.com/en/geolite2/signup).
-
-#### Telize
-
-Telize offers a JSON IP and GeoIP REST API allowing to get a visitor IP address and to query location information from any IP address. It outputs JSON-encoded IP geolocation data, and supports both Cross-origin resource sharing (CORS) and JSONP.
