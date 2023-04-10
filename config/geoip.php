@@ -6,7 +6,7 @@ return [
     | GeoIP Driver Type
     |--------------------------------------------------------------------------
     |
-    | Supported: "ipstack", "ip-api", "maxmind_database", "maxmind_api", "telize"
+    | Supported: "ip-api", "maxmind_database", "maxmind_api"
     |
     */
     'driver' => env('GEOIP_DRIVER', 'ip-api'),
@@ -17,16 +17,6 @@ return [
     |--------------------------------------------------------------------------
     */
     'random' => env('GEOIP_RANDOM', false),
-
-    /*
-    |--------------------------------------------------------------------------
-    | IPStack Driver
-    |--------------------------------------------------------------------------
-    */
-    'ipstack' => [
-        // Get your access key here: https://ipstack.com/product
-        'key' => env('GEOIP_IPSTACK_KEY'),
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -64,16 +54,5 @@ return [
         'host' => env('GEOIP_MAXMIND_HOST'),
         //local required on client call but defaults to 'en' for english.
         'locales' => ['en'],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Telize Driver
-    |--------------------------------------------------------------------------
-    */
-    'telize' => [
-        // Get your API key here: https://market.mashape.com/fcambus/telize
-        'key' => env('GEOIP_TELIZE_KEY'),
-        'secure' => env('GEOIP_TELIZE_SECURE', true),
     ],
 ];
