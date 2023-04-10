@@ -2,15 +2,15 @@
 
 namespace PulkitJalan\GeoIP;
 
+use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use GuzzleHttp\Client as GuzzleClient;
+use PulkitJalan\GeoIP\Drivers\AbstractGeoIPDriver;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
-use PulkitJalan\GeoIP\Drivers\TelizeDriver;
 use PulkitJalan\GeoIP\Drivers\IpStackDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindApiDriver;
-use PulkitJalan\GeoIP\Drivers\AbstractGeoIPDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDatabaseDriver;
+use PulkitJalan\GeoIP\Drivers\TelizeDriver;
 use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
 
 class GeoIPManager

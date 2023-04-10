@@ -2,9 +2,9 @@
 
 namespace PulkitJalan\GeoIP;
 
+use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\GeoIP\Exceptions\GeoIPException;
 
 class GeoIP

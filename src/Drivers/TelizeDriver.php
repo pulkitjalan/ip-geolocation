@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
-use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
 class TelizeDriver extends AbstractGeoIPDriver
@@ -38,8 +38,8 @@ class TelizeDriver extends AbstractGeoIPDriver
             'city' => Arr::get($data, 'city'),
             'country' => Arr::get($data, 'country'),
             'countryCode' => Arr::get($data, 'country_code'),
-            'latitude' => (float) number_format(Arr::get($data, 'latitude'), 5),
-            'longitude' => (float) number_format(Arr::get($data, 'longitude'), 5),
+            'latitude' => (float) number_format(Arr::get($data, 'latitude', 0), 5),
+            'longitude' => (float) number_format(Arr::get($data, 'longitude', 0), 5),
             'region' => Arr::get($data, 'region'),
             'regionCode' => Arr::get($data, 'region_code'),
             'timezone' => Arr::get($data, 'timezone'),

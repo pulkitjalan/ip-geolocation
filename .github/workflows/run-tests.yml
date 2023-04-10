@@ -1,4 +1,4 @@
-name: "Run Tests - Current"
+name: "Run Tests"
 
 on: [push]
 
@@ -9,18 +9,18 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.4, 7.3, 8.1]
-        laravel: [8.*, 10.*]
+        php: [8.0, 8.1, 8.2]
+        laravel: [9.*, 10.*]
         dependency-version: [prefer-lowest, prefer-stable]
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.composer/cache/files
           key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
@@ -40,7 +40,7 @@ jobs:
       - name: Execute tests
         run: vendor/bin/phpunit tests
 
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: build

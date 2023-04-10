@@ -2,12 +2,12 @@
 
 namespace PulkitJalan\GeoIP;
 
-use PharData;
 use Exception;
-use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
+use Illuminate\Support\Arr;
+use PharData;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 
 class GeoIPUpdater
 {

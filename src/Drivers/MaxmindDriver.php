@@ -2,8 +2,8 @@
 
 namespace PulkitJalan\GeoIP\Drivers;
 
-use GuzzleHttp\Client as GuzzleClient;
 use GeoIp2\Exception\AddressNotFoundException;
+use GuzzleHttp\Client as GuzzleClient;
 
 abstract class MaxmindDriver extends AbstractGeoIPDriver
 {
