@@ -1,7 +1,7 @@
 {
-    "name": "pulkitjalan/geoip",
+    "name": "digizyn/geoip",
     "description": "Geoip Wrapper with Laravel Support",
-    "homepage": "https://github.com/pulkitjalan/geoip",
+    "homepage": "https://github.com/digizyn/geoip",
     "keywords": [
         "geoip",
         "ip-api",
@@ -10,7 +10,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Pulkit Jalan"
+            "name": "Ahmad Abu-Aysheh"
         }
     ],
     "require": {
