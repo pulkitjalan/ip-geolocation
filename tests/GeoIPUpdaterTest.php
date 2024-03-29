@@ -55,8 +55,8 @@ test('maxmind updater', function () {
 
     expect($database)->toEqual($geoipUpdater->update());
 
-    unlink($database);
-    unlink(__DIR__.'/data/geoip.tar.gz');
+    @unlink($database);
+    @unlink(__DIR__.'/data/geoip.tar.gz');
 });
 
 test('maxmind updater invalid url', function () {

@@ -15,16 +15,15 @@
     ],
     "require": {
         "php": "^8.1",
-        "illuminate/support": "^9.0|^10.0|^11.0",
+        "illuminate/support": "^10.0|^11.0",
+        "illuminate/console": "^10.0|^11.0",
         "guzzlehttp/guzzle": "^7.5|^7.8",
-        "symfony/console": "^5.3|^6.0",
         "geoip2/geoip2": "^3"
     },
     "require-dev": {
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^2",
-        "pestphp/pest-plugin-drift": "v2.6.0",
-        "phpunit/phpunit": "^10"
+        "pestphp/pest-plugin-drift": "v2.6.0"
     },
     "autoload": {
         "psr-4": {
@@ -55,7 +54,7 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/pest"
     },
     "config": {
         "sort-packages": true,

@@ -82,21 +82,28 @@ class GeoIPUpdater
 
             $dir = head(glob("$tempDir/GeoLite2-City_*"));
 
-            @unlink($database);
-            @unlink($tempFile.'.tar');
+            $this->removeIfExists($database);
+            $this->removeIfExists($tempFile.'.tar');
 
             // Save database to final location
             rename($dir.'/GeoLite2-City.mmdb', $database);
 
             // Delete temp file
-            @unlink($tempFile);
+            $this->removeIfExists($tempFile);
 
-            array_map('unlink', glob("$dir/*.*"));
+            array_map(fn($file) => $this->removeIfExists($file), glob("$dir/*.*"));
             @rmdir($dir);
         } catch (Exception $e) {
             return false;
         }
 
         return $database;
+    }
+
+    protected function removeIfExists(string $file): void
+    {
+        if (file_exists($file)) {
+            unlink($file);
+        }
     }
 }
