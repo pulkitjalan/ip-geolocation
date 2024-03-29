@@ -91,7 +91,7 @@ class GeoIPUpdater
             // Delete temp file
             $this->removeIfExists($tempFile);
 
-            array_map(fn($file) => $this->removeIfExists($file), glob("$dir/*.*"));
+            array_map(fn ($file) => $this->removeIfExists($file), glob("$dir/*.*"));
             @rmdir($dir);
         } catch (Exception $e) {
             return false;
