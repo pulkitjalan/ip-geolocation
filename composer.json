@@ -18,12 +18,11 @@
         "illuminate/support": "^10.0|^11.0",
         "illuminate/console": "^10.0|^11.0",
         "guzzlehttp/guzzle": "^7.5|^7.8",
-        "geoip2/geoip2": "^3"
+        "geoip2/geoip2": "^3.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.6",
-        "pestphp/pest": "^2",
-        "pestphp/pest-plugin-drift": "v2.6.0"
+        "pestphp/pest": "^1.20|^2.0"
     },
     "autoload": {
         "psr-4": {
