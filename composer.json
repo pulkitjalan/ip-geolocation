@@ -45,11 +45,6 @@
             "aliases": {
                 "GeoIP": "PulkitJalan\\GeoIP\\Facades\\GeoIP"
             }
-        },
-        "pest": {
-            "plugins": [
-                "Pest\\Drift\\Plugin"
-            ]
         }
     },
     "scripts": {
