@@ -1,79 +1,69 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Tests\Drivers;
-
 use PulkitJalan\GeoIP\GeoIP;
-use PulkitJalan\GeoIP\Tests\AbstractTestCase;
 use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
 
-class MaxmindDatabaseDriverTest extends AbstractTestCase
-{
-    public function test_maxmind_database()
-    {
-        $config = [
-            'driver' => 'maxmind_database',
-            'maxmind_database' => [
-                'database' => __DIR__.'/../data/GeoIP2-City-Test.mmdb',
-            ],
-        ];
+test('maxmind database', function () {
+    $config = [
+        'driver' => 'maxmind_database',
+        'maxmind_database' => [
+            'database' => __DIR__.'/../data/GeoIP2-City-Test.mmdb',
+        ],
+    ];
 
-        $geoip = new GeoIP($config);
-        $geoip = $geoip->setIp($this->validIp);
+    $geoip = new GeoIP($config);
+    $geoip = $geoip->setIp($this->validIp);
 
-        $this->assertEquals('United Kingdom', $geoip->getCountry());
+    expect($geoip->getCountry())->toEqual('United Kingdom');
 
-        $this->assertInstanceOf('GeoIp2\Model\City', $geoip->getRaw());
+    expect($geoip->getRaw())->toBeInstanceOf('GeoIp2\Model\City');
 
-        $geoip = $geoip->setIp($this->invalidIp);
+    $geoip = $geoip->setIp($this->invalidIp);
 
-        $this->assertEquals([
-            'city' => null,
-            'country' => null,
-            'countryCode' => null,
-            'latitude' => null,
-            'longitude' => null,
-            'region' => null,
-            'regionCode' => null,
-            'timezone' => null,
-            'postalCode' => null,
-        ], $geoip->get());
+    expect($geoip->get())->toEqual([
+        'city' => null,
+        'country' => null,
+        'countryCode' => null,
+        'latitude' => null,
+        'longitude' => null,
+        'region' => null,
+        'regionCode' => null,
+        'timezone' => null,
+        'postalCode' => null,
+    ]);
 
-        $this->assertEquals('', $geoip->getCountry());
-    }
+    expect($geoip->getCountry())->toEqual('');
+});
 
-    public function test_maxmind_database_config_exception()
-    {
-        $this->expectException(InvalidCredentialsException::class);
+test('maxmind database config exception', function () {
+    $this->expectException(InvalidCredentialsException::class);
 
-        $geoip = new GeoIP(['driver' => 'maxmind_database']);
-    }
+    $geoip = new GeoIP(['driver' => 'maxmind_database']);
+});
 
-    public function test_maxmind_database_exception()
-    {
-        $config = [
-            'driver' => 'maxmind_database',
-            'maxmind_database' => [
-                'database' => __DIR__.'/data/GeoIP2-City.mmdb',
-            ],
-        ];
+test('maxmind database exception', function () {
+    $config = [
+        'driver' => 'maxmind_database',
+        'maxmind_database' => [
+            'database' => __DIR__.'/data/GeoIP2-City.mmdb',
+        ],
+    ];
 
-        $this->expectException(InvalidCredentialsException::class);
+    $this->expectException(InvalidCredentialsException::class);
 
-        $geoip = new GeoIP($config);
-    }
+    $geoip = new GeoIP($config);
+});
 
-    public function test_maxmind_invalid_database_exception()
-    {
-        $config = [
-            'driver' => 'maxmind_database',
-            'maxmind_database' => [
-                'database' => __FILE__,
-            ],
-        ];
+test('maxmind invalid database exception', function () {
+    $config = [
+        'driver' => 'maxmind_database',
+        'maxmind_database' => [
+            'database' => __FILE__,
+        ],
+    ];
 
-        $this->expectException(InvalidDatabaseException::class);
+    $this->expectException(InvalidDatabaseException::class);
 
-        $geoip = new GeoIP($config);
-    }
-}
+    $geoip = new GeoIP($config);
+});

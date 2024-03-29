@@ -1,117 +1,105 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Tests\Drivers;
-
 use Illuminate\Support\Arr;
 use PulkitJalan\GeoIP\GeoIP;
-use PulkitJalan\GeoIP\Tests\AbstractTestCase;
 use PulkitJalan\GeoIP\Exceptions\GeoIPException;
 
-class IPApiDriverTest extends AbstractTestCase
-{
-    public function test_ip_api()
-    {
-        $config = [
-            'driver' => 'ip-api',
-        ];
+test('ip api', function () {
+    $config = [
+        'driver' => 'ip-api',
+    ];
 
-        $geoip = new GeoIP($config);
-        $geoip = $geoip->setIp($this->validIp);
+    $geoip = new GeoIP($config);
+    $geoip = $geoip->setIp($this->validIp);
 
-        $this->assertEquals($geoip->getCountry(), 'United Kingdom');
+    expect('United Kingdom')->toEqual($geoip->getCountry());
 
-        $geoip = $geoip->setIp($this->invalidIp);
+    $geoip = $geoip->setIp($this->invalidIp);
 
-        $this->assertEquals('fail', Arr::get($geoip->getRaw(), 'status'));
+    expect(Arr::get($geoip->getRaw(), 'status'))->toEqual('fail');
 
-        $this->assertEquals([
-            'city' => null,
-            'country' => null,
-            'countryCode' => null,
-            'latitude' => null,
-            'longitude' => null,
-            'region' => null,
-            'regionCode' => null,
-            'timezone' => null,
-            'postalCode' => null,
-        ], $geoip->get());
+    expect($geoip->get())->toEqual([
+        'city' => null,
+        'country' => null,
+        'countryCode' => null,
+        'latitude' => null,
+        'longitude' => null,
+        'region' => null,
+        'regionCode' => null,
+        'timezone' => null,
+        'postalCode' => null,
+    ]);
 
-        $this->assertEquals('', $geoip->getCountry());
-    }
+    expect($geoip->getCountry())->toEqual('');
+});
 
-    public function test_get_multiple_ipaddress()
-    {
-        $config = [
-            'driver' => 'ip-api',
-        ];
+test('get multiple ipaddress', function () {
+    $config = [
+        'driver' => 'ip-api',
+    ];
 
-        $geoip = new GeoIP($config);
-        $geoip->setIp($this->multipleIps);
-        $ip = $geoip->getIp();
+    $geoip = new GeoIP($config);
+    $geoip->setIp($this->multipleIps);
+    $ip = $geoip->getIp();
 
-        $this->assertEquals($this->validIp, $ip);
-        $this->assertTrue(! filter_var($ip, FILTER_VALIDATE_IP) === false);
-    }
+    expect($ip)->toEqual($this->validIp);
+    expect(! filter_var($ip, FILTER_VALIDATE_IP) === false)->toBeTrue();
+});
 
-    public function test_get_random_ipaddress()
-    {
-        $config = [
-            'driver' => 'ip-api',
-            'random' => true,
-        ];
+test('get random ipaddress', function () {
+    $config = [
+        'driver' => 'ip-api',
+        'random' => true,
+    ];
 
-        $geoip = new GeoIP($config);
-        $ip = $geoip->getIp();
+    $geoip = new GeoIP($config);
+    $ip = $geoip->getIp();
 
-        $this->assertNotEquals($this->invalidIp, $ip);
-        $this->assertTrue(! filter_var($ip, FILTER_VALIDATE_IP) === false);
-    }
+    $this->assertNotEquals($this->invalidIp, $ip);
+    expect(! filter_var($ip, FILTER_VALIDATE_IP) === false)->toBeTrue();
+});
 
-    public function test_get_non_random_ipaddress()
-    {
-        $config = [
-            'driver' => 'ip-api',
-            'random' => false,
-        ];
+test('get non random ipaddress', function () {
+    $config = [
+        'driver' => 'ip-api',
+        'random' => false,
+    ];
 
-        $geoip = new GeoIP($config);
-        $ip = $geoip->getIp();
+    $geoip = new GeoIP($config);
+    $ip = $geoip->getIp();
 
-        $this->assertEquals($this->invalidIp, $ip);
-        $this->assertTrue(! filter_var($ip, FILTER_VALIDATE_IP) === false);
-    }
+    expect($ip)->toEqual($this->invalidIp);
+    expect(! filter_var($ip, FILTER_VALIDATE_IP) === false)->toBeTrue();
+});
 
-    public function test_ip_api_pro_exception()
-    {
-        $config = [
-            'driver' => 'ip-api',
-            'ip-api' => [
-                'key' => 'test',
-            ],
-        ];
+test('ip api pro exception', function () {
+    $config = [
+        'driver' => 'ip-api',
+        'ip-api' => [
+            'key' => 'test',
+        ],
+    ];
 
-        $this->expectException(GeoIPException::class);
+    $this->expectException(GeoIPException::class);
 
-        $geoip = new GeoIP($config);
-        $geoip = $geoip->setIp($this->validIp);
+    $geoip = new GeoIP($config);
+    $geoip = $geoip->setIp($this->validIp);
 
-        $geoip->get();
-    }
+    $geoip->get();
+});
 
-    public function test_ip_api_pro_exception_getRaw()
-    {
-        $config = [
-            'driver' => 'ip-api',
-            'ip-api' => [
-                'key' => 'test',
-            ],
-        ];
+test('ip api pro exception get raw', function () {
+    $config = [
+        'driver' => 'ip-api',
+        'ip-api' => [
+            'key' => 'test',
+        ],
+    ];
 
-        $this->expectException(GeoIPException::class);
+    $this->expectException(GeoIPException::class);
 
-        $geoip = new GeoIP($config);
-        $geoip = $geoip->setIp($this->validIp);
+    $geoip = new GeoIP($config);
+    $geoip = $geoip->setIp($this->validIp);
 
-        $geoip->getRaw();
-    }
-}
+    $geoip->getRaw();
+});
