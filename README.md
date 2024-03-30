@@ -16,7 +16,7 @@ GeoIP
 
 ## Requirements
 
-* PHP >= 8.0
+* PHP >= 8.1
 
 ## Installation
 
@@ -46,7 +46,7 @@ Next run `php artisan vendor:publish --provider="PulkitJalan\GeoIP\GeoIPServiceP
 
 #### Using an older version of PHP / Laravel?
 
-If you are on a PHP version below 8.0 or a Laravel version below 9.0, use an older version of this package.
+If you are on a PHP version below 8.1 or a Laravel version below 9.0, use an older version of this package.
 
 ## Usage
 
