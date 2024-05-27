@@ -6,7 +6,7 @@ return [
     | GeoIP Driver Type
     |--------------------------------------------------------------------------
     |
-    | Supported: "ip-api", "maxmind_database", "maxmind_api"
+    | Supported: "ip-api", "maxmind_database", "maxmind_api", "ipstack"
     |
     */
     'driver' => env('GEOIP_DRIVER', 'ip-api'),
@@ -54,5 +54,15 @@ return [
         'host' => env('GEOIP_MAXMIND_HOST'),
         //local required on client call but defaults to 'en' for english.
         'locales' => ['en'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | IPStack Driver
+    |--------------------------------------------------------------------------
+    */
+    'ipstack' => [
+        // Get your access key here: https://ipstack.com/product
+        'key' => env('GEOIP_IPSTACK_KEY'),
     ],
 ];

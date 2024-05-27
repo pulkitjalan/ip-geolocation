@@ -5,7 +5,8 @@
     "keywords": [
         "geoip",
         "ip-api",
-        "maxmind"
+        "maxmind",
+        "ipstack"
     ],
     "license": "MIT",
     "authors": [

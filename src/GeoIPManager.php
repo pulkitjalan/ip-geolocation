@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\GeoIP\Drivers\IPApiDriver;
+use PulkitJalan\GeoIP\Drivers\IpStackDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindApiDriver;
 use PulkitJalan\GeoIP\Drivers\AbstractGeoIPDriver;
 use PulkitJalan\GeoIP\Drivers\MaxmindDatabaseDriver;
@@ -35,7 +36,7 @@ class GeoIPManager
     /**
      * Get the driver based on config.
      *
-     * @return \PulkitJalan\GeoIP\AbstractGeoIPDriver
+     * @return AbstractGeoIPDriver
      */
     public function getDriver($driver = null): AbstractGeoIPDriver
     {
@@ -53,7 +54,7 @@ class GeoIPManager
     /**
      * Get the ip-api driver.
      *
-     * @return \PulkitJalan\GeoIP\IPApiDriver
+     * @return IPApiDriver
      */
     protected function createIpApiDriver(array $data): IPApiDriver
     {
@@ -63,7 +64,7 @@ class GeoIPManager
     /**
      * Get the Maxmind driver.
      *
-     * @return \PulkitJalan\GeoIP\MaxmindDriver
+     * @return MaxmindDatabaseDriver
      */
     protected function createMaxmindDatabaseDriver(array $data): MaxmindDatabaseDriver
     {
@@ -73,10 +74,20 @@ class GeoIPManager
     /**
      * Get the Maxmind driver.
      *
-     * @return \PulkitJalan\GeoIP\MaxmindDriver
+     * @return MaxmindApiDriver
      */
     protected function createMaxmindApiDriver(array $data): MaxmindApiDriver
     {
         return new MaxmindApiDriver($data, $this->guzzle);
+    }
+
+    /**
+     * Get the ip stack driver.
+     *
+     * @return IpStackDriver
+     */
+    protected function createIpStackDriver(array $data): IpStackDriver
+    {
+        return new IpStackDriver($data, $this->guzzle);
     }
 }
