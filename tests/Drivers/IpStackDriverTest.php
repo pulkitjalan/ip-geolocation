@@ -54,6 +54,44 @@ test('ipstack', function () {
     );
 });
 
+test('ipstack should return default when response is empty', function () {
+    $config = [
+        'driver' => 'ipstack',
+        'ipstack' => [
+            'key' => 'test',
+        ],
+    ];
+
+    $client = Mockery::mock(Client::class);
+
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andReturn(
+            new Response(
+                200,
+                [],
+                json_encode([])
+            )
+        );
+
+    $geoip = new GeoIP($config, $client);
+    $geoip = $geoip->setIp($this->validIp);
+
+    expect($geoip->get())->toEqual(
+        [
+            'city' => null,
+            'country' => null,
+            'countryCode' => null,
+            'latitude' => null,
+            'longitude' => null,
+            'region' => null,
+            'regionCode' => null,
+            'timezone' => null,
+            'postalCode' => null,
+        ]
+    );
+});
+
 test('ipstack throws exception getraw', function () {
     $config = [
         'driver' => 'ipstack',
@@ -108,6 +146,7 @@ test('ipstack secure config value defaults to true when missing', function () {
 
     $geoip->get();
 });
+
 test('ipstack respects false secure config value', function () {
     $config = [
         'driver' => 'ipstack',
@@ -135,6 +174,7 @@ test('ipstack respects false secure config value', function () {
 
     $geoip->get();
 });
+
 test("ipstack respects true secure config value", function () {
     $config = [
         'driver' => 'ipstack',
