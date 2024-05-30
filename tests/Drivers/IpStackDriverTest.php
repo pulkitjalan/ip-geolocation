@@ -1,10 +1,10 @@
 <?php
 
 use GuzzleHttp\Client;
+use PulkitJalan\GeoIP\GeoIP;
 use GuzzleHttp\Psr7\Response;
 use PulkitJalan\GeoIP\Exceptions\GeoIPException;
 use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
-use PulkitJalan\GeoIP\GeoIP;
 
 test('ipstack', function () {
     $config = [
