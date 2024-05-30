@@ -108,6 +108,22 @@ $config = [
 ];
 ```
 
+#### IPStack
+
+To use the ipstack as the driver set the config.
+
+Example:
+```php
+$config = [
+    'driver' => 'ipstack',
+    'ipstack' => [
+        'key' => 'YOUR IPSTACK KEY',
+        'secure' => true, // (optional) use https
+    ],
+];
+```
+
+
 ### Laravel
 
 To use this package in Laravel, simply update the config file in `config/geoip.php` to get the same effect. The driver can be set using the `GEOIP_DRIVER` env.
