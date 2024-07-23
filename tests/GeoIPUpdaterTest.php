@@ -1,8 +1,8 @@
 <?php
 
 use GuzzleHttp\Psr7\Response;
-use PulkitJalan\IPGeoLocation\GeoIPUpdater;
 use GuzzleHttp\Client as GuzzleClient;
+use PulkitJalan\IPGeoLocation\GeoIPUpdater;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
