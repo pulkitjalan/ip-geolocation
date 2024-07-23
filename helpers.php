@@ -4,7 +4,7 @@ if (! function_exists('geoip')) {
     /**
      * Get an instance of the current geoip.
      *
-     * @return \PulkitJalan\GeoIP\GeoIP
+     * @return \PulkitJalan\IPGeoLocation\IPGeoLocation
      */
     function geoip($key = null)
     {

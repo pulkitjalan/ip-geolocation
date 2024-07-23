@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Exceptions;
+namespace PulkitJalan\IPGeoLocation\Exceptions;
 
 class InvalidDatabaseException extends \Exception
 {

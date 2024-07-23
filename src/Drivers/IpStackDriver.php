@@ -1,11 +1,11 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Drivers;
+namespace PulkitJalan\IPGeoLocation\Drivers;
 
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
 class IpStackDriver extends AbstractGeoIPDriver
 {
@@ -53,7 +53,7 @@ class IpStackDriver extends AbstractGeoIPDriver
     }
 
     /**
-     * Get the raw GeoIP info using ipstack.
+     * Get the raw IPGeoLocation info using ipstack.
      *
      * @param string $ip
      * @return array

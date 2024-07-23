@@ -1,16 +1,16 @@
 <?php
 
-namespace PulkitJalan\GeoIP;
+namespace PulkitJalan\IPGeoLocation;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\GeoIP\Drivers\IPApiDriver;
-use PulkitJalan\GeoIP\Drivers\IpStackDriver;
-use PulkitJalan\GeoIP\Drivers\MaxmindApiDriver;
-use PulkitJalan\GeoIP\Drivers\AbstractGeoIPDriver;
-use PulkitJalan\GeoIP\Drivers\MaxmindDatabaseDriver;
-use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
+use PulkitJalan\IPGeoLocation\Drivers\IPApiDriver;
+use PulkitJalan\IPGeoLocation\Drivers\IpStackDriver;
+use PulkitJalan\IPGeoLocation\Drivers\MaxmindApiDriver;
+use PulkitJalan\IPGeoLocation\Drivers\AbstractGeoIPDriver;
+use PulkitJalan\IPGeoLocation\Drivers\MaxmindDatabaseDriver;
+use PulkitJalan\IPGeoLocation\Exceptions\InvalidDriverException;
 
 class GeoIPManager
 {

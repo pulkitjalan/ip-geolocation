@@ -1,8 +1,8 @@
 <?php
 
-use PulkitJalan\GeoIP\GeoIP;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeoLocation\IPGeoLocation;
+use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
 test('maxmind database', function () {
     $config = [
@@ -12,16 +12,16 @@ test('maxmind database', function () {
         ],
     ];
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeoLocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    expect($geoip->getCountry())->toEqual('United Kingdom');
+    expect($ip->getCountry())->toEqual('United Kingdom');
 
-    expect($geoip->getRaw())->toBeInstanceOf('GeoIp2\Model\City');
+    expect($ip->getRaw())->toBeInstanceOf('GeoIp2\Model\City');
 
-    $geoip = $geoip->setIp($this->invalidIp);
+    $ip = $ip->setIp($this->invalidIp);
 
-    expect($geoip->get())->toEqual([
+    expect($ip->get())->toEqual([
         'city' => null,
         'country' => null,
         'countryCode' => null,
@@ -33,13 +33,13 @@ test('maxmind database', function () {
         'postalCode' => null,
     ]);
 
-    expect($geoip->getCountry())->toEqual('');
+    expect($ip->getCountry())->toEqual('');
 });
 
 test('maxmind database config exception', function () {
     $this->expectException(InvalidCredentialsException::class);
 
-    $geoip = new GeoIP(['driver' => 'maxmind_database']);
+    $ip = new IPGeoLocation(['driver' => 'maxmind_database']);
 });
 
 test('maxmind database exception', function () {
@@ -52,7 +52,7 @@ test('maxmind database exception', function () {
 
     $this->expectException(InvalidCredentialsException::class);
 
-    $geoip = new GeoIP($config);
+    $ip = new IPGeoLocation($config);
 });
 
 test('maxmind invalid database exception', function () {
@@ -65,5 +65,5 @@ test('maxmind invalid database exception', function () {
 
     $this->expectException(InvalidDatabaseException::class);
 
-    $geoip = new GeoIP($config);
+    $ip = new IPGeoLocation($config);
 });

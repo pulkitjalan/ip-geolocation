@@ -1,10 +1,10 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Facades;
+namespace PulkitJalan\IPGeoLocation\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class GeoIP extends Facade
+class IPGeoLocation extends Facade
 {
     /**
      * Get the registered name of the component.

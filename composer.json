@@ -1,9 +1,10 @@
 {
-    "name": "pulkitjalan/geoip",
-    "description": "Geoip Wrapper with Laravel Support",
-    "homepage": "https://github.com/pulkitjalan/geoip",
+    "name": "pulkitjalan/ip-geolocation",
+    "description": "IP GeoLocation Wrapper with Laravel Support",
+    "homepage": "https://github.com/pulkitjalan/ip-geolocation",
     "keywords": [
-        "geoip",
+        "ip-geolocation",
+        "geolocation",
         "ip-api",
         "maxmind",
         "ipstack"
@@ -27,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PulkitJalan\\GeoIP\\": "src"
+            "PulkitJalan\\IPGeoLocation\\": "src"
         },
         "files": [
             "helpers.php"
@@ -35,16 +36,16 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PulkitJalan\\GeoIP\\Tests\\": "tests"
+            "PulkitJalan\\IPGeoLocation\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "PulkitJalan\\GeoIP\\GeoIPServiceProvider"
+                "PulkitJalan\\IPGeoLocation\\GeoIPServiceProvider"
             ],
             "aliases": {
-                "GeoIP": "PulkitJalan\\GeoIP\\Facades\\GeoIP"
+                "IPGeoLocation": "PulkitJalan\\IPGeoLocation\\Facades\\IPGeoLocation"
             }
         }
     },

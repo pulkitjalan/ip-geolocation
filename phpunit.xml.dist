@@ -9,7 +9,7 @@
     </report>
   </coverage>
   <testsuites>
-    <testsuite name="GeoIP Test Suite">
+    <testsuite name="IPGeoLocation Test Suite">
       <directory>tests</directory>
     </testsuite>
   </testsuites>

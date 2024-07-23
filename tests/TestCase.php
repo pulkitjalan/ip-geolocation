@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Tests;
+namespace PulkitJalan\IPGeoLocation\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 

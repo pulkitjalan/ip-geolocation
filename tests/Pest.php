@@ -1,5 +1,5 @@
 <?php
 
-use PulkitJalan\GeoIP\Tests\TestCase;
+use PulkitJalan\IPGeoLocation\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

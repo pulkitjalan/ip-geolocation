@@ -1,13 +1,13 @@
-GeoIP
+IPGeoLocation
 =============
 
-> Geoip Wrapper with Laravel Support
+> IP GeoLocation Wrapper with Laravel Support
 
-[![Latest Stable Version](https://poser.pugx.org/pulkitjalan/geoip/v/stable?format=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
+[![Latest Stable Version](https://poser.pugx.org/pulkitjalan/ip-geolocation/v/stable?format=flat-square)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
 [![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
-[![Run Tests](https://github.com/pulkitjalan/geoip/actions/workflows/run-tests.yml/badge.svg)](https://github.com/pulkitjalan/geoip/actions/workflows/run-tests.yml)
-[![Coverage](https://codecov.io/gh/pulkitjalan/geoip/branch/main/graph/badge.svg?token=JTB1ASXAB0)](https://codecov.io/gh/pulkitjalan/geoip)
-[![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/geoip.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/geoip)
+[![Run Tests](https://github.com/pulkitjalan/ip-geolocation/actions/workflows/run-tests.yml/badge.svg)](https://github.com/pulkitjalan/ip-geolocation/actions/workflows/run-tests.yml)
+[![Coverage](https://codecov.io/gh/pulkitjalan/ip-geolocation/branch/main/graph/badge.svg?token=JTB1ASXAB0)](https://codecov.io/gh/pulkitjalan/ip-geolocation)
+[![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/ip-geolocation.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
 
 ## Supported Drivers ([Services](#services))
 
@@ -23,7 +23,7 @@ GeoIP
 Install via composer
 
 ```bash
-composer require pulkitjalan/geoip
+composer require pulkitjalan/ip-geolocation
 ```
 
 ### Laravel
@@ -33,16 +33,16 @@ There is a Laravel service provider and facade available.
 Add the following to the `providers` array in your `config/app.php`
 
 ```php
-PulkitJalan\GeoIP\GeoIPServiceProvider::class
+PulkitJalan\IPGeoLocation\GeoIPServiceProvider::class
 ```
 
 Next add the following to the `aliases` array in your `config/app.php`
 
 ```php
-'GeoIP' => PulkitJalan\GeoIP\Facades\GeoIP::class
+'IPGeoLocation' => PulkitJalan\IPGeoLocation\Facades\IPGeoLocation::class
 ```
 
-Next run `php artisan vendor:publish --provider="PulkitJalan\GeoIP\GeoIPServiceProvider" --tag="config"` to publish the config file.
+Next run `php artisan vendor:publish --provider="PulkitJalan\IPGeoLocation\GeoIPServiceProvider" --tag="config"` to publish the config file.
 
 #### Using an older version of PHP / Laravel?
 
@@ -57,12 +57,12 @@ Example:
 ```php
 <?php
 
-use PulkitJalan\GeoIP\GeoIP
+use PulkitJalan\IPGeoLocation\IPGeoLocation
 
-$geoip = new GeoIP();
+$ip = new IPGeoLocation();
 
-$lat = $geoip->getLatitude(); // 51.5141
-$lon = $geoip->getLongitude(); // -3.1969
+$lat = $ip->getLatitude(); // 51.5141
+$lon = $ip->getLongitude(); // -3.1969
 ```
 
 #### IP-API
@@ -130,13 +130,13 @@ To use this package in Laravel, simply update the config file in `config/geoip.p
 
 ### Available Methods
 
-GeoIP will try to determin the ip using the following http headers: `HTTP_CLIENT_IP`, `HTTP_X_FORWARDED_FOR`, `HTTP_X_FORWARDED`, `HTTP_FORWARDED_FOR`, `HTTP_FORWARDED`, `REMOTE_ADDR` in this order. Optionally use the `setIp` method to set it.
+IPGeoLocation will try to determin the ip using the following http headers: `HTTP_CLIENT_IP`, `HTTP_X_FORWARDED_FOR`, `HTTP_X_FORWARDED`, `HTTP_FORWARDED_FOR`, `HTTP_FORWARDED`, `REMOTE_ADDR` in this order. Optionally use the `setIp` method to set it.
 
 ```php
-$geoip->setIp('127.0.0.1');
+$ip->setIp('127.0.0.1');
 
 // Laravel
-GeoIP::setIp('127.0.0.1');
+IPGeoLocation::setIp('127.0.0.1');
 ```
 
 There are a number of available methods to pull out the required information. All methods will return an empty string if data is unavailable.
@@ -144,109 +144,109 @@ There are a number of available methods to pull out the required information. Al
 Get latitude
 
 ```php
-$geoip->getLatitude();
+$ip->getLatitude();
 
 // Laravel
-GeoIP::getLatitude();
+IPGeoLocation::getLatitude();
 ```
 
 Get longitude
 
 ```php
-$geoip->getLongitude();
+$ip->getLongitude();
 
 // Laravel
-GeoIP::getLongitude();
+IPGeoLocation::getLongitude();
 ```
 
 Get city
 
 ```php
-$geoip->getCity();
+$ip->getCity();
 
 // Laravel
-GeoIP::getCity();
+IPGeoLocation::getCity();
 ```
 
 Get country
 
 ```php
-$geoip->getCountry();
+$ip->getCountry();
 
 // Laravel
-GeoIP::getCountry();
+IPGeoLocation::getCountry();
 ```
 
 Get country code
 
 ```php
-$geoip->getCountryCode();
+$ip->getCountryCode();
 
 // Laravel
-GeoIP::getCountryCode();
+IPGeoLocation::getCountryCode();
 ```
 
 Get region
 
 ```php
-$geoip->getRegion();
+$ip->getRegion();
 
 // Laravel
-GeoIP::getRegion();
+IPGeoLocation::getRegion();
 ```
 
 Get region code
 
 ```php
-$geoip->getRegionCode();
+$ip->getRegionCode();
 
 // Laravel
-GeoIP::getRegionCode();
+IPGeoLocation::getRegionCode();
 ```
 
 Get postal code
 
 ```php
-$geoip->getPostalCode();
+$ip->getPostalCode();
 
 // Laravel
-GeoIP::getPostalCode();
+IPGeoLocation::getPostalCode();
 ```
 
 Get timezone
 
 ```php
-$geoip->getTimezone();
+$ip->getTimezone();
 
 // Laravel
-GeoIP::getTimezone();
+IPGeoLocation::getTimezone();
 ```
 
 Get isp (not supported on all drivers)
 
 ```php
-$geoip->getIsp();
+$ip->getIsp();
 
 // Laravel
-GeoIP::getIsp();
+IPGeoLocation::getIsp();
 ```
 
 Get all geo information
 
 ```php
-$geoip->get(); // returns array
+$ip->get(); // returns array
 
 // Laravel
-GeoIP::get(); // returns array
+IPGeoLocation::get(); // returns array
 ```
 
 Get raw geo information
 
 ```php
-$geoip->getRaw(); // different drivers will return different data types
+$ip->getRaw(); // different drivers will return different data types
 
 // Laravel
-GeoIP::getRaw(); // different drivers will return different data types
+IPGeoLocation::getRaw(); // different drivers will return different data types
 ```
 
 ### Update Database
@@ -256,7 +256,7 @@ There is an update command available to help with updating and installing a loca
 ```php
 <?php
 
-use PulkitJalan\GeoIP\GeoIPUpdater
+use PulkitJalan\IPGeoLocation\GeoIPUpdater
 
 $config = [
     'driver' => 'maxmind_database',
