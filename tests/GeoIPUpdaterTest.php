@@ -42,7 +42,7 @@ test('maxmind updater', function () {
     $p['GeoLite2-City_today/GeoLite2-City.mmdb'] = 'test';
     $p->compress(Phar::GZ);
     unlink(__DIR__.'/data/test.tar');
-    rename(__DIR__.'/data/test.tar.gz', __DIR__.'/data/geoip.tar.gz');
+    rename(__DIR__.'/data/test.tar.gz', __DIR__.'/data/ipGeolocation.tar.gz');
 
     $client = Mockery::mock(GuzzleClient::class);
 
@@ -56,7 +56,7 @@ test('maxmind updater', function () {
     expect($database)->toEqual($geoipUpdater->update());
 
     @unlink($database);
-    @unlink(__DIR__.'/data/geoip.tar.gz');
+    @unlink(__DIR__.'/data/ipGeolocation.tar.gz');
 });
 
 test('maxmind updater invalid url', function () {

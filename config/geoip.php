@@ -36,7 +36,7 @@ return [
     */
     'maxmind_database' => [
         // Example: app_path().'/database/maxmind/GeoLite2-City.mmdb'
-        'database' => base_path().'/'.env('GEOIP_MAXMIND_DATABASE', 'database/geoip/GeoLite2-City.mmdb'),
+        'database' => base_path().'/'.env('GEOIP_MAXMIND_DATABASE', 'database/ipGeolocation/GeoLite2-City.mmdb'),
 
         // The license key is required for database updates
         'license_key' => env('GEOIP_MAXMIND_LICENSE_KEY'),

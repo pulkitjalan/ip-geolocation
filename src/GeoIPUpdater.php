@@ -70,7 +70,7 @@ class GeoIPUpdater
 
         try {
             // Download database temp dir
-            $tempFile = $tempDir.'/geoip';
+            $tempFile = $tempDir.'/ipGeolocation';
             $this->guzzle->get($maxmindDatabaseUrl, ['sink' => $tempFile.'.tar.gz']);
 
             $p = new PharData($tempFile.'.tar.gz');

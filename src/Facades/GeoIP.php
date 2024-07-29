@@ -13,6 +13,6 @@ class IPGeoLocation extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'geoip';
+        return 'ipGeolocation';
     }
 }

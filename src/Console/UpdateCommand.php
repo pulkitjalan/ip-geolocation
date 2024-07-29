@@ -14,14 +14,14 @@ class UpdateCommand extends Command
      *
      * @var string
      */
-    protected $name = 'geoip:update';
+    protected $name = 'ip-geolocation:update';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update geoip database files to the latest version';
+    protected $description = 'Update ip geolocation database files to the latest version';
 
     /**
      * @var \PulkitJalan\IPGeoLocation\GeoIPUpdater
@@ -30,8 +30,6 @@ class UpdateCommand extends Command
 
     /**
      * Create a new console command instance.
-     *
-     * @param  Config  $config
      */
     public function __construct(array $config)
     {
@@ -43,34 +41,28 @@ class UpdateCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): int
     {
         try {
             $result = $this->geoIPUpdater->update();
         } catch (InvalidDatabaseException $e) {
             $this->error('Database update config not setup properly');
 
-            return;
+            return static::FAILURE;
         } catch (InvalidCredentialsException $e) {
             $this->error('The license key is required to update');
 
-            return;
+            return static::FAILURE;
         }
 
         if (! $result) {
             $this->error('Update failed!');
 
-            return;
+            return static::FAILURE;
         }
 
         $this->info('New update file ('.$result.') installed.');
-    }
 
-    /**
-     * Compatibility with old versions of Laravel.
-     */
-    public function fire()
-    {
-        $this->handle();
+        return static::SUCCESS;
     }
 }

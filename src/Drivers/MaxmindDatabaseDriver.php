@@ -26,7 +26,7 @@ class MaxmindDatabaseDriver extends MaxmindDriver
             throw new InvalidCredentialsException();
         }
 
-        // catch maxmind exception and throw geoip exception
+        // catch maxmind exception and throw internal exception
         try {
             return new Reader($database);
         } catch (MaxMindInvalidDatabaseException $e) {

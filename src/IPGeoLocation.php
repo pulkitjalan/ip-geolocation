@@ -92,7 +92,7 @@ class IPGeoLocation
     }
 
     /**
-     * Get an array or single item of geoip data
+     * Get an array or single item of ip geolocation data
      * Also stores data in memory for further requests.
      *
      * @param  string  $property
@@ -110,7 +110,7 @@ class IPGeoLocation
     }
 
     /**
-     * Get the raw geoip data from the driver.
+     * Get the raw ip geolocation data from the driver.
      *
      * @param string
      * @return mixed
@@ -127,7 +127,7 @@ class IPGeoLocation
             try {
                 $data = $this->getDriver()->getRaw($ip);
             } catch (\Exception $e) {
-                throw new GeoIPException('Failed to get raw geoip data', 0, $e);
+                throw new GeoIPException('Failed to get raw ip geolocation data', 0, $e);
             }
 
             // cache ip data in memory
@@ -138,7 +138,7 @@ class IPGeoLocation
     }
 
     /**
-     * Get an array or single item of geoip data.
+     * Get an array or single item of ipGeolocation data.
      *
      * @return array
      *
@@ -156,7 +156,7 @@ class IPGeoLocation
             try {
                 $data = $this->getDriver()->get($ip);
             } catch (\Exception $e) {
-                throw new GeoIPException('Failed to get geoip data', 0, $e);
+                throw new GeoIPException('Failed to get ip geolocation data', 0, $e);
             }
 
             // cache ip data in memory

@@ -12,7 +12,7 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['geoip'] = function ($app) {
+        $this->app['ipGeolocation'] = function ($app) {
             return $app['PulkitJalan\IPGeoLocation\IPGeoLocation'];
         };
 
@@ -22,7 +22,7 @@ class GeoIPServiceProvider extends ServiceProvider
 
         if (function_exists('config_path')) {
             $this->publishes([
-                __DIR__.'/../config/geoip.php' => config_path('geoip.php'),
+                __DIR__.'/../config/ipGeolocation.php' => config_path('ipGeolocation.php'),
             ], 'config');
         }
     }
@@ -32,30 +32,30 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/geoip.php', 'geoip');
+        $this->mergeConfigFrom(__DIR__.'/../config/ipGeolocation.php', 'ipGeolocation');
 
-        $this->registerGeoIP();
+        $this->registerIpGeolocation();
 
         $this->registerUpdateCommand();
     }
 
     /**
-     * Register the main geoip wrapper.
+     * Register the main ipGeolocation wrapper.
      */
-    protected function registerGeoIP()
+    protected function registerIpGeolocation()
     {
         $this->app->singleton('PulkitJalan\IPGeoLocation\IPGeoLocation', function ($app) {
-            return new IPGeoLocation($app['config']['geoip']);
+            return new IPGeoLocation($app['config']['ipGeolocation']);
         });
     }
 
     /**
-     * Register the geoip update console command.
+     * Register the ipGeolocation update console command.
      */
     protected function registerUpdateCommand()
     {
         $this->app->singleton('PulkitJalan\IPGeoLocation\Console\UpdateCommand', function ($app) {
-            return new UpdateCommand($app['config']['geoip']);
+            return new UpdateCommand($app['config']['ipGeolocation']);
         });
     }
 
@@ -69,7 +69,7 @@ class GeoIPServiceProvider extends ServiceProvider
         return [
             'PulkitJalan\IPGeoLocation\IPGeoLocation',
             'PulkitJalan\IPGeoLocation\Console\UpdateCommand',
-            'geoip',
+            'ipGeolocation',
         ];
     }
 }

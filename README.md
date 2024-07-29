@@ -50,7 +50,7 @@ If you are on a PHP version below 8.1 or a Laravel version below 9.0, use an old
 
 ## Usage
 
-The geoip class takes a config array as the first parameter or defaults to using the `ip-api` driver.
+The ipGeolocation class takes a config array as the first parameter or defaults to using the `ip-api` driver.
 
 Example:
 
@@ -126,7 +126,7 @@ $config = [
 
 ### Laravel
 
-To use this package in Laravel, simply update the config file in `config/geoip.php` to get the same effect. The driver can be set using the `GEOIP_DRIVER` env.
+To use this package in Laravel, simply update the config file in `config/ipGeolocation.php` to get the same effect. The driver can be set using the `GEOIP_DRIVER` env.
 
 ### Available Methods
 
@@ -251,7 +251,7 @@ IPGeoLocation::getRaw(); // different drivers will return different data types
 
 ### Update Database
 
-There is an update command available to help with updating and installing a local geoip database. The following will download and install/update the database file to `/path/to/database.mmdb`. [As of 30th December 2019, Maxmind requires users to create an account and use a license key to download the databases](https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases/).
+There is an update command available to help with updating and installing a local ip geolocation database. The following will download and install/update the database file to `/path/to/database.mmdb`. [As of 30th December 2019, Maxmind requires users to create an account and use a license key to download the databases](https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases/).
 
 ```php
 <?php
@@ -271,7 +271,7 @@ $config = [
 
 ### Laravel
 
-Once you have registered the service provider (supports auto discovery), you can use the command `php artisan geoip:update`
+Once you have registered the service provider (supports auto discovery), you can use the command `php artisan ip-geolocation:update`
 
 ## Services
 
