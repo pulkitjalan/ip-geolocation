@@ -5,7 +5,7 @@ namespace PulkitJalan\IPGeoLocation;
 use Illuminate\Support\ServiceProvider;
 use PulkitJalan\IPGeoLocation\Console\UpdateCommand;
 
-class GeoIPServiceProvider extends ServiceProvider
+class IpGeolocationServiceProvider extends ServiceProvider
 {
     /**
      * Boot the service provider.
@@ -22,7 +22,7 @@ class GeoIPServiceProvider extends ServiceProvider
 
         if (function_exists('config_path')) {
             $this->publishes([
-                __DIR__.'/../config/ipGeolocation.php' => config_path('ipGeolocation.php'),
+                __DIR__.'/../config/ip-geolocation.php' => config_path('ip-geolocation.php'),
             ], 'config');
         }
     }
@@ -32,7 +32,7 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/ipGeolocation.php', 'ipGeolocation');
+        $this->mergeConfigFrom(__DIR__.'/../config/ip-geolocation.php', 'ipGeolocation');
 
         $this->registerIpGeolocation();
 

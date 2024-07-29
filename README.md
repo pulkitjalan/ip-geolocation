@@ -126,7 +126,7 @@ $config = [
 
 ### Laravel
 
-To use this package in Laravel, simply update the config file in `config/ipGeolocation.php` to get the same effect. The driver can be set using the `GEOIP_DRIVER` env.
+To use this package in Laravel, simply update the config file in `config/ip-geolocation.php` to get the same effect. The driver can be set using the `IPGEOLOCATION_DRIVER` env.
 
 ### Available Methods
 

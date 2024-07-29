@@ -2,14 +2,14 @@
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\IPGeoLocation\GeoIPUpdater;
+use PulkitJalan\IPGeoLocation\IpGeolocationUpdater;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
 test('no database', function () {
     $this->expectException(InvalidDatabaseException::class);
 
-    (new GeoIPUpdater([]))->update();
+    (new IpGeolocationUpdater([]))->update();
 });
 
 test('no license key', function () {
@@ -23,7 +23,7 @@ test('no license key', function () {
         ],
     ];
 
-    (new GeoIPUpdater($config))->update();
+    (new IpGeolocationUpdater($config))->update();
 });
 
 test('maxmind updater', function () {
@@ -51,7 +51,7 @@ test('maxmind updater', function () {
         ->withSomeOfArgs('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
         ->andReturn(new Response);
 
-    $geoipUpdater = new GeoIPUpdater($config, $client);
+    $geoipUpdater = new IpGeolocationUpdater($config, $client);
 
     expect($database)->toEqual($geoipUpdater->update());
 
@@ -77,7 +77,7 @@ test('maxmind updater invalid url', function () {
         ->withSomeOfArgs('http://example.com/maxmind_database.mmdb.gz?license_key=test')
         ->andThrow(new Exception);
 
-    $geoipUpdater = new GeoIPUpdater($config, $client);
+    $geoipUpdater = new IpGeolocationUpdater($config, $client);
 
     expect($geoipUpdater->update())->toBeFalse();
 });

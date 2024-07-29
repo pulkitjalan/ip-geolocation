@@ -12,7 +12,7 @@ use PulkitJalan\IPGeoLocation\Drivers\AbstractGeoIPDriver;
 use PulkitJalan\IPGeoLocation\Drivers\MaxmindDatabaseDriver;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidDriverException;
 
-class GeoIPManager
+class IpGeolocationManager
 {
     /**
      * @var array

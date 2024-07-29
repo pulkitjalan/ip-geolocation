@@ -9,7 +9,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
-class GeoIPUpdater
+class IpGeolocationUpdater
 {
     /**
      * @var array
