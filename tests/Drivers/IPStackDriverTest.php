@@ -3,7 +3,7 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use PulkitJalan\IPGeoLocation\IPGeoLocation;
-use PulkitJalan\IPGeoLocation\Exceptions\GeoIPException;
+use PulkitJalan\IPGeoLocation\Exceptions\IPGeolocationException;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
 test('ipstack', function () {
@@ -99,7 +99,7 @@ test('ipstack throws exception getraw', function () {
             'key' => 'test',
         ],
     ];
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
     $ip = new IPGeoLocation($config);
     $ip = $ip->setIp($this->validIp);

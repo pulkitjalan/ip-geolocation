@@ -33,7 +33,7 @@ There is a Laravel service provider and facade available.
 Add the following to the `providers` array in your `config/app.php`
 
 ```php
-PulkitJalan\IPGeoLocation\GeoIPServiceProvider::class
+PulkitJalan\IPGeoLocation\IPGeolocationServiceProvider::class
 ```
 
 Next add the following to the `aliases` array in your `config/app.php`
@@ -42,7 +42,7 @@ Next add the following to the `aliases` array in your `config/app.php`
 'IPGeoLocation' => PulkitJalan\IPGeoLocation\Facades\IPGeoLocation::class
 ```
 
-Next run `php artisan vendor:publish --provider="PulkitJalan\IPGeoLocation\GeoIPServiceProvider" --tag="config"` to publish the config file.
+Next run `php artisan vendor:publish --provider="PulkitJalan\IPGeoLocation\IPGeolocationServiceProvider" --tag="config"` to publish the config file.
 
 #### Using an older version of PHP / Laravel?
 
@@ -256,7 +256,7 @@ There is an update command available to help with updating and installing a loca
 ```php
 <?php
 
-use PulkitJalan\IPGeoLocation\GeoIPUpdater
+use PulkitJalan\IPGeoLocation\IPGeolocationUpdater
 
 $config = [
     'driver' => 'maxmind_database',
@@ -266,7 +266,7 @@ $config = [
     ],
 ];
 
-(new GeoIPUpdater($config))->update();
+(new IPGeolocationUpdater($config))->update();
 ```
 
 ### Laravel

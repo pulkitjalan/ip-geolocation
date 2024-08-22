@@ -21,7 +21,7 @@
       <directory suffix=".php">src/</directory>
     </include>
     <exclude>
-      <file>src/GeoIPServiceProvider.php</file>
+      <file>src/IPGeolocationServiceProvider.php</file>
       <directory suffix=".php">src/config/</directory>
       <directory suffix=".php">src/Facades/</directory>
       <directory suffix=".php">src/Console/</directory>

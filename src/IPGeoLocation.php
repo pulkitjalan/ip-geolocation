@@ -5,7 +5,7 @@ namespace PulkitJalan\IPGeoLocation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\IPGeoLocation\Exceptions\GeoIPException;
+use PulkitJalan\IPGeoLocation\Exceptions\IPGeolocationException;
 
 class IPGeoLocation
 {
@@ -15,7 +15,7 @@ class IPGeoLocation
     protected $ip;
 
     /**
-     * @var \PulkitJalan\IPGeoLocation\Contracts\GeoIPInterface
+     * @var \PulkitJalan\IPGeoLocation\Drivers\IPGeolocationInterface
      */
     protected $driver;
 
@@ -46,7 +46,7 @@ class IPGeoLocation
     /**
      * Getter for driver.
      *
-     * @return \PulkitJalan\IPGeoLocation\Contracts\GeoIPInterface
+     * @return \PulkitJalan\IPGeoLocation\Drivers\IPGeolocationInterface
      */
     public function getDriver()
     {
@@ -127,7 +127,7 @@ class IPGeoLocation
             try {
                 $data = $this->getDriver()->getRaw($ip);
             } catch (\Exception $e) {
-                throw new GeoIPException('Failed to get raw ip geolocation data', 0, $e);
+                throw new IPGeolocationException('Failed to get raw ip geolocation data', 0, $e);
             }
 
             // cache ip data in memory
@@ -142,7 +142,7 @@ class IPGeoLocation
      *
      * @return array
      *
-     * @throws \PulkitJalan\IPGeoLocation\Exceptions\GeoIPException
+     * @throws \PulkitJalan\IPGeoLocation\Exceptions\IPGeolocationException
      */
     protected function getData()
     {
@@ -156,7 +156,7 @@ class IPGeoLocation
             try {
                 $data = $this->getDriver()->get($ip);
             } catch (\Exception $e) {
-                throw new GeoIPException('Failed to get ip geolocation data', 0, $e);
+                throw new IPGeolocationException('Failed to get ip geolocation data', 0, $e);
             }
 
             // cache ip data in memory

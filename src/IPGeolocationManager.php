@@ -56,7 +56,7 @@ class IPGeolocationManager
      *
      * @return IPApiDriver
      */
-    protected function createIPApiDriver(array $data): IPApiDriver
+    protected function createIpApiDriver(array $data): IPApiDriver
     {
         return new IPApiDriver($data, $this->guzzle);
     }

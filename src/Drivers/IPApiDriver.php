@@ -4,7 +4,7 @@ namespace PulkitJalan\IPGeoLocation\Drivers;
 
 use Illuminate\Support\Arr;
 
-class IPApiDriver extends AbstractGeoIPDriver
+class IPApiDriver extends AbstractGeoIPDriver implements IPGeolocationInterface
 {
     /**
      * Get array of data using ip-api.

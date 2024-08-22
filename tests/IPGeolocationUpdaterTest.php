@@ -51,9 +51,9 @@ test('maxmind updater', function () {
         ->withSomeOfArgs('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
         ->andReturn(new Response);
 
-    $geoipUpdater = new IPGeolocationUpdater($config, $client);
+    $updater = new IPGeolocationUpdater($config, $client);
 
-    expect($database)->toEqual($geoipUpdater->update());
+    expect($database)->toEqual($updater->update());
 
     @unlink($database);
     @unlink(__DIR__.'/data/ipGeolocation.tar.gz');
@@ -77,7 +77,7 @@ test('maxmind updater invalid url', function () {
         ->withSomeOfArgs('http://example.com/maxmind_database.mmdb.gz?license_key=test')
         ->andThrow(new Exception);
 
-    $geoipUpdater = new IPGeolocationUpdater($config, $client);
+    $updater = new IPGeolocationUpdater($config, $client);
 
-    expect($geoipUpdater->update())->toBeFalse();
+    expect($updater->update())->toBeFalse();
 });

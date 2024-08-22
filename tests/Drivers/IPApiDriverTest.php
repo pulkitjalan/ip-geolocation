@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Arr;
 use PulkitJalan\IPGeoLocation\IPGeoLocation;
-use PulkitJalan\IPGeoLocation\Exceptions\GeoIPException;
+use PulkitJalan\IPGeoLocation\Exceptions\IPGeolocationException;
 
 test('ip api', function () {
     $config = [
@@ -80,7 +80,7 @@ test('ip api pro exception', function () {
         ],
     ];
 
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
     $ip = new IPGeoLocation($config);
     $ip = $ip->setIp($this->validIp);
@@ -96,7 +96,7 @@ test('ip api pro exception get raw', function () {
         ],
     ];
 
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
     $ip = new IPGeoLocation($config);
     $ip = $ip->setIp($this->validIp);

@@ -27,22 +27,6 @@ abstract class AbstractGeoIPDriver
     }
 
     /**
-     * Get IPGeoLocation info from IP.
-     *
-     * @param  string  $ip
-     * @return array
-     */
-    abstract public function get($ip);
-
-    /**
-     * Get the raw IPGeoLocation info from the driver.
-     *
-     * @param  string  $ip
-     * @return mixed
-     */
-    abstract public function getRaw($ip);
-
-    /**
      * Get the default values (all null).
      *
      * @return array
