@@ -34,7 +34,7 @@ class IPGeolocationServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/ip-geolocation.php', 'ipGeolocation');
 
-        $this->registerIpGeolocation();
+        $this->registerIPGeolocation();
 
         $this->registerUpdateCommand();
     }
@@ -42,7 +42,7 @@ class IPGeolocationServiceProvider extends ServiceProvider
     /**
      * Register the main ipGeolocation wrapper.
      */
-    protected function registerIpGeolocation()
+    protected function registerIPGeolocation()
     {
         $this->app->singleton('PulkitJalan\IPGeoLocation\IPGeoLocation', function ($app) {
             return new IPGeoLocation($app['config']['ipGeolocation']);
