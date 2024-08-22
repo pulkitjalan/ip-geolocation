@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeoLocation\Drivers\IPApiDriver;
-use PulkitJalan\IPGeoLocation\Drivers\IpStackDriver;
+use PulkitJalan\IPGeoLocation\Drivers\IPStackDriver;
 use PulkitJalan\IPGeoLocation\Drivers\MaxmindApiDriver;
 use PulkitJalan\IPGeoLocation\Drivers\AbstractGeoIPDriver;
 use PulkitJalan\IPGeoLocation\Drivers\MaxmindDatabaseDriver;
@@ -56,7 +56,7 @@ class IPGeolocationManager
      *
      * @return IPApiDriver
      */
-    protected function createIpApiDriver(array $data): IPApiDriver
+    protected function createIPApiDriver(array $data): IPApiDriver
     {
         return new IPApiDriver($data, $this->guzzle);
     }
@@ -84,10 +84,10 @@ class IPGeolocationManager
     /**
      * Get the ip stack driver.
      *
-     * @return IpStackDriver
+     * @return IPStackDriver
      */
-    protected function createIpStackDriver(array $data): IpStackDriver
+    protected function createIpStackDriver(array $data): IPStackDriver
     {
-        return new IpStackDriver($data, $this->guzzle);
+        return new IPStackDriver($data, $this->guzzle);
     }
 }
