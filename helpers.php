@@ -1,5 +1,7 @@
 <?php
 
+use PulkitJalan\IPGeolocation\IPGeolocation;
+
 if (! function_exists('ipGeolocation')) {
     /**
      * Get an instance of the current ip geolocation.
@@ -9,9 +11,9 @@ if (! function_exists('ipGeolocation')) {
     function ipGeolocation($key = null)
     {
         if (is_null($key)) {
-            return app('ipGeolocation');
+            return app(IPGeolocation::class);
         }
 
-        return app('ipGeolocation')->{'get'.ucwords(camel_case($key))}();
+        return app(IPGeolocation::class)->{'get'.ucwords(camel_case($key))}();
     }
 }

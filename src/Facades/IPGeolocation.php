@@ -3,6 +3,7 @@
 namespace PulkitJalan\IPGeolocation\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use PulkitJalan\IPGeolocation\IPGeolocation as IPGeolocationClass;
 
 class IPGeolocation extends Facade
 {
@@ -13,6 +14,6 @@ class IPGeolocation extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'ipGeolocation';
+        return IPGeolocationClass::class;
     }
 }

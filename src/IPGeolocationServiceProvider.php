@@ -12,10 +12,6 @@ class IPGeolocationServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['ipGeolocation'] = function ($app) {
-            return $app[IPGeolocation::class];
-        };
-
         if ($this->app->runningInConsole()) {
             $this->commands([UpdateCommand::class]);
         }
@@ -69,7 +65,6 @@ class IPGeolocationServiceProvider extends ServiceProvider
         return [
             IPGeolocation::class,
             UpdateCommand::class,
-            'ipGeolocation',
         ];
     }
 }
