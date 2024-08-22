@@ -8,7 +8,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeoLocation\Drivers\IPApiDriver;
 use PulkitJalan\IPGeoLocation\Drivers\IPStackDriver;
 use PulkitJalan\IPGeoLocation\Drivers\MaxmindApiDriver;
-use PulkitJalan\IPGeoLocation\Drivers\AbstractGeoIPDriver;
+use PulkitJalan\IPGeoLocation\Drivers\AbstractIPGeolocationDriver;
 use PulkitJalan\IPGeoLocation\Drivers\MaxmindDatabaseDriver;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidDriverException;
 
@@ -36,9 +36,9 @@ class IPGeolocationManager
     /**
      * Get the driver based on config.
      *
-     * @return AbstractGeoIPDriver
+     * @return AbstractIPGeolocationDriver
      */
-    public function getDriver($driver = null): AbstractGeoIPDriver
+    public function getDriver($driver = null): AbstractIPGeolocationDriver
     {
         $driver = $driver ?? Arr::get($this->config, 'driver', '');
 

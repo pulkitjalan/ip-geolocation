@@ -4,7 +4,7 @@ namespace PulkitJalan\IPGeoLocation\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
 
-abstract class AbstractGeoIPDriver
+abstract class AbstractIPGeolocationDriver
 {
     /**
      * @var array

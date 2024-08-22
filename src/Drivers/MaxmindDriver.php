@@ -5,7 +5,7 @@ namespace PulkitJalan\IPGeoLocation\Drivers;
 use GuzzleHttp\Client as GuzzleClient;
 use GeoIp2\Exception\AddressNotFoundException;
 
-abstract class MaxmindDriver extends AbstractGeoIPDriver implements IPGeolocationInterface
+abstract class MaxmindDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
      * @var \GeoIp2\WebService\Client|\GeoIp2\Database\Reader

@@ -26,7 +26,7 @@ class UpdateCommand extends Command
     /**
      * @var \PulkitJalan\IPGeoLocation\IPGeolocationUpdater
      */
-    protected $geoIPUpdater;
+    protected $updater;
 
     /**
      * Create a new console command instance.
@@ -35,7 +35,7 @@ class UpdateCommand extends Command
     {
         parent::__construct();
 
-        $this->geoIPUpdater = new IPGeolocationUpdater($config);
+        $this->updater = new IPGeolocationUpdater($config);
     }
 
     /**
@@ -44,7 +44,7 @@ class UpdateCommand extends Command
     public function handle(): int
     {
         try {
-            $result = $this->geoIPUpdater->update();
+            $result = $this->updater->update();
         } catch (InvalidDatabaseException $e) {
             $this->error('Database update config not setup properly');
 

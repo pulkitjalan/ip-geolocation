@@ -7,7 +7,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
-class IPStackDriver extends AbstractGeoIPDriver implements IPGeolocationInterface
+class IPStackDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
      * @param array $config
