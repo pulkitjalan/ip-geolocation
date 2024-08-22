@@ -39,7 +39,7 @@ class IPGeoLocation
      */
     public function __construct(array $config = ['driver' => 'ip-api'], GuzzleClient $guzzle = null)
     {
-        $this->driver = with(new IPGeolocationManager($config, $guzzle))->getDriver();
+        $this->driver = (new IPGeolocationManager($config, $guzzle))->getDriver();
         $this->random = Arr::get($config, 'random', false);
     }
 
