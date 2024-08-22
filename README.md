@@ -1,7 +1,7 @@
 IPGeolocation
 =============
 
-> IP GeoLocation Wrapper with Laravel Support
+> IP Geolocation Wrapper with Laravel Support
 
 [![Latest Stable Version](https://poser.pugx.org/pulkitjalan/ip-geolocation/v/stable?format=flat-square)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
 [![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)

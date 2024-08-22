@@ -1,6 +1,6 @@
 {
     "name": "pulkitjalan/ip-geolocation",
-    "description": "IP GeoLocation Wrapper with Laravel Support",
+    "description": "IP Geolocation Wrapper with Laravel Support",
     "homepage": "https://github.com/pulkitjalan/ip-geolocation",
     "keywords": [
         "ip-geolocation",
