@@ -42,7 +42,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "PulkitJalan\\IPGeoLocation\\GeoIPServiceProvider"
+                "PulkitJalan\\IPGeoLocation\\IPGeolocationServiceProvider"
             ],
             "aliases": {
                 "IPGeoLocation": "PulkitJalan\\IPGeoLocation\\Facades\\IPGeoLocation"
