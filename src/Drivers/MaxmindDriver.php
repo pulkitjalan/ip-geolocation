@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GeoIp2\Exception\AddressNotFoundException;
@@ -52,7 +52,7 @@ abstract class MaxmindDriver extends AbstractIPGeolocationDriver implements IPGe
     }
 
     /**
-     * Get the raw IPGeoLocation info using Maxmind.
+     * Get the raw IPGeolocation info using Maxmind.
      *
      * @param  string  $ip
      * @return mixed
@@ -73,7 +73,7 @@ abstract class MaxmindDriver extends AbstractIPGeolocationDriver implements IPGe
      *
      * @return mixed
      *
-     * @throws \PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
      */
     abstract protected function create();
 }

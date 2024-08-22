@@ -1,8 +1,8 @@
 <?php
 
-use PulkitJalan\IPGeoLocation\IPGeoLocation;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 test('maxmind database', function () {
     $config = [
@@ -12,7 +12,7 @@ test('maxmind database', function () {
         ],
     ];
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->setIp($this->validIp);
 
     expect($ip->getCountry())->toEqual('United Kingdom');
@@ -39,7 +39,7 @@ test('maxmind database', function () {
 test('maxmind database config exception', function () {
     $this->expectException(InvalidCredentialsException::class);
 
-    $ip = new IPGeoLocation(['driver' => 'maxmind_database']);
+    $ip = new IPGeolocation(['driver' => 'maxmind_database']);
 });
 
 test('maxmind database exception', function () {
@@ -52,7 +52,7 @@ test('maxmind database exception', function () {
 
     $this->expectException(InvalidCredentialsException::class);
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
 });
 
 test('maxmind invalid database exception', function () {
@@ -65,5 +65,5 @@ test('maxmind invalid database exception', function () {
 
     $this->expectException(InvalidDatabaseException::class);
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
 });

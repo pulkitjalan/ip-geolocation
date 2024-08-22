@@ -1,15 +1,15 @@
 <?php
 
 use Illuminate\Support\Arr;
-use PulkitJalan\IPGeoLocation\IPGeoLocation;
-use PulkitJalan\IPGeoLocation\Exceptions\IPGeolocationException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
+use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
 
 test('ip api', function () {
     $config = [
         'driver' => 'ip-api',
     ];
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->setIp($this->validIp);
 
     expect('United Kingdom')->toEqual($ip->getCountry());
@@ -38,7 +38,7 @@ test('get multiple ipaddress', function () {
         'driver' => 'ip-api',
     ];
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip->setIp($this->multipleIps);
     $ip = $ip->getIp();
 
@@ -52,7 +52,7 @@ test('get random ipaddress', function () {
         'random' => true,
     ];
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->getIp();
 
     $this->assertNotEquals($this->invalidIp, $ip);
@@ -65,7 +65,7 @@ test('get non random ipaddress', function () {
         'random' => false,
     ];
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->getIp();
 
     expect($ip)->toEqual($this->invalidIp);
@@ -82,7 +82,7 @@ test('ip api pro exception', function () {
 
     $this->expectException(IPGeolocationException::class);
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->setIp($this->validIp);
 
     $ip->get();
@@ -98,7 +98,7 @@ test('ip api pro exception get raw', function () {
 
     $this->expectException(IPGeolocationException::class);
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->setIp($this->validIp);
 
     $ip->getRaw();

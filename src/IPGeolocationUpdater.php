@@ -1,13 +1,13 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation;
+namespace PulkitJalan\IPGeolocation;
 
 use PharData;
 use Exception;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 class IPGeolocationUpdater
 {

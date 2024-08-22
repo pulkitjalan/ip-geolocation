@@ -1,11 +1,11 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation\Console;
+namespace PulkitJalan\IPGeolocation\Console;
 
 use Illuminate\Console\Command;
-use PulkitJalan\IPGeoLocation\IPGeolocationUpdater;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\IPGeolocationUpdater;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 class UpdateCommand extends Command
 {
@@ -24,7 +24,7 @@ class UpdateCommand extends Command
     protected $description = 'Update ip geolocation database files to the latest version';
 
     /**
-     * @var \PulkitJalan\IPGeoLocation\IPGeolocationUpdater
+     * @var \PulkitJalan\IPGeolocation\IPGeolocationUpdater
      */
     protected $updater;
 

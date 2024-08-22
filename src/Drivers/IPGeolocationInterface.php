@@ -1,11 +1,11 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 interface IPGeolocationInterface
 {
     /**
-     * Get IPGeoLocation info from IP.
+     * Get IPGeolocation info from IP.
      *
      * @param  string  $ip
      * @return array
@@ -13,7 +13,7 @@ interface IPGeolocationInterface
     public function get($ip);
 
     /**
-     * Get the raw IPGeoLocation info from the driver.
+     * Get the raw IPGeolocation info from the driver.
      *
      * @param  string  $ip
      * @return mixed

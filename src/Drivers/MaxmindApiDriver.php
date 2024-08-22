@@ -1,10 +1,10 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 use Illuminate\Support\Arr;
 use GeoIp2\WebService\Client;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 class MaxmindApiDriver extends MaxmindDriver
 {
@@ -13,7 +13,7 @@ class MaxmindApiDriver extends MaxmindDriver
      *
      * @return \GeoIp2\WebService\Client
      *
-     * @throws \PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
      */
     protected function create()
     {

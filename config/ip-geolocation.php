@@ -3,7 +3,7 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | IPGeoLocation Driver Type
+    | IPGeolocation Driver Type
     |--------------------------------------------------------------------------
     |
     | Supported: "ip-api", "maxmind_database", "maxmind_api", "ipstack"

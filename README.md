@@ -1,4 +1,4 @@
-IPGeoLocation
+IPGeolocation
 =============
 
 > IP GeoLocation Wrapper with Laravel Support
@@ -33,16 +33,16 @@ There is a Laravel service provider and facade available.
 Add the following to the `providers` array in your `config/app.php`
 
 ```php
-PulkitJalan\IPGeoLocation\IPGeolocationServiceProvider::class
+PulkitJalan\IPGeolocation\IPGeolocationServiceProvider::class
 ```
 
 Next add the following to the `aliases` array in your `config/app.php`
 
 ```php
-'IPGeoLocation' => PulkitJalan\IPGeoLocation\Facades\IPGeoLocation::class
+'IPGeolocation' => PulkitJalan\IPGeolocation\Facades\IPGeolocation::class
 ```
 
-Next run `php artisan vendor:publish --provider="PulkitJalan\IPGeoLocation\IPGeolocationServiceProvider" --tag="config"` to publish the config file.
+Next run `php artisan vendor:publish --provider="PulkitJalan\IPGeolocation\IPGeolocationServiceProvider" --tag="config"` to publish the config file.
 
 #### Using an older version of PHP / Laravel?
 
@@ -57,9 +57,9 @@ Example:
 ```php
 <?php
 
-use PulkitJalan\IPGeoLocation\IPGeoLocation
+use PulkitJalan\IPGeolocation\IPGeolocation
 
-$ip = new IPGeoLocation();
+$ip = new IPGeolocation();
 
 $lat = $ip->getLatitude(); // 51.5141
 $lon = $ip->getLongitude(); // -3.1969
@@ -130,13 +130,13 @@ To use this package in Laravel, simply update the config file in `config/ip-geol
 
 ### Available Methods
 
-IPGeoLocation will try to determin the ip using the following http headers: `HTTP_CLIENT_IP`, `HTTP_X_FORWARDED_FOR`, `HTTP_X_FORWARDED`, `HTTP_FORWARDED_FOR`, `HTTP_FORWARDED`, `REMOTE_ADDR` in this order. Optionally use the `setIp` method to set it.
+IPGeolocation will try to determin the ip using the following http headers: `HTTP_CLIENT_IP`, `HTTP_X_FORWARDED_FOR`, `HTTP_X_FORWARDED`, `HTTP_FORWARDED_FOR`, `HTTP_FORWARDED`, `REMOTE_ADDR` in this order. Optionally use the `setIp` method to set it.
 
 ```php
 $ip->setIp('127.0.0.1');
 
 // Laravel
-IPGeoLocation::setIp('127.0.0.1');
+IPGeolocation::setIp('127.0.0.1');
 ```
 
 There are a number of available methods to pull out the required information. All methods will return an empty string if data is unavailable.
@@ -147,7 +147,7 @@ Get latitude
 $ip->getLatitude();
 
 // Laravel
-IPGeoLocation::getLatitude();
+IPGeolocation::getLatitude();
 ```
 
 Get longitude
@@ -156,7 +156,7 @@ Get longitude
 $ip->getLongitude();
 
 // Laravel
-IPGeoLocation::getLongitude();
+IPGeolocation::getLongitude();
 ```
 
 Get city
@@ -165,7 +165,7 @@ Get city
 $ip->getCity();
 
 // Laravel
-IPGeoLocation::getCity();
+IPGeolocation::getCity();
 ```
 
 Get country
@@ -174,7 +174,7 @@ Get country
 $ip->getCountry();
 
 // Laravel
-IPGeoLocation::getCountry();
+IPGeolocation::getCountry();
 ```
 
 Get country code
@@ -183,7 +183,7 @@ Get country code
 $ip->getCountryCode();
 
 // Laravel
-IPGeoLocation::getCountryCode();
+IPGeolocation::getCountryCode();
 ```
 
 Get region
@@ -192,7 +192,7 @@ Get region
 $ip->getRegion();
 
 // Laravel
-IPGeoLocation::getRegion();
+IPGeolocation::getRegion();
 ```
 
 Get region code
@@ -201,7 +201,7 @@ Get region code
 $ip->getRegionCode();
 
 // Laravel
-IPGeoLocation::getRegionCode();
+IPGeolocation::getRegionCode();
 ```
 
 Get postal code
@@ -210,7 +210,7 @@ Get postal code
 $ip->getPostalCode();
 
 // Laravel
-IPGeoLocation::getPostalCode();
+IPGeolocation::getPostalCode();
 ```
 
 Get timezone
@@ -219,7 +219,7 @@ Get timezone
 $ip->getTimezone();
 
 // Laravel
-IPGeoLocation::getTimezone();
+IPGeolocation::getTimezone();
 ```
 
 Get isp (not supported on all drivers)
@@ -228,7 +228,7 @@ Get isp (not supported on all drivers)
 $ip->getIsp();
 
 // Laravel
-IPGeoLocation::getIsp();
+IPGeolocation::getIsp();
 ```
 
 Get all geo information
@@ -237,7 +237,7 @@ Get all geo information
 $ip->get(); // returns array
 
 // Laravel
-IPGeoLocation::get(); // returns array
+IPGeolocation::get(); // returns array
 ```
 
 Get raw geo information
@@ -246,7 +246,7 @@ Get raw geo information
 $ip->getRaw(); // different drivers will return different data types
 
 // Laravel
-IPGeoLocation::getRaw(); // different drivers will return different data types
+IPGeolocation::getRaw(); // different drivers will return different data types
 ```
 
 ### Update Database
@@ -256,7 +256,7 @@ There is an update command available to help with updating and installing a loca
 ```php
 <?php
 
-use PulkitJalan\IPGeoLocation\IPGeolocationUpdater
+use PulkitJalan\IPGeolocation\IPGeolocationUpdater
 
 $config = [
     'driver' => 'maxmind_database',

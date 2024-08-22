@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
 

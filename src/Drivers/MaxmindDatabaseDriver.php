@@ -1,11 +1,11 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 use GeoIp2\Database\Reader;
 use Illuminate\Support\Arr;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 use MaxMind\Db\Reader\InvalidDatabaseException as MaxMindInvalidDatabaseException;
 
 class MaxmindDatabaseDriver extends MaxmindDriver
@@ -15,7 +15,7 @@ class MaxmindDatabaseDriver extends MaxmindDriver
      *
      * @return \GeoIp2\Database\Reader
      *
-     * @throws \PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
      */
     protected function create()
     {

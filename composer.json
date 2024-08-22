@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PulkitJalan\\IPGeoLocation\\": "src"
+            "PulkitJalan\\IPGeolocation\\": "src"
         },
         "files": [
             "helpers.php"
@@ -36,16 +36,16 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "PulkitJalan\\IPGeoLocation\\Tests\\": "tests"
+            "PulkitJalan\\IPGeolocation\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "PulkitJalan\\IPGeoLocation\\IPGeolocationServiceProvider"
+                "PulkitJalan\\IPGeolocation\\IPGeolocationServiceProvider"
             ],
             "aliases": {
-                "IPGeoLocation": "PulkitJalan\\IPGeoLocation\\Facades\\IPGeoLocation"
+                "IPGeolocation": "PulkitJalan\\IPGeolocation\\Facades\\IPGeolocation"
             }
         }
     },
