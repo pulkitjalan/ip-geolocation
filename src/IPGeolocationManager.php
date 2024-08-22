@@ -8,9 +8,9 @@ use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeoLocation\Drivers\IPApiDriver;
 use PulkitJalan\IPGeoLocation\Drivers\IPStackDriver;
 use PulkitJalan\IPGeoLocation\Drivers\MaxmindApiDriver;
-use PulkitJalan\IPGeoLocation\Drivers\AbstractIPGeolocationDriver;
 use PulkitJalan\IPGeoLocation\Drivers\MaxmindDatabaseDriver;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidDriverException;
+use PulkitJalan\IPGeoLocation\Drivers\AbstractIPGeolocationDriver;
 
 class IPGeolocationManager
 {
