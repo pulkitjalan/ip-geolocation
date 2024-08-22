@@ -1,15 +1,15 @@
 <?php
 
 use GuzzleHttp\Psr7\Response;
-use PulkitJalan\GeoIP\GeoIPUpdater;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\IPGeolocationUpdater;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 test('no database', function () {
     $this->expectException(InvalidDatabaseException::class);
 
-    (new GeoIPUpdater([]))->update();
+    (new IPGeolocationUpdater([]))->update();
 });
 
 test('no license key', function () {
@@ -23,7 +23,7 @@ test('no license key', function () {
         ],
     ];
 
-    (new GeoIPUpdater($config))->update();
+    (new IPGeolocationUpdater($config))->update();
 });
 
 test('maxmind updater', function () {
@@ -42,7 +42,7 @@ test('maxmind updater', function () {
     $p['GeoLite2-City_today/GeoLite2-City.mmdb'] = 'test';
     $p->compress(Phar::GZ);
     unlink(__DIR__.'/data/test.tar');
-    rename(__DIR__.'/data/test.tar.gz', __DIR__.'/data/geoip.tar.gz');
+    rename(__DIR__.'/data/test.tar.gz', __DIR__.'/data/ipGeolocation.tar.gz');
 
     $client = Mockery::mock(GuzzleClient::class);
 
@@ -51,12 +51,12 @@ test('maxmind updater', function () {
         ->withSomeOfArgs('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&suffix=tar.gz&license_key=test')
         ->andReturn(new Response);
 
-    $geoipUpdater = new GeoIPUpdater($config, $client);
+    $updater = new IPGeolocationUpdater($config, $client);
 
-    expect($database)->toEqual($geoipUpdater->update());
+    expect($database)->toEqual($updater->update());
 
     @unlink($database);
-    @unlink(__DIR__.'/data/geoip.tar.gz');
+    @unlink(__DIR__.'/data/ipGeolocation.tar.gz');
 });
 
 test('maxmind updater invalid url', function () {
@@ -77,7 +77,7 @@ test('maxmind updater invalid url', function () {
         ->withSomeOfArgs('http://example.com/maxmind_database.mmdb.gz?license_key=test')
         ->andThrow(new Exception);
 
-    $geoipUpdater = new GeoIPUpdater($config, $client);
+    $updater = new IPGeolocationUpdater($config, $client);
 
-    expect($geoipUpdater->update())->toBeFalse();
+    expect($updater->update())->toBeFalse();
 });

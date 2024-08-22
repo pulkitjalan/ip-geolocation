@@ -1,17 +1,19 @@
 <?php
 
-if (! function_exists('geoip')) {
+use PulkitJalan\IPGeolocation\IPGeolocation;
+
+if (! function_exists('ipGeolocation')) {
     /**
-     * Get an instance of the current geoip.
+     * Get an instance of the current ip geolocation.
      *
-     * @return \PulkitJalan\GeoIP\GeoIP
+     * @return \PulkitJalan\IPGeolocation\IPGeolocation
      */
-    function geoip($key = null)
+    function ipGeolocation($key = null)
     {
         if (is_null($key)) {
-            return app('geoip');
+            return app(IPGeolocation::class);
         }
 
-        return app('geoip')->{'get'.ucwords(camel_case($key))}();
+        return app(IPGeolocation::class)->{'get'.ucwords(camel_case($key))}();
     }
 }

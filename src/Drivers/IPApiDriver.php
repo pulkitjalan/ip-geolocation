@@ -1,10 +1,10 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 use Illuminate\Support\Arr;
 
-class IPApiDriver extends AbstractGeoIPDriver
+class IPApiDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
      * Get array of data using ip-api.
@@ -34,7 +34,7 @@ class IPApiDriver extends AbstractGeoIPDriver
     }
 
     /**
-     * Get the raw GeoIP info using ip-api.
+     * Get the raw IPGeolocation info using ip-api.
      *
      * @param  string  $ip
      * @return array

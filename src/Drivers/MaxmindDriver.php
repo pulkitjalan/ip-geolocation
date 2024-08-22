@@ -1,11 +1,11 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GeoIp2\Exception\AddressNotFoundException;
 
-abstract class MaxmindDriver extends AbstractGeoIPDriver
+abstract class MaxmindDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
      * @var \GeoIp2\WebService\Client|\GeoIp2\Database\Reader
@@ -52,7 +52,7 @@ abstract class MaxmindDriver extends AbstractGeoIPDriver
     }
 
     /**
-     * Get the raw GeoIP info using Maxmind.
+     * Get the raw IPGeolocation info using Maxmind.
      *
      * @param  string  $ip
      * @return mixed
@@ -73,7 +73,7 @@ abstract class MaxmindDriver extends AbstractGeoIPDriver
      *
      * @return mixed
      *
-     * @throws \PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
      */
     abstract protected function create();
 }

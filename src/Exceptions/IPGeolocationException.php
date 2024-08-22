@@ -2,6 +2,6 @@
 
 namespace PulkitJalan\IPGeolocation\Exceptions;
 
-class InvalidDatabaseException extends \Exception
+class IPGeolocationException extends \Exception
 {
 }

@@ -1,10 +1,10 @@
 <?php
 
 use GuzzleHttp\Client;
-use PulkitJalan\GeoIP\GeoIP;
 use GuzzleHttp\Psr7\Response;
-use PulkitJalan\GeoIP\Exceptions\GeoIPException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
+use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 test('ipstack', function () {
     $config = [
@@ -36,10 +36,10 @@ test('ipstack', function () {
             )
         );
 
-    $geoip = new GeoIP($config, $client);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp($this->validIp);
 
-    expect($geoip->get())->toEqual(
+    expect($ip->get())->toEqual(
         [
             'city' => 'test city',
             'country' => 'test country name',
@@ -74,10 +74,10 @@ test('ipstack should return default when response is empty', function () {
             )
         );
 
-    $geoip = new GeoIP($config, $client);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp($this->validIp);
 
-    expect($geoip->get())->toEqual(
+    expect($ip->get())->toEqual(
         [
             'city' => null,
             'country' => null,
@@ -99,12 +99,12 @@ test('ipstack throws exception getraw', function () {
             'key' => 'test',
         ],
     ];
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->getRaw();
+    $ip->getRaw();
 });
 
 test('ipstack throws exception without key', function () {
@@ -114,10 +114,10 @@ test('ipstack throws exception without key', function () {
 
     $this->expectException(InvalidCredentialsException::class);
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->get();
+    $ip->get();
 });
 
 test('ipstack secure config value defaults to true when missing', function () {
@@ -141,10 +141,10 @@ test('ipstack secure config value defaults to true when missing', function () {
             new Response(200, [], json_encode(['city' => 'test city']))
         );
 
-    $geoip = new GeoIP($config, $client);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->get();
+    $ip->get();
 });
 
 test('ipstack respects false secure config value', function () {
@@ -169,10 +169,10 @@ test('ipstack respects false secure config value', function () {
             new Response(200, [], json_encode(['city' => 'test city']))
         );
 
-    $geoip = new GeoIP($config, $client);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->get();
+    $ip->get();
 });
 
 test("ipstack respects true secure config value", function () {
@@ -197,8 +197,8 @@ test("ipstack respects true secure config value", function () {
             new Response(200, [], json_encode(['city' => 'test city']))
         );
 
-    $geoip = new GeoIP($config, $client);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->get();
+    $ip->get();
 });

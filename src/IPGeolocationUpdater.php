@@ -1,15 +1,15 @@
 <?php
 
-namespace PulkitJalan\GeoIP;
+namespace PulkitJalan\IPGeolocation;
 
 use PharData;
 use Exception;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\GeoIP\Exceptions\InvalidDatabaseException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
-class GeoIPUpdater
+class IPGeolocationUpdater
 {
     /**
      * @var array
@@ -70,7 +70,7 @@ class GeoIPUpdater
 
         try {
             // Download database temp dir
-            $tempFile = $tempDir.'/geoip';
+            $tempFile = $tempDir.'/ipGeolocation';
             $this->guzzle->get($maxmindDatabaseUrl, ['sink' => $tempFile.'.tar.gz']);
 
             $p = new PharData($tempFile.'.tar.gz');

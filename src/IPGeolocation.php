@@ -1,13 +1,13 @@
 <?php
 
-namespace PulkitJalan\GeoIP;
+namespace PulkitJalan\IPGeolocation;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\GeoIP\Exceptions\GeoIPException;
+use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
 
-class GeoIP
+class IPGeolocation
 {
     /**
      * @var string
@@ -15,7 +15,7 @@ class GeoIP
     protected $ip;
 
     /**
-     * @var \PulkitJalan\GeoIP\Contracts\GeoIPInterface
+     * @var \PulkitJalan\IPGeolocation\Drivers\IPGeolocationInterface
      */
     protected $driver;
 
@@ -39,14 +39,14 @@ class GeoIP
      */
     public function __construct(array $config = ['driver' => 'ip-api'], GuzzleClient $guzzle = null)
     {
-        $this->driver = with(new GeoIPManager($config, $guzzle))->getDriver();
+        $this->driver = (new IPGeolocationManager($config, $guzzle))->getDriver();
         $this->random = Arr::get($config, 'random', false);
     }
 
     /**
      * Getter for driver.
      *
-     * @return \PulkitJalan\GeoIP\Contracts\GeoIPInterface
+     * @return \PulkitJalan\IPGeolocation\Drivers\IPGeolocationInterface
      */
     public function getDriver()
     {
@@ -59,7 +59,7 @@ class GeoIP
      * @var string
      *
      * @param  string  $ip
-     * @return GeoIP
+     * @return IPGeolocation
      */
     public function setIp($ip)
     {
@@ -92,7 +92,7 @@ class GeoIP
     }
 
     /**
-     * Get an array or single item of geoip data
+     * Get an array or single item of ip geolocation data
      * Also stores data in memory for further requests.
      *
      * @param  string  $property
@@ -110,7 +110,7 @@ class GeoIP
     }
 
     /**
-     * Get the raw geoip data from the driver.
+     * Get the raw ip geolocation data from the driver.
      *
      * @param string
      * @return mixed
@@ -127,7 +127,7 @@ class GeoIP
             try {
                 $data = $this->getDriver()->getRaw($ip);
             } catch (\Exception $e) {
-                throw new GeoIPException('Failed to get raw geoip data', 0, $e);
+                throw new IPGeolocationException('Failed to get raw ip geolocation data', 0, $e);
             }
 
             // cache ip data in memory
@@ -138,11 +138,11 @@ class GeoIP
     }
 
     /**
-     * Get an array or single item of geoip data.
+     * Get an array or single item of ipGeolocation data.
      *
      * @return array
      *
-     * @throws \PulkitJalan\GeoIP\Exceptions\GeoIPException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException
      */
     protected function getData()
     {
@@ -156,7 +156,7 @@ class GeoIP
             try {
                 $data = $this->getDriver()->get($ip);
             } catch (\Exception $e) {
-                throw new GeoIPException('Failed to get geoip data', 0, $e);
+                throw new IPGeolocationException('Failed to get ip geolocation data', 0, $e);
             }
 
             // cache ip data in memory

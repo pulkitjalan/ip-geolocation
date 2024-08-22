@@ -1,10 +1,10 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Drivers;
+namespace PulkitJalan\IPGeolocation\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
 
-abstract class AbstractGeoIPDriver
+abstract class AbstractIPGeolocationDriver
 {
     /**
      * @var array
@@ -25,22 +25,6 @@ abstract class AbstractGeoIPDriver
 
         $this->guzzle = $guzzle ?? new GuzzleClient();
     }
-
-    /**
-     * Get GeoIP info from IP.
-     *
-     * @param  string  $ip
-     * @return array
-     */
-    abstract public function get($ip);
-
-    /**
-     * Get the raw GeoIP info from the driver.
-     *
-     * @param  string  $ip
-     * @return mixed
-     */
-    abstract public function getRaw($ip);
 
     /**
      * Get the default values (all null).

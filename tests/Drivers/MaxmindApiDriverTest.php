@@ -1,13 +1,13 @@
 <?php
 
-use PulkitJalan\GeoIP\GeoIP;
-use PulkitJalan\GeoIP\Exceptions\GeoIPException;
-use PulkitJalan\GeoIP\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
+use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 test('maxmind api config exception', function () {
     $this->expectException(InvalidCredentialsException::class);
 
-    $geoip = new GeoIP(['driver' => 'maxmind_api']);
+    $ip = new IPGeolocation(['driver' => 'maxmind_api']);
 });
 
 test('maxmind web api exception', function () {
@@ -20,7 +20,7 @@ test('maxmind web api exception', function () {
 
     $this->expectException(InvalidCredentialsException::class);
 
-    $geoip = new GeoIP($config);
+    $ip = new IPGeolocation($config);
 });
 
 test('maxmind web api authentication exception', function () {
@@ -33,12 +33,12 @@ test('maxmind web api authentication exception', function () {
     ];
 
     // expect the exception since the credentials are invalid.
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->get();
+    $ip->get();
 });
 
 test('maxmind web api authentication exception get raw', function () {
@@ -51,10 +51,10 @@ test('maxmind web api authentication exception get raw', function () {
     ];
 
     // expect the exception since the credentials are invalid.
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->getRaw();
+    $ip->getRaw();
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Exceptions;
+namespace PulkitJalan\IPGeolocation\Exceptions;
 
 class InvalidDriverException extends \Exception
 {

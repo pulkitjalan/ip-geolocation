@@ -1,18 +1,18 @@
 <?php
 
-use PulkitJalan\GeoIP\GeoIP;
-use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDriverException;
 
 test('invalid driver exception', function () {
     $this->expectException(InvalidDriverException::class);
 
-    $geoip = new GeoIP([]);
+    $ip = new IPGeolocation([]);
 });
 
 test('bad method call exception', function () {
     $this->expectException(BadMethodCallException::class);
 
-    $geoip = new GeoIP();
+    $ip = new IPGeolocation();
 
-    $geoip->setNothing();
+    $ip->setNothing();
 });

@@ -1,10 +1,11 @@
 <?php
 
-namespace PulkitJalan\GeoIP\Facades;
+namespace PulkitJalan\IPGeolocation\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use PulkitJalan\IPGeolocation\IPGeolocation as IPGeolocationClass;
 
-class GeoIP extends Facade
+class IPGeolocation extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +14,6 @@ class GeoIP extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'geoip';
+        return IPGeolocationClass::class;
     }
 }

@@ -1,18 +1,18 @@
 <?php
 
-namespace PulkitJalan\GeoIP;
+namespace PulkitJalan\IPGeolocation;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\GeoIP\Drivers\IPApiDriver;
-use PulkitJalan\GeoIP\Drivers\IpStackDriver;
-use PulkitJalan\GeoIP\Drivers\MaxmindApiDriver;
-use PulkitJalan\GeoIP\Drivers\AbstractGeoIPDriver;
-use PulkitJalan\GeoIP\Drivers\MaxmindDatabaseDriver;
-use PulkitJalan\GeoIP\Exceptions\InvalidDriverException;
+use PulkitJalan\IPGeolocation\Drivers\IPApiDriver;
+use PulkitJalan\IPGeolocation\Drivers\IPStackDriver;
+use PulkitJalan\IPGeolocation\Drivers\MaxmindApiDriver;
+use PulkitJalan\IPGeolocation\Drivers\MaxmindDatabaseDriver;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDriverException;
+use PulkitJalan\IPGeolocation\Drivers\AbstractIPGeolocationDriver;
 
-class GeoIPManager
+class IPGeolocationManager
 {
     /**
      * @var array
@@ -36,9 +36,9 @@ class GeoIPManager
     /**
      * Get the driver based on config.
      *
-     * @return AbstractGeoIPDriver
+     * @return AbstractIPGeolocationDriver
      */
-    public function getDriver($driver = null): AbstractGeoIPDriver
+    public function getDriver($driver = null): AbstractIPGeolocationDriver
     {
         $driver = $driver ?? Arr::get($this->config, 'driver', '');
 
@@ -84,10 +84,10 @@ class GeoIPManager
     /**
      * Get the ip stack driver.
      *
-     * @return IpStackDriver
+     * @return IPStackDriver
      */
-    protected function createIpStackDriver(array $data): IpStackDriver
+    protected function createIpStackDriver(array $data): IPStackDriver
     {
-        return new IpStackDriver($data, $this->guzzle);
+        return new IPStackDriver($data, $this->guzzle);
     }
 }

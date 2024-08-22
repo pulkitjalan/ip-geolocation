@@ -1,24 +1,24 @@
 <?php
 
 use Illuminate\Support\Arr;
-use PulkitJalan\GeoIP\GeoIP;
-use PulkitJalan\GeoIP\Exceptions\GeoIPException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
+use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
 
 test('ip api', function () {
     $config = [
         'driver' => 'ip-api',
     ];
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    expect('United Kingdom')->toEqual($geoip->getCountry());
+    expect('United Kingdom')->toEqual($ip->getCountry());
 
-    $geoip = $geoip->setIp($this->invalidIp);
+    $ip = $ip->setIp($this->invalidIp);
 
-    expect(Arr::get($geoip->getRaw(), 'status'))->toEqual('fail');
+    expect(Arr::get($ip->getRaw(), 'status'))->toEqual('fail');
 
-    expect($geoip->get())->toEqual([
+    expect($ip->get())->toEqual([
         'city' => null,
         'country' => null,
         'countryCode' => null,
@@ -30,7 +30,7 @@ test('ip api', function () {
         'postalCode' => null,
     ]);
 
-    expect($geoip->getCountry())->toEqual('');
+    expect($ip->getCountry())->toEqual('');
 });
 
 test('get multiple ipaddress', function () {
@@ -38,9 +38,9 @@ test('get multiple ipaddress', function () {
         'driver' => 'ip-api',
     ];
 
-    $geoip = new GeoIP($config);
-    $geoip->setIp($this->multipleIps);
-    $ip = $geoip->getIp();
+    $ip = new IPGeolocation($config);
+    $ip->setIp($this->multipleIps);
+    $ip = $ip->getIp();
 
     expect($ip)->toEqual($this->validIp);
     expect(! filter_var($ip, FILTER_VALIDATE_IP) === false)->toBeTrue();
@@ -52,8 +52,8 @@ test('get random ipaddress', function () {
         'random' => true,
     ];
 
-    $geoip = new GeoIP($config);
-    $ip = $geoip->getIp();
+    $ip = new IPGeolocation($config);
+    $ip = $ip->getIp();
 
     $this->assertNotEquals($this->invalidIp, $ip);
     expect(! filter_var($ip, FILTER_VALIDATE_IP) === false)->toBeTrue();
@@ -65,8 +65,8 @@ test('get non random ipaddress', function () {
         'random' => false,
     ];
 
-    $geoip = new GeoIP($config);
-    $ip = $geoip->getIp();
+    $ip = new IPGeolocation($config);
+    $ip = $ip->getIp();
 
     expect($ip)->toEqual($this->invalidIp);
     expect(! filter_var($ip, FILTER_VALIDATE_IP) === false)->toBeTrue();
@@ -80,12 +80,12 @@ test('ip api pro exception', function () {
         ],
     ];
 
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->get();
+    $ip->get();
 });
 
 test('ip api pro exception get raw', function () {
@@ -96,10 +96,10 @@ test('ip api pro exception get raw', function () {
         ],
     ];
 
-    $this->expectException(GeoIPException::class);
+    $this->expectException(IPGeolocationException::class);
 
-    $geoip = new GeoIP($config);
-    $geoip = $geoip->setIp($this->validIp);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp($this->validIp);
 
-    $geoip->getRaw();
+    $ip->getRaw();
 });
