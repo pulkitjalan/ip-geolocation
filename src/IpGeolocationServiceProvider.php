@@ -5,7 +5,7 @@ namespace PulkitJalan\IPGeoLocation;
 use Illuminate\Support\ServiceProvider;
 use PulkitJalan\IPGeoLocation\Console\UpdateCommand;
 
-class IpGeolocationServiceProvider extends ServiceProvider
+class IPGeolocationServiceProvider extends ServiceProvider
 {
     /**
      * Boot the service provider.

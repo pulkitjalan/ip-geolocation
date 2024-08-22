@@ -3,7 +3,7 @@
 namespace PulkitJalan\IPGeoLocation\Console;
 
 use Illuminate\Console\Command;
-use PulkitJalan\IPGeoLocation\IpGeolocationUpdater;
+use PulkitJalan\IPGeoLocation\IPGeolocationUpdater;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
 use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
 
@@ -24,7 +24,7 @@ class UpdateCommand extends Command
     protected $description = 'Update ip geolocation database files to the latest version';
 
     /**
-     * @var \PulkitJalan\IPGeoLocation\IpGeolocationUpdater
+     * @var \PulkitJalan\IPGeoLocation\IPGeolocationUpdater
      */
     protected $geoIPUpdater;
 
@@ -35,7 +35,7 @@ class UpdateCommand extends Command
     {
         parent::__construct();
 
-        $this->geoIPUpdater = new IpGeolocationUpdater($config);
+        $this->geoIPUpdater = new IPGeolocationUpdater($config);
     }
 
     /**
