@@ -2,9 +2,9 @@
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client as GuzzleClient;
-use PulkitJalan\IPGeoLocation\IPGeolocationUpdater;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidDatabaseException;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\IPGeolocationUpdater;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 test('no database', function () {
     $this->expectException(InvalidDatabaseException::class);

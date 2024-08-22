@@ -2,9 +2,9 @@
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use PulkitJalan\IPGeoLocation\IPGeoLocation;
-use PulkitJalan\IPGeoLocation\Exceptions\IPGeolocationException;
-use PulkitJalan\IPGeoLocation\Exceptions\InvalidCredentialsException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
+use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 test('ipstack', function () {
     $config = [
@@ -36,7 +36,7 @@ test('ipstack', function () {
             )
         );
 
-    $ip = new IPGeoLocation($config, $client);
+    $ip = new IPGeolocation($config, $client);
     $ip = $ip->setIp($this->validIp);
 
     expect($ip->get())->toEqual(
@@ -74,7 +74,7 @@ test('ipstack should return default when response is empty', function () {
             )
         );
 
-    $ip = new IPGeoLocation($config, $client);
+    $ip = new IPGeolocation($config, $client);
     $ip = $ip->setIp($this->validIp);
 
     expect($ip->get())->toEqual(
@@ -101,7 +101,7 @@ test('ipstack throws exception getraw', function () {
     ];
     $this->expectException(IPGeolocationException::class);
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->setIp($this->validIp);
 
     $ip->getRaw();
@@ -114,7 +114,7 @@ test('ipstack throws exception without key', function () {
 
     $this->expectException(InvalidCredentialsException::class);
 
-    $ip = new IPGeoLocation($config);
+    $ip = new IPGeolocation($config);
     $ip = $ip->setIp($this->validIp);
 
     $ip->get();
@@ -141,7 +141,7 @@ test('ipstack secure config value defaults to true when missing', function () {
             new Response(200, [], json_encode(['city' => 'test city']))
         );
 
-    $ip = new IPGeoLocation($config, $client);
+    $ip = new IPGeolocation($config, $client);
     $ip = $ip->setIp($this->validIp);
 
     $ip->get();
@@ -169,7 +169,7 @@ test('ipstack respects false secure config value', function () {
             new Response(200, [], json_encode(['city' => 'test city']))
         );
 
-    $ip = new IPGeoLocation($config, $client);
+    $ip = new IPGeolocation($config, $client);
     $ip = $ip->setIp($this->validIp);
 
     $ip->get();
@@ -197,7 +197,7 @@ test("ipstack respects true secure config value", function () {
             new Response(200, [], json_encode(['city' => 'test city']))
         );
 
-    $ip = new IPGeoLocation($config, $client);
+    $ip = new IPGeolocation($config, $client);
     $ip = $ip->setIp($this->validIp);
 
     $ip->get();

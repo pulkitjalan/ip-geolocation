@@ -1,9 +1,9 @@
 <?php
 
-namespace PulkitJalan\IPGeoLocation;
+namespace PulkitJalan\IPGeolocation;
 
 use Illuminate\Support\ServiceProvider;
-use PulkitJalan\IPGeoLocation\Console\UpdateCommand;
+use PulkitJalan\IPGeolocation\Console\UpdateCommand;
 
 class IPGeolocationServiceProvider extends ServiceProvider
 {
@@ -13,11 +13,11 @@ class IPGeolocationServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app['ipGeolocation'] = function ($app) {
-            return $app['PulkitJalan\IPGeoLocation\IPGeoLocation'];
+            return $app[IPGeolocation::class];
         };
 
         if ($this->app->runningInConsole()) {
-            $this->commands(['PulkitJalan\IPGeoLocation\Console\UpdateCommand']);
+            $this->commands([UpdateCommand::class]);
         }
 
         if (function_exists('config_path')) {
@@ -44,8 +44,8 @@ class IPGeolocationServiceProvider extends ServiceProvider
      */
     protected function registerIPGeolocation()
     {
-        $this->app->singleton('PulkitJalan\IPGeoLocation\IPGeoLocation', function ($app) {
-            return new IPGeoLocation($app['config']['ip-geolocation']);
+        $this->app->singleton(IPGeolocation::class, function ($app) {
+            return new IPGeolocation($app['config']['ip-geolocation']);
         });
     }
 
@@ -54,7 +54,7 @@ class IPGeolocationServiceProvider extends ServiceProvider
      */
     protected function registerUpdateCommand()
     {
-        $this->app->singleton('PulkitJalan\IPGeoLocation\Console\UpdateCommand', function ($app) {
+        $this->app->singleton(UpdateCommand::class, function ($app) {
             return new UpdateCommand($app['config']['ip-geolocation']);
         });
     }
@@ -67,8 +67,9 @@ class IPGeolocationServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            IPGeoLocation::class,
+            IPGeolocation::class,
             UpdateCommand::class,
+            'ipGeolocation',
         ];
     }
 }
