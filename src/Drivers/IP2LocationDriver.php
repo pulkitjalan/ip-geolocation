@@ -59,6 +59,7 @@ class IP2LocationDriver extends AbstractIPGeolocationDriver implements IPGeoloca
     {
         $url = $this->getUrl($ip);
         $response = $this->guzzle->get($url);
+
         return json_decode($response->getBody(), true);
     }
 
@@ -71,6 +72,7 @@ class IP2LocationDriver extends AbstractIPGeolocationDriver implements IPGeoloca
     protected function getUrl($ip)
     {
         $apiKey = Arr::get($this->config, 'api_key');
+
         return "https://api.ip2location.io/?key={$apiKey}&ip={$ip}&format=json";
     }
 }
