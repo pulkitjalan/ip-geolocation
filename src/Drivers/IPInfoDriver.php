@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\IPGeolocation\Drivers;
 
+use Throwable;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
@@ -63,7 +64,7 @@ class IPInfoDriver extends AbstractIPGeolocationDriver implements IPGeolocationI
             $response = $this->guzzle->get($url);
 
             return json_decode($response->getBody(), true);
-        } catch (\Exception $e) {
+        } catch (Throwable $e) {
             return [];
         }
     }

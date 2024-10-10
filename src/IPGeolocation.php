@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\IPGeolocation;
 
+use Throwable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
@@ -126,7 +127,7 @@ class IPGeolocation
         if (! $data) {
             try {
                 $data = $this->getDriver()->getRaw($ip);
-            } catch (\Exception $e) {
+            } catch (Throwable $e) {
                 throw new IPGeolocationException('Failed to get raw ip geolocation data', 0, $e);
             }
 
@@ -155,7 +156,7 @@ class IPGeolocation
         if (! $data) {
             try {
                 $data = $this->getDriver()->get($ip);
-            } catch (\Exception $e) {
+            } catch (Throwable $e) {
                 throw new IPGeolocationException('Failed to get ip geolocation data', 0, $e);
             }
 
