@@ -9,7 +9,7 @@ return [
     | Supported: "ip-api", "maxmind_database", "maxmind_api", "ipstack"
     |
     */
-    'driver' => env('IPGEOLOCATION_DRIVER', 'ip-api'),
+    'driver' => env('IP_GEOLOCATION_DRIVER', 'ip-api'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,5 +64,14 @@ return [
     'ipstack' => [
         // Get your access key here: https://ipstack.com/product
         'key' => env('IPGEOLOCATION_IPSTACK_KEY'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | IP2Location Driver
+    |--------------------------------------------------------------------------
+    */
+    'ip2location' => [
+        'api_key' => env('IP2LOCATION_API_KEY'),
     ],
 ];
