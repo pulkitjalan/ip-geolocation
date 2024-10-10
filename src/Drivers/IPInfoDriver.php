@@ -61,6 +61,7 @@ class IPInfoDriver extends AbstractIPGeolocationDriver implements IPGeolocationI
 
         try {
             $response = $this->guzzle->get($url);
+
             return json_decode($response->getBody(), true);
         } catch (\Exception $e) {
             return [];

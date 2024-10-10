@@ -1,9 +1,9 @@
 <?php
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Handler\MockHandler;
 use PulkitJalan\IPGeolocation\Drivers\IPInfoDriver;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
