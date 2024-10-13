@@ -8,7 +8,7 @@ IP Geolocation
 [![License](https://poser.pugx.org/pulkitjalan/ip-geolocation/license)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
 
 
-This package provides an easy way to get geolocation information from IP addresses. It supports multiple drivers including IP-API, MaxMind Database, MaxMind API, IPStack, and IP2Location.
+This package provides an easy way to get geolocation information from IP addresses. It supports multiple drivers including IP-API, MaxMind Database, MaxMind API, IPStack, IP2Location, and IPinfo.
 
 ## Requirements
 
@@ -38,7 +38,11 @@ Next add the following to the `aliases` array in your `config/app.php`
 'IPGeolocation' => PulkitJalan\IPGeolocation\Facades\IPGeolocation::class
 ```
 
-Next run `php artisan vendor:publish --provider="PulkitJalan\IPGeolocation\IPGeolocationServiceProvider" --tag="config"` to publish the config file.
+Next publish the config file:
+
+```bash
+php artisan vendor:publish --provider="PulkitJalan\IPGeolocation\IPGeolocationServiceProvider" --tag="config"
+```
 
 #### Using an older version of PHP / Laravel?
 
@@ -133,8 +137,19 @@ $config = [
 ];
 ```
 
+#### IPinfo
 
-Note: Make sure to download the appropriate IP2Location database file and provide the correct path in the configuration.
+To use IPinfo as the driver, set the config as follows:
+
+Example:
+```php
+$config = [
+    'driver' => 'ipinfo',
+    'ipinfo' => [
+        'token' => 'YOUR IPINFO API TOKEN',
+    ],
+];
+```
 
 ### Laravel
 
@@ -302,6 +317,10 @@ IPStack is a real-time IP to geolocation API service. They offer both free and p
 ### IP2Location
 
 IP2Location provides IP geolocation databases and web services. They offer various products and services, including both free and paid options. You can learn more and sign up on their [website](https://www.ip2location.io/).
+
+### IPinfo
+
+IPinfo is a comprehensive IP address data provider offering accurate geolocation, ASN, company, and other IP-related information. They provide both API and database download options. You can sign up for a free API key or explore their paid plans on their [website](https://ipinfo.io/).
 
 ## License
 
