@@ -301,7 +301,7 @@ IPStack is a real-time IP to geolocation API service. They offer both free and p
 
 ### IP2Location
 
-IP2Location provides IP geolocation databases and web services. They offer various products and services, including both free and paid options. You can learn more and sign up on their [website](https://www.ip2location.com/).
+IP2Location provides IP geolocation databases and web services. They offer various products and services, including both free and paid options. You can learn more and sign up on their [website](https://www.ip2location.io/).
 
 ## License
 
