@@ -3,7 +3,7 @@
 namespace PulkitJalan\IPGeolocation;
 
 use PharData;
-use Exception;
+use Throwable;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
@@ -93,7 +93,7 @@ class IPGeolocationUpdater
 
             array_map(fn ($file) => $this->removeIfExists($file), glob("$dir/*.*"));
             @rmdir($dir);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return false;
         }
 

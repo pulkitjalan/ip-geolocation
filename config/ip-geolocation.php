@@ -75,4 +75,14 @@ return [
         // Get your API key here: https://www.ip2location.io/pricing
         'api_key' => env('IPGEOLOCATION_IP2LOCATION_API_KEY'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | IPInfo Driver
+    |--------------------------------------------------------------------------
+    */
+    'ipinfo' => [
+        // Get your token here: https://ipinfo.io/
+        'token' => env('IPGEOLOCATION_IPINFO_TOKEN'),
+    ],
 ];
