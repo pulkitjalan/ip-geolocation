@@ -1,26 +1,22 @@
-IPGeolocation
+IP Geolocation
 =============
 
 > IP Geolocation Wrapper with Laravel Support
 
-[![Latest Stable Version](https://poser.pugx.org/pulkitjalan/ip-geolocation/v/stable?format=flat-square)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
-[![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
-[![Run Tests](https://github.com/pulkitjalan/ip-geolocation/actions/workflows/run-tests.yml/badge.svg)](https://github.com/pulkitjalan/ip-geolocation/actions/workflows/run-tests.yml)
-[![Coverage](https://codecov.io/gh/pulkitjalan/ip-geolocation/branch/main/graph/badge.svg?token=JTB1ASXAB0)](https://codecov.io/gh/pulkitjalan/ip-geolocation)
-[![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/ip-geolocation.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
+[![Latest Stable Version](https://poser.pugx.org/pulkitjalan/ip-geolocation/v/stable)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
+[![Total Downloads](https://poser.pugx.org/pulkitjalan/ip-geolocation/downloads)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
+[![License](https://poser.pugx.org/pulkitjalan/ip-geolocation/license)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
 
-## Supported Drivers ([Services](#services))
 
-* [IP-API](http://ip-api.com/)
-* [Maxmind](https://www.maxmind.com/)
+This package provides an easy way to get geolocation information from IP addresses. It supports multiple drivers including IP-API, MaxMind Database, MaxMind API, IPStack, and IP2Location.
 
 ## Requirements
 
-* PHP >= 8.1
+- PHP >= 8.1
 
 ## Installation
 
-Install via composer
+Install via composer:
 
 ```bash
 composer require pulkitjalan/ip-geolocation
@@ -123,6 +119,22 @@ $config = [
 ];
 ```
 
+#### IP2Location
+
+To use IP2Location as the driver, set the config as follows:
+
+Example:
+```php
+$config = [
+    'driver' => 'ip2location',
+    'ip2location' => [
+        'api_key' => 'YOUR IP2LOCATION API KEY',
+    ],
+];
+```
+
+
+Note: Make sure to download the appropriate IP2Location database file and provide the correct path in the configuration.
 
 ### Laravel
 
@@ -275,10 +287,22 @@ Once you have registered the service provider (supports auto discovery), you can
 
 ## Services
 
-#### IP-API
+### IP-API
 
-IP-API is a free (or paid) service that can also be used instead of the database file or the paid maxmind service. They do have some limitations on the free service so please have a look at the [docs](http://ip-api.com/docs/) first.
+IP-API is a free (or paid) service that can be used instead of the database file or the paid MaxMind service. They do have some limitations on the free service, so please review their [documentation](http://ip-api.com/docs/) first.
 
-#### Maxmind
+### MaxMind
 
-You can use the free database from maxmind (license_key required) or their web api service. You can signup and get a free license code [here](https://www.maxmind.com/en/geolite2/signup).
+You can use the free database from MaxMind (license key required) or their web API service. You can sign up and get a free license key [here](https://www.maxmind.com/en/geolite2/signup).
+
+### IPStack
+
+IPStack is a real-time IP to geolocation API service. They offer both free and paid plans. You can find more information and sign up on their [website](https://ipstack.com/).
+
+### IP2Location
+
+IP2Location provides IP geolocation databases and web services. They offer various products and services, including both free and paid options. You can learn more and sign up on their [website](https://www.ip2location.io/).
+
+## License
+
+The MIT License (MIT). Please see the [License File](LICENSE) for more information.
