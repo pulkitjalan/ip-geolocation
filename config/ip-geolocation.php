@@ -65,4 +65,14 @@ return [
         // Get your access key here: https://ipstack.com/product
         'key' => env('IPGEOLOCATION_IPSTACK_KEY'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | IP2Location Driver
+    |--------------------------------------------------------------------------
+    */
+    'ip2location' => [
+        // Get your API key here: https://www.ip2location.io/pricing
+        'api_key' => env('IPGEOLOCATION_IP2LOCATION_API_KEY'),
+    ],
 ];
