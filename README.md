@@ -119,6 +119,22 @@ $config = [
 ];
 ```
 
+#### IP2Location
+
+To use IP2Location as the driver, set the config as follows:
+
+Example:
+```php
+$config = [
+    'driver' => 'ip2location',
+    'ip2location' => [
+        'api_key' => 'YOUR IP2LOCATION API KEY',
+    ],
+];
+```
+
+
+Note: Make sure to download the appropriate IP2Location database file and provide the correct path in the configuration.
 
 ### Laravel
 

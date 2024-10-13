@@ -72,6 +72,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'ip2location' => [
-        'api_key' => env('IP2LOCATION_API_KEY'),
+        // Get your API key here: https://www.ip2location.io/pricing
+        'api_key' => env('IPGEOLOCATION_IP2LOCATION_API_KEY'),
     ],
 ];
