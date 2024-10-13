@@ -9,7 +9,7 @@ return [
     | Supported: "ip-api", "maxmind_database", "maxmind_api", "ipstack"
     |
     */
-    'driver' => env('IP_GEOLOCATION_DRIVER', 'ip-api'),
+    'driver' => env('IPGEOLOCATION_DRIVER', 'ip-api'),
 
     /*
     |--------------------------------------------------------------------------
