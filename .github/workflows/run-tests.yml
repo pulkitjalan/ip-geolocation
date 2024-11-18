@@ -41,7 +41,7 @@ jobs:
       - name: Execute tests
         run: vendor/bin/pest tests
 
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: build
