@@ -12,7 +12,7 @@ test('invalid driver exception', function () {
 test('bad method call exception', function () {
     $this->expectException(BadMethodCallException::class);
 
-    $ip = new IPGeolocation();
+    $ip = new IPGeolocation;
 
     $ip->setNothing();
 });

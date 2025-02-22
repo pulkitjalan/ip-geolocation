@@ -175,7 +175,7 @@ test('ipstack respects false secure config value', function () {
     $ip->get();
 });
 
-test("ipstack respects true secure config value", function () {
+test('ipstack respects true secure config value', function () {
     $config = [
         'driver' => 'ipstack',
         'ipstack' => [

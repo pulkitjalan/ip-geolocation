@@ -16,14 +16,11 @@ abstract class AbstractIPGeolocationDriver
      */
     protected $guzzle;
 
-    /**
-     * @param  array  $config
-     */
-    public function __construct(array $config, GuzzleClient $guzzle = null)
+    public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
         $this->config = $config;
 
-        $this->guzzle = $guzzle ?? new GuzzleClient();
+        $this->guzzle = $guzzle ?? new GuzzleClient;
     }
 
     /**

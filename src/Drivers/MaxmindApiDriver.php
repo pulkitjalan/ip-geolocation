@@ -24,7 +24,7 @@ class MaxmindApiDriver extends MaxmindDriver
 
         // check and make sure they are set
         if (! $userId || ! $licenseKey) {
-            throw new InvalidCredentialsException();
+            throw new InvalidCredentialsException;
         }
 
         return new Client((int) $userId, $licenseKey, $locales, ['host' => $host]);
