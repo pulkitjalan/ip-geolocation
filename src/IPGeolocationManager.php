@@ -10,6 +10,7 @@ use PulkitJalan\IPGeolocation\Drivers\IPInfoDriver;
 use PulkitJalan\IPGeolocation\Drivers\IPStackDriver;
 use PulkitJalan\IPGeolocation\Drivers\MaxmindApiDriver;
 use PulkitJalan\IPGeolocation\Drivers\IP2LocationDriver;
+use PulkitJalan\IPGeolocation\Drivers\IPQueryDriver;
 use PulkitJalan\IPGeolocation\Drivers\MaxmindDatabaseDriver;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidDriverException;
 use PulkitJalan\IPGeolocation\Drivers\AbstractIPGeolocationDriver;
@@ -94,5 +95,13 @@ class IPGeolocationManager
     protected function createIpInfoDriver(array $data): IPInfoDriver
     {
         return new IPInfoDriver($data, $this->guzzle);
+    }
+
+    /**
+     * Get the IPQuery driver.
+     */
+    protected function createIpqueryDriver(array $data): IPQueryDriver
+    {
+        return new IPQueryDriver($data, $this->guzzle);
     }
 }

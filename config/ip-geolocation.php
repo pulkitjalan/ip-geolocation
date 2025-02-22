@@ -6,7 +6,7 @@ return [
     | IPGeolocation Driver Type
     |--------------------------------------------------------------------------
     |
-    | Supported: "ip-api", "maxmind_database", "maxmind_api", "ipstack"
+    | Supported: "ip-api", "maxmind_database", "maxmind_api", "ipstack", "ipquery"
     |
     */
     'driver' => env('IPGEOLOCATION_DRIVER', 'ip-api'),
@@ -84,5 +84,15 @@ return [
     'ipinfo' => [
         // Get your token here: https://ipinfo.io/
         'token' => env('IPGEOLOCATION_IPINFO_TOKEN'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | IPQuery Driver
+    |--------------------------------------------------------------------------
+    */
+    'ipquery' => [
+        // Get your API key here: https://ipquery.io
+        'key' => env('IPGEOLOCATION_IPQUERY_KEY'),
     ],
 ];
