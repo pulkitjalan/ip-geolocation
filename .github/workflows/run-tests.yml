@@ -23,15 +23,15 @@ jobs:
           - 11.0
           - 10.0
         dependency-version:
-          - prefer-lowest
-          - prefer-stable
+          - Lowest
+          - Latest
         exclude:
           - laravel: 12.0
             php: 8.1
           - laravel: 11.0
             php: 8.1
 
-    name: "PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version == 'prefer-stable' ? 'Latest' : 'Lowest' }}"
+    name: "PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}"
 
     steps:
       - name: Checkout code
@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer require "laravel/framework:^${{ matrix.laravel }}" --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+          composer update --${{ matrix.dependency-version == 'Lowest' ? 'prefer-lowest' : 'prefer-stable' }} --prefer-dist --no-interaction --no-suggest
 
       - name: Execute tests
         run: vendor/bin/pest tests
