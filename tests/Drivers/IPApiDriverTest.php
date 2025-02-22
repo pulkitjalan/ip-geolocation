@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Arr;
 use GuzzleHttp\Client;
 use Mockery\MockInterface;
+use Illuminate\Support\Arr;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
 
