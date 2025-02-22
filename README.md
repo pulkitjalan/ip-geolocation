@@ -3,9 +3,11 @@ IP Geolocation
 
 > IP Geolocation Wrapper with Laravel Support
 
-[![Latest Stable Version](https://poser.pugx.org/pulkitjalan/ip-geolocation/v/stable)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
-[![Total Downloads](https://poser.pugx.org/pulkitjalan/ip-geolocation/downloads)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
-[![License](https://poser.pugx.org/pulkitjalan/ip-geolocation/license)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
+[![Latest Stable Version](https://poser.pugx.org/pulkitjalan/ip-geolocation/v/stable?format=flat-square)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
+[![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://www.opensource.org/licenses/MIT)
+[![Run Tests](https://github.com/pulkitjalan/ip-geolocation/actions/workflows/run-tests.yml/badge.svg)](https://github.com/pulkitjalan/ip-geolocation/actions/workflows/run-tests.yml)
+[![Coverage](https://codecov.io/gh/pulkitjalan/ip-geolocation/graph/badge.svg?token=dpjZ4Tszxm)](https://codecov.io/gh/pulkitjalan/ip-geolocation)
+[![Total Downloads](https://img.shields.io/packagist/dt/pulkitjalan/ip-geolocation.svg?style=flat-square)](https://packagist.org/packages/pulkitjalan/ip-geolocation)
 
 
 This package provides an easy way to get geolocation information from IP addresses. It supports multiple drivers including IP-API, MaxMind Database, MaxMind API, IPStack, IP2Location, and IPinfo.

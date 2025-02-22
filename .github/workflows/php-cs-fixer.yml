@@ -1,21 +1,23 @@
-name: Check & fix styling
+name: pint
 
 on: [push]
 
 jobs:
-    php-cs-fixer:
-        runs-on: ubuntu-latest
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
-            - name: Run PHP CS Fixer
-              uses: docker://oskarstark/php-cs-fixer-ga
-              with:
-                  args: --config=.php_cs.dist.php --allow-risky=yes
+      - name: Fix styling issues
+        uses: aglipanci/laravel-pint-action@v2
 
-            - name: Commit changes
-              uses: stefanzweifel/git-auto-commit-action@v5
-              with:
-                  commit_message: Fix styling
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Fix styling

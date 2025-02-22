@@ -1,44 +1,57 @@
 <?php
 
 use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Handler\MockHandler;
-use PulkitJalan\IPGeolocation\Drivers\IPInfoDriver;
+use Mockery\MockInterface;
+use GuzzleHttp\Exception\RequestException;
+use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
-beforeEach(function () {
-    $this->validConfig = ['token' => 'test_token'];
-    $this->invalidConfig = [];
-});
-
-it('throws exception with invalid config', function () {
-    expect(fn () => new IPInfoDriver($this->invalidConfig))
-        ->toThrow(InvalidCredentialsException::class);
-});
-
-it('returns correct data for valid IP', function () {
-    $mockResponse = [
-        'ip' => '8.8.8.8',
-        'city' => 'Mountain View',
-        'region' => 'California',
-        'country' => 'US',
-        'loc' => '37.4056,-122.0775',
-        'postal' => '94043',
-        'timezone' => 'America/Los_Angeles',
+test('ipinfo throws exception without token', function () {
+    $config = [
+        'driver' => 'ipinfo',
     ];
 
-    $mock = new MockHandler([
-        new Response(200, [], json_encode($mockResponse)),
-    ]);
+    $this->expectException(InvalidCredentialsException::class);
 
-    $handlerStack = HandlerStack::create($mock);
-    $client = new Client(['handler' => $handlerStack]);
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp('8.8.8.8');
 
-    $driver = new IPInfoDriver($this->validConfig, $client);
-    $result = $driver->get('8.8.8.8');
+    $ip->get();
+});
 
-    expect($result)->toMatchArray([
+test('ipinfo returns correct data', function () {
+    $config = [
+        'driver' => 'ipinfo',
+        'ipinfo' => [
+            'token' => 'test_token',
+        ],
+    ];
+
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
+
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andReturn(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode([
+                    'ip' => '8.8.8.8',
+                    'city' => 'Mountain View',
+                    'region' => 'California',
+                    'country' => 'US',
+                    'loc' => '37.4056,-122.0775',
+                    'postal' => '94043',
+                    'timezone' => 'America/Los_Angeles',
+                ])
+            )
+        );
+
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('8.8.8.8');
+
+    expect($ip->get())->toEqual([
         'city' => 'Mountain View',
         'country' => 'US',
         'countryCode' => 'US',
@@ -51,17 +64,27 @@ it('returns correct data for valid IP', function () {
     ]);
 });
 
-it('returns default data for invalid response', function () {
-    $mock = new MockHandler([
-        new Response(400, []),
-    ]);
+test('ipinfo returns default when response is invalid', function () {
+    $config = [
+        'driver' => 'ipinfo',
+        'ipinfo' => [
+            'token' => 'test_token',
+        ],
+    ];
 
-    $handlerStack = HandlerStack::create($mock);
-    $client = new Client(['handler' => $handlerStack]);
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
 
-    $driver = new IPInfoDriver($this->validConfig, $client);
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andReturn(
+            new \GuzzleHttp\Psr7\Response(400, [])
+        );
 
-    expect($driver->get('invalid_ip'))->toEqual([
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('invalid_ip');
+
+    expect($ip->get())->toEqual([
         'city' => null,
         'country' => null,
         'countryCode' => null,
@@ -74,7 +97,7 @@ it('returns default data for invalid response', function () {
     ]);
 });
 
-it('returns raw data for valid IP', function () {
+test('ipinfo returns raw data', function () {
     $mockResponse = [
         'ip' => '8.8.8.8',
         'city' => 'Mountain View',
@@ -85,15 +108,49 @@ it('returns raw data for valid IP', function () {
         'timezone' => 'America/Los_Angeles',
     ];
 
-    $mock = new MockHandler([
-        new Response(200, [], json_encode($mockResponse)),
-    ]);
+    $config = [
+        'driver' => 'ipinfo',
+        'ipinfo' => [
+            'token' => 'test_token',
+        ],
+    ];
 
-    $handlerStack = HandlerStack::create($mock);
-    $client = new Client(['handler' => $handlerStack]);
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
 
-    $driver = new IPInfoDriver($this->validConfig, $client);
-    $result = $driver->getRaw('8.8.8.8');
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andReturn(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode($mockResponse)
+            )
+        );
 
-    expect($result)->toBe($mockResponse);
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('8.8.8.8');
+
+    expect($ip->getRaw())->toBe($mockResponse);
+});
+
+test('ipinfo returns empty array when request throws exception', function () {
+    $config = [
+        'driver' => 'ipinfo',
+        'ipinfo' => [
+            'token' => 'test_token',
+        ],
+    ];
+
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
+
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andThrow(new RequestException('Error Communicating with Server', new \GuzzleHttp\Psr7\Request('GET', 'test')));
+
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('8.8.8.8');
+
+    expect($ip->getRaw())->toBe([]);
 });

@@ -26,10 +26,7 @@ class IPGeolocationManager
      */
     protected $guzzle;
 
-    /**
-     * @param  array  $config
-     */
-    public function __construct(array $config, GuzzleClient $guzzle = null)
+    public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
         $this->config = $config;
         $this->guzzle = $guzzle;
@@ -37,8 +34,6 @@ class IPGeolocationManager
 
     /**
      * Get the driver based on config.
-     *
-     * @return AbstractIPGeolocationDriver
      */
     public function getDriver($driver = null): AbstractIPGeolocationDriver
     {
@@ -55,8 +50,6 @@ class IPGeolocationManager
 
     /**
      * Get the ip-api driver.
-     *
-     * @return IPApiDriver
      */
     protected function createIpApiDriver(array $data): IPApiDriver
     {
@@ -65,8 +58,6 @@ class IPGeolocationManager
 
     /**
      * Get the Maxmind driver.
-     *
-     * @return MaxmindDatabaseDriver
      */
     protected function createMaxmindDatabaseDriver(array $data): MaxmindDatabaseDriver
     {
@@ -75,8 +66,6 @@ class IPGeolocationManager
 
     /**
      * Get the Maxmind driver.
-     *
-     * @return MaxmindApiDriver
      */
     protected function createMaxmindApiDriver(array $data): MaxmindApiDriver
     {
@@ -85,8 +74,6 @@ class IPGeolocationManager
 
     /**
      * Get the ip stack driver.
-     *
-     * @return IPStackDriver
      */
     protected function createIpStackDriver(array $data): IPStackDriver
     {
@@ -95,8 +82,6 @@ class IPGeolocationManager
 
     /**
      * Get the IP2Location driver.
-     *
-     * @return IP2LocationDriver
      */
     protected function createIp2locationDriver(array $data): IP2LocationDriver
     {
@@ -105,8 +90,6 @@ class IPGeolocationManager
 
     /**
      * Get the IPInfo driver.
-     *
-     * @return IPInfoDriver
      */
     protected function createIpInfoDriver(array $data): IPInfoDriver
     {

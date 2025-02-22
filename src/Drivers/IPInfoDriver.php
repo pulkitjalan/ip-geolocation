@@ -10,11 +10,9 @@ use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 class IPInfoDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
-     * @param array $config
-     * @param GuzzleClient|null $guzzle
      * @throws InvalidCredentialsException
      */
-    public function __construct(array $config, GuzzleClient $guzzle = null)
+    public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
         parent::__construct($config, $guzzle);
 
@@ -26,7 +24,7 @@ class IPInfoDriver extends AbstractIPGeolocationDriver implements IPGeolocationI
     /**
      * Get array of data using IPInfo.
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return array
      */
     public function get($ip)
@@ -53,12 +51,12 @@ class IPInfoDriver extends AbstractIPGeolocationDriver implements IPGeolocationI
     /**
      * Get the raw IPGeolocation info using IPInfo.
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return array
      */
     public function getRaw($ip)
     {
-        $url = "https://ipinfo.io/{$ip}?token=" . Arr::get($this->config, 'token');
+        $url = "https://ipinfo.io/{$ip}?token=".Arr::get($this->config, 'token');
 
         try {
             $response = $this->guzzle->get($url);

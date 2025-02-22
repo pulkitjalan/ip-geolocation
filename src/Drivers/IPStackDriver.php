@@ -10,24 +10,23 @@ use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 class IPStackDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
-     * @param array $config
-     * @param GuzzleClient|null $guzzle
      * @throws InvalidCredentialsException
      */
-    public function __construct(array $config, GuzzleClient $guzzle = null)
+    public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
         parent::__construct($config, $guzzle);
 
         if (! Arr::get($this->config, 'key')) {
-            throw new InvalidCredentialsException();
+            throw new InvalidCredentialsException;
         }
     }
 
     /**
      * Get array of data using ipstack.
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return array
+     *
      * @throws InvalidCredentialsException
      * @throws GuzzleException
      */
@@ -55,8 +54,9 @@ class IPStackDriver extends AbstractIPGeolocationDriver implements IPGeolocation
     /**
      * Get the raw IPGeolocation info using ipstack.
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return array
+     *
      * @throws InvalidCredentialsException
      * @throws GuzzleException
      */
@@ -65,7 +65,7 @@ class IPStackDriver extends AbstractIPGeolocationDriver implements IPGeolocation
         $data = json_decode($this->guzzle->get($this->getUrl($ip))->getBody(), true);
 
         if (Arr::get($data, 'success') === false && Arr::get($data, 'error.type') === 'invalid_access_key') {
-            throw new InvalidCredentialsException();
+            throw new InvalidCredentialsException;
         }
 
         return $data;

@@ -21,14 +21,11 @@ class IPGeolocationUpdater
      */
     protected $guzzle;
 
-    /**
-     * @param  array  $config
-     */
-    public function __construct(array $config, GuzzleClient $guzzle = null)
+    public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
         $this->config = $config;
 
-        $this->guzzle = $guzzle ?? new GuzzleClient();
+        $this->guzzle = $guzzle ?? new GuzzleClient;
     }
 
     /**
@@ -39,11 +36,11 @@ class IPGeolocationUpdater
     public function update()
     {
         if (! Arr::get($this->config, 'maxmind_database.database', false)) {
-            throw new InvalidDatabaseException();
+            throw new InvalidDatabaseException;
         }
 
         if (! Arr::get($this->config, 'maxmind_database.license_key', false)) {
-            throw new InvalidCredentialsException();
+            throw new InvalidCredentialsException;
         }
 
         return $this->updateMaxmindDatabase();

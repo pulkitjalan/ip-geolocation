@@ -1,28 +1,96 @@
 <?php
 
 use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Handler\MockHandler;
-use PulkitJalan\IPGeolocation\Drivers\IP2LocationDriver;
+use Mockery\MockInterface;
+use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
-test('it throws exception with invalid credentials', function () {
-    expect(fn () => new IP2LocationDriver([]))
-        ->toThrow(InvalidCredentialsException::class);
+test('ip2location throws exception without api key', function () {
+    $config = [
+        'driver' => 'ip2location',
+    ];
+
+    $this->expectException(InvalidCredentialsException::class);
+
+    $ip = new IPGeolocation($config);
+    $ip = $ip->setIp('127.0.0.1');
+
+    $ip->get();
 });
 
-test('it returns default for invalid response', function () {
-    $mock = new MockHandler([
-        new Response(200, [], json_encode(['response' => 'FAILED'])),
+test('ip2location returns correct data', function () {
+    $config = [
+        'driver' => 'ip2location',
+        'ip2location' => [
+            'api_key' => 'test_key',
+        ],
+    ];
+
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
+
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andReturn(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode([
+                    'response' => 'OK',
+                    'country_code' => 'US',
+                    'country_name' => 'United States of America',
+                    'region_name' => 'California',
+                    'region_code' => 'CA',
+                    'city_name' => 'Los Angeles',
+                    'latitude' => 34.05223,
+                    'longitude' => -118.24368,
+                    'zip_code' => '90001',
+                    'time_zone' => '-07:00',
+                ])
+            )
+        );
+
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('127.0.0.1');
+
+    expect($ip->get())->toEqual([
+        'city' => 'Los Angeles',
+        'country' => 'United States of America',
+        'countryCode' => 'US',
+        'latitude' => 34.05223,
+        'longitude' => -118.24368,
+        'region' => 'California',
+        'regionCode' => 'CA',
+        'timezone' => '-07:00',
+        'postalCode' => '90001',
     ]);
+});
 
-    $handler = HandlerStack::create($mock);
-    $client = new Client(['handler' => $handler]);
+test('ip2location returns default when response is invalid', function () {
+    $config = [
+        'driver' => 'ip2location',
+        'ip2location' => [
+            'api_key' => 'test_key',
+        ],
+    ];
 
-    $driver = new IP2LocationDriver(['api_key' => 'test_key'], $client);
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
 
-    expect($driver->get('127.0.0.1'))->toEqual([
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andReturn(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['response' => 'FAILED'])
+            )
+        );
+
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('127.0.0.1');
+
+    expect($ip->get())->toEqual([
         'city' => null,
         'country' => null,
         'countryCode' => null,
@@ -35,47 +103,7 @@ test('it returns default for invalid response', function () {
     ]);
 });
 
-test('it returns correct data', function () {
-    $mockResponse = [
-        'response' => 'OK',
-        'country_code' => 'US',
-        'country_name' => 'United States of America',
-        'region_name' => 'California',
-        'region_code' => 'CA',
-        'city_name' => 'Los Angeles',
-        'latitude' => 34.05223,
-        'longitude' => -118.24368,
-        'zip_code' => '90001',
-        'time_zone' => '-07:00',
-    ];
-
-    $mock = new MockHandler([
-        new Response(200, [], json_encode($mockResponse)),
-    ]);
-
-    $handler = HandlerStack::create($mock);
-    $client = new Client(['handler' => $handler]);
-
-    $driver = new IP2LocationDriver(['api_key' => 'test_key'], $client);
-
-    $result = $driver->get('127.0.0.1');
-
-    $expected = [
-        'city' => 'Los Angeles',
-        'country' => 'United States of America',
-        'countryCode' => 'US',
-        'latitude' => 34.05223,
-        'longitude' => -118.24368,
-        'region' => 'California',
-        'regionCode' => 'CA',
-        'timezone' => '-07:00',
-        'postalCode' => '90001',
-    ];
-
-    expect($result)->toBe($expected);
-});
-
-test('it handles raw data', function () {
+test('ip2location returns raw data', function () {
     $mockResponse = [
         'response' => 'OK',
         'country_code' => 'US',
@@ -84,16 +112,28 @@ test('it handles raw data', function () {
         'city_name' => 'Los Angeles',
     ];
 
-    $mock = new MockHandler([
-        new Response(200, [], json_encode($mockResponse)),
-    ]);
+    $config = [
+        'driver' => 'ip2location',
+        'ip2location' => [
+            'api_key' => 'test_key',
+        ],
+    ];
 
-    $handler = HandlerStack::create($mock);
-    $client = new Client(['handler' => $handler]);
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
 
-    $driver = new IP2LocationDriver(['api_key' => 'test_key'], $client);
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andReturn(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode($mockResponse)
+            )
+        );
 
-    $result = $driver->getRaw('127.0.0.1');
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('127.0.0.1');
 
-    expect($result)->toBe($mockResponse);
+    expect($ip->getRaw())->toBe($mockResponse);
 });

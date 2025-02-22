@@ -23,7 +23,7 @@ class MaxmindDatabaseDriver extends MaxmindDriver
 
         // check if file exists first
         if (! $database || ! file_exists($database)) {
-            throw new InvalidCredentialsException();
+            throw new InvalidCredentialsException;
         }
 
         // catch maxmind exception and throw internal exception
