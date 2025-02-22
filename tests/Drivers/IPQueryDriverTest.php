@@ -1,9 +1,9 @@
 <?php
 
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeolocation\Drivers\IPQueryDriver;
 
 beforeEach(function () {

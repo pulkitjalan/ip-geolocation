@@ -59,6 +59,6 @@ class IPQueryDriver extends AbstractIPGeolocationDriver implements IPGeolocation
             throw new \InvalidArgumentException('IPQuery API key is required');
         }
 
-        return $baseUrl . $ip . '?api_key=' . $key;
+        return $baseUrl.$ip.'?api_key='.$key;
     }
 }
