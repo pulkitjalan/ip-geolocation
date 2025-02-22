@@ -64,7 +64,7 @@ class IPApiDriver extends AbstractIPGeolocationDriver implements IPGeolocationIn
             $key = Arr::get($this->config, 'key');
         }
 
-        //default language English
+        // default language English
         $lang = 'en';
 
         if (Arr::get($this->config, 'lang', false)) {

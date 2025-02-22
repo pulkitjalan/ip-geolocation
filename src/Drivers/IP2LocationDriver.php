@@ -9,11 +9,9 @@ use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 class IP2LocationDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
-     * @param array $config
-     * @param GuzzleClient|null $guzzle
      * @throws InvalidCredentialsException
      */
-    public function __construct(array $config, GuzzleClient $guzzle = null)
+    public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
         parent::__construct($config, $guzzle);
 
@@ -25,7 +23,7 @@ class IP2LocationDriver extends AbstractIPGeolocationDriver implements IPGeoloca
     /**
      * Get array of data using IP2Location.
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return array
      */
     public function get($ip)
@@ -52,7 +50,7 @@ class IP2LocationDriver extends AbstractIPGeolocationDriver implements IPGeoloca
     /**
      * Get the raw IP2Location info.
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return array
      */
     public function getRaw($ip)
@@ -66,7 +64,7 @@ class IP2LocationDriver extends AbstractIPGeolocationDriver implements IPGeoloca
     /**
      * Get the IP2Location API URL.
      *
-     * @param string $ip
+     * @param  string  $ip
      * @return string
      */
     protected function getUrl($ip)
