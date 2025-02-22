@@ -34,6 +34,12 @@ jobs:
             php: 8.1
           - laravel: 11.0
             php: 8.1
+        include:
+          - with_coverage: false
+          - with_coverage: true
+            php: 8.3
+            laravel: 11.0
+            dependency-version: prefer-stable
 
     name: "PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.dependency-version }}"
 
@@ -53,10 +59,19 @@ jobs:
           composer require "laravel/framework:^${{ matrix.laravel }}" --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
 
-      - name: Execute tests
-        run: vendor/bin/pest tests
+      - name: Execute tests - without coverage
+        if: matrix.with_coverage == false
+        run: vendor/bin/pest
 
-      - uses: codecov/codecov-action@v5
+      - name: Execute tests - with coverage
+        id: test
+        if: matrix.with_coverage == true
+        run: vendor/bin/pest --coverage
+
+      - name: Upload coverage reports to Codecov
+        if: matrix.with_coverage == true
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: build
+          verbose: true
