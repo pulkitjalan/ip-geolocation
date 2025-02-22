@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeolocation\Drivers\IPApiDriver;
 use PulkitJalan\IPGeolocation\Drivers\IPInfoDriver;
+use PulkitJalan\IPGeolocation\Drivers\IPQueryDriver;
 use PulkitJalan\IPGeolocation\Drivers\IPStackDriver;
 use PulkitJalan\IPGeolocation\Drivers\MaxmindApiDriver;
 use PulkitJalan\IPGeolocation\Drivers\IP2LocationDriver;
@@ -94,5 +95,13 @@ class IPGeolocationManager
     protected function createIpInfoDriver(array $data): IPInfoDriver
     {
         return new IPInfoDriver($data, $this->guzzle);
+    }
+
+    /**
+     * Get the IPQuery driver.
+     */
+    protected function createIpqueryDriver(array $data): IPQueryDriver
+    {
+        return new IPQueryDriver($data, $this->guzzle);
     }
 }

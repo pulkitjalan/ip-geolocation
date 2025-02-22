@@ -1,6 +1,12 @@
 name: pint
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   php-cs-fixer:
