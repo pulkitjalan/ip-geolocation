@@ -2,6 +2,7 @@
 
 use GuzzleHttp\Client;
 use Mockery\MockInterface;
+use GuzzleHttp\Exception\RequestException;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
@@ -131,4 +132,25 @@ test('ipinfo returns raw data', function () {
     $ip = $ip->setIp('8.8.8.8');
 
     expect($ip->getRaw())->toBe($mockResponse);
+});
+
+test('ipinfo returns empty array when request throws exception', function () {
+    $config = [
+        'driver' => 'ipinfo',
+        'ipinfo' => [
+            'token' => 'test_token',
+        ],
+    ];
+
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
+
+    $client->shouldReceive('get')
+        ->times(1)
+        ->andThrow(new RequestException('Error Communicating with Server', new \GuzzleHttp\Psr7\Request('GET', 'test')));
+
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp('8.8.8.8');
+
+    expect($ip->getRaw())->toBe([]);
 });

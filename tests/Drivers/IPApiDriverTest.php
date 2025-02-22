@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Arr;
+use GuzzleHttp\Client;
+use Mockery\MockInterface;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
 
@@ -102,4 +104,45 @@ test('ip api pro exception get raw', function () {
     $ip = $ip->setIp($this->validIp);
 
     $ip->getRaw();
+});
+
+test('ip api with custom language', function () {
+    $config = [
+        'driver' => 'ip-api',
+        'ip-api' => [
+            'lang' => 'de',
+        ],
+    ];
+
+    /** @var MockInterface|Client $client */
+    $client = Mockery::mock(Client::class);
+
+    $client->shouldReceive('get')
+        ->withArgs(function ($url) {
+            return str_contains($url, 'lang=de');
+        })
+        ->times(1)
+        ->andReturn(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode([
+                    'status' => 'success',
+                    'city' => 'Test City',
+                    'country' => 'Test Country',
+                    'countryCode' => 'TC',
+                    'lat' => 1.0,
+                    'lon' => 1.0,
+                    'regionName' => 'Test Region',
+                    'region' => 'TR',
+                    'timezone' => 'UTC',
+                    'zip' => '12345',
+                ])
+            )
+        );
+
+    $ip = new IPGeolocation($config, $client);
+    $ip = $ip->setIp($this->validIp);
+
+    $ip->get();
 });
