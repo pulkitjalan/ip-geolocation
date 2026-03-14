@@ -15,6 +15,7 @@ This package provides an easy way to get geolocation information from IP address
 ## Requirements
 
 - PHP >= 8.1
+- Laravel 10.x, 11.x, 12.x, or 13.x
 
 ## Installation
 

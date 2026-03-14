@@ -88,7 +88,7 @@ class IPGeolocation
         // sometimes we can get multiple ipaddresses
         // seperated with a ',', eg: proxy/vpn
         $this->ip = explode(',', $this->ip);
-        $this->ip = trim(head($this->ip));
+        $this->ip = trim(Arr::first($this->ip));
 
         return $this->ip;
     }
