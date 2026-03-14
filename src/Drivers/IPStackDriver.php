@@ -4,13 +4,12 @@ namespace PulkitJalan\IPGeolocation\Drivers;
 
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\GuzzleException;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 class IPStackDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
-     * @throws InvalidCredentialsException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
      */
     public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
@@ -27,8 +26,8 @@ class IPStackDriver extends AbstractIPGeolocationDriver implements IPGeolocation
      * @param  string  $ip
      * @return array
      *
-     * @throws InvalidCredentialsException
-     * @throws GuzzleException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get($ip)
     {
@@ -57,8 +56,8 @@ class IPStackDriver extends AbstractIPGeolocationDriver implements IPGeolocation
      * @param  string  $ip
      * @return array
      *
-     * @throws InvalidCredentialsException
-     * @throws GuzzleException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getRaw($ip)
     {
