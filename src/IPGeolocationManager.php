@@ -2,7 +2,6 @@
 
 namespace PulkitJalan\IPGeolocation;
 
-use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
@@ -24,7 +23,7 @@ class IPGeolocationManager
     protected $config;
 
     /**
-     * @var Client
+     * @var \GuzzleHttp\Client|null
      */
     protected $guzzle;
 
