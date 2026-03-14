@@ -14,7 +14,7 @@ test('composer constraints match the supported framework matrix', function () {
     ]);
 });
 
-test('workflow matrix covers the supported laravel and php combinations', function () {
+test('workflow matrix reflects the supported laravel and php policy', function () {
     $workflow = file_get_contents(__DIR__.'/../.github/workflows/run-tests.yml');
 
     expect($workflow)
@@ -26,5 +26,6 @@ test('workflow matrix covers the supported laravel and php combinations', functi
         ->toContain('          - 12.0')
         ->toContain('          - 11.0')
         ->not->toContain('          - 10.0')
+        ->toContain('        exclude:')
         ->toContain("          - laravel: 13.0\n            php: 8.2");
 });
