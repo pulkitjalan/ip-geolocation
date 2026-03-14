@@ -1,7 +1,5 @@
 <?php
 
-use PulkitJalan\IPGeolocation\IPGeolocation;
-
 global $ipGeolocationHelperFake;
 
 $ipGeolocationHelperFake = new class
