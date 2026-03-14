@@ -4,7 +4,6 @@ namespace PulkitJalan\IPGeolocation\Drivers;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GeoIp2\Exception\AddressNotFoundException;
-use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 abstract class MaxmindDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
