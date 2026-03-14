@@ -2,13 +2,16 @@
 
 namespace PulkitJalan\IPGeolocation\Drivers;
 
+use GeoIp2\Database\Reader;
+use GeoIp2\WebService\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use GeoIp2\Exception\AddressNotFoundException;
+use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
 abstract class MaxmindDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
-     * @var \GeoIp2\WebService\Client|\GeoIp2\Database\Reader
+     * @var Client|Reader
      */
     protected $maxmind;
 
@@ -70,7 +73,7 @@ abstract class MaxmindDriver extends AbstractIPGeolocationDriver implements IPGe
      *
      * @return mixed
      *
-     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
+     * @throws InvalidCredentialsException
      */
     abstract protected function create();
 }

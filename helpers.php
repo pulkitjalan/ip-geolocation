@@ -6,7 +6,7 @@ if (! function_exists('ipGeolocation')) {
     /**
      * Get an instance of the current ip geolocation.
      *
-     * @return \PulkitJalan\IPGeolocation\IPGeolocation
+     * @return IPGeolocation
      */
     function ipGeolocation($key = null)
     {

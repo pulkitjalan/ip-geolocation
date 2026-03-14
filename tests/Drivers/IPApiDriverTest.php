@@ -3,6 +3,7 @@
 use GuzzleHttp\Client;
 use Mockery\MockInterface;
 use Illuminate\Support\Arr;
+use GuzzleHttp\Psr7\Response;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
 
@@ -123,7 +124,7 @@ test('ip api with custom language', function () {
         })
         ->times(1)
         ->andReturn(
-            new \GuzzleHttp\Psr7\Response(
+            new Response(
                 200,
                 [],
                 json_encode([

@@ -2,6 +2,7 @@
 
 namespace PulkitJalan\IPGeolocation\Drivers;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\Client as GuzzleClient;
 
 abstract class AbstractIPGeolocationDriver
@@ -12,7 +13,7 @@ abstract class AbstractIPGeolocationDriver
     protected $config;
 
     /**
-     * @var \GuzzleHttp\Client
+     * @var Client
      */
     protected $guzzle;
 

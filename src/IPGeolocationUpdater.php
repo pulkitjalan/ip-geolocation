@@ -4,6 +4,7 @@ namespace PulkitJalan\IPGeolocation;
 
 use PharData;
 use Throwable;
+use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client as GuzzleClient;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidDatabaseException;
@@ -17,7 +18,7 @@ class IPGeolocationUpdater
     protected $config;
 
     /**
-     * @var \GuzzleHttp\Client
+     * @var Client
      */
     protected $guzzle;
 

@@ -24,7 +24,7 @@ class UpdateCommand extends Command
     protected $description = 'Update ip geolocation database files to the latest version';
 
     /**
-     * @var \PulkitJalan\IPGeolocation\IPGeolocationUpdater
+     * @var IPGeolocationUpdater
      */
     protected $updater;
 

@@ -13,9 +13,9 @@ class MaxmindDatabaseDriver extends MaxmindDriver
     /**
      * Create the maxmind database reader.
      *
-     * @return \GeoIp2\Database\Reader
+     * @return Reader
      *
-     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
+     * @throws InvalidCredentialsException
      */
     protected function create()
     {
