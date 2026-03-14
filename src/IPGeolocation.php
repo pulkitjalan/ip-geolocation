@@ -6,6 +6,7 @@ use Throwable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
+use PulkitJalan\IPGeolocation\Drivers\IPGeolocationInterface;
 use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
 
 class IPGeolocation
@@ -16,7 +17,7 @@ class IPGeolocation
     protected $ip;
 
     /**
-     * @var \PulkitJalan\IPGeolocation\Drivers\IPGeolocationInterface
+     * @var IPGeolocationInterface
      */
     protected $driver;
 
@@ -47,7 +48,7 @@ class IPGeolocation
     /**
      * Getter for driver.
      *
-     * @return \PulkitJalan\IPGeolocation\Drivers\IPGeolocationInterface
+     * @return IPGeolocationInterface
      */
     public function getDriver()
     {
@@ -60,7 +61,7 @@ class IPGeolocation
      * @var string
      *
      * @param  string  $ip
-     * @return \PulkitJalan\IPGeolocation\IPGeolocation
+     * @return IPGeolocation
      */
     public function setIp($ip)
     {
@@ -143,7 +144,7 @@ class IPGeolocation
      *
      * @return array
      *
-     * @throws \PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException
+     * @throws IPGeolocationException
      */
     protected function getData()
     {

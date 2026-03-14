@@ -10,7 +10,7 @@ use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 class IPInfoDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
-     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
+     * @throws InvalidCredentialsException
      */
     public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {
