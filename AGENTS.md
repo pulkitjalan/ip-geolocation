@@ -73,7 +73,7 @@ vendor/bin/pest --coverage
 
 ### Development
 
-- [`mockery/mockery`](https://github.com/mockery/mockery): `^1.6` (dev)
+- [`mockery/mockery`](https://github.com/mockery/mockery): `^1.6.12` (dev)
 - [`pestphp/pest`](https://pestphp.com/): `^3.8` (dev)
 
 ## CI
