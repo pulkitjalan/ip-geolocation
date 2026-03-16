@@ -77,7 +77,7 @@ class IPGeolocationUpdater
             $phar = new PharData($tempFile.'.tar');
             $phar->extractTo($tempDir);
 
-            $dir = head(glob("$tempDir/GeoLite2-City_*"));
+            $dir = Arr::first(glob("$tempDir/GeoLite2-City_*"));
 
             $this->removeIfExists($database);
             $this->removeIfExists($tempFile.'.tar');

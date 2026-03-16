@@ -3,6 +3,9 @@
     "rules": {
         "ordered_imports": {
             "sort_algorithm": "length"
+        },
+        "fully_qualified_strict_types": {
+            "phpdoc_tags": []
         }
     }
 }

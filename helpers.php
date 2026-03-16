@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 
 if (! function_exists('ipGeolocation')) {
@@ -14,6 +15,6 @@ if (! function_exists('ipGeolocation')) {
             return app(IPGeolocation::class);
         }
 
-        return app(IPGeolocation::class)->{'get'.ucwords(camel_case($key))}();
+        return app(IPGeolocation::class)->{'get'.ucfirst(Str::camel($key))}();
     }
 }

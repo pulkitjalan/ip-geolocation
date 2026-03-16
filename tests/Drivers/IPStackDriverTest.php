@@ -14,7 +14,7 @@ test('ipstack', function () {
         ],
     ];
 
-    /** @var Mockery\MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -63,7 +63,7 @@ test('ipstack should return default when response is empty', function () {
         ],
     ];
 
-    /** @var Mockery\MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -130,7 +130,7 @@ test('ipstack secure config value defaults to true when missing', function () {
         ],
     ];
 
-    /** @var Mockery\MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -159,7 +159,7 @@ test('ipstack respects false secure config value', function () {
         ],
     ];
 
-    /** @var Mockery\MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -188,7 +188,7 @@ test('ipstack respects true secure config value', function () {
         ],
     ];
 
-    /** @var Mockery\MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')

@@ -1,7 +1,7 @@
 <?php
 
 use GuzzleHttp\Client;
-use Mockery\MockInterface;
+use GuzzleHttp\Psr7\Response;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 
@@ -26,13 +26,13 @@ test('ip2location returns correct data', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
         ->times(1)
         ->andReturn(
-            new \GuzzleHttp\Psr7\Response(
+            new Response(
                 200,
                 [],
                 json_encode([
@@ -74,13 +74,13 @@ test('ip2location returns default when response is invalid', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
         ->times(1)
         ->andReturn(
-            new \GuzzleHttp\Psr7\Response(
+            new Response(
                 200,
                 [],
                 json_encode(['response' => 'FAILED'])
@@ -119,13 +119,13 @@ test('ip2location returns raw data', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
         ->times(1)
         ->andReturn(
-            new \GuzzleHttp\Psr7\Response(
+            new Response(
                 200,
                 [],
                 json_encode($mockResponse)

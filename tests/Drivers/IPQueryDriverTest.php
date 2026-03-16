@@ -1,7 +1,6 @@
 <?php
 
 use GuzzleHttp\Client;
-use Mockery\MockInterface;
 use GuzzleHttp\Psr7\Response;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\IPGeolocationException;
@@ -14,7 +13,7 @@ test('ipquery driver', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -60,7 +59,7 @@ test('ipquery driver returns default values when error occurs', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')

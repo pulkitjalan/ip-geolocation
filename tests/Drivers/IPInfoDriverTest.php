@@ -1,7 +1,8 @@
 <?php
 
 use GuzzleHttp\Client;
-use Mockery\MockInterface;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException;
 use PulkitJalan\IPGeolocation\IPGeolocation;
 use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
@@ -27,13 +28,13 @@ test('ipinfo returns correct data', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
         ->times(1)
         ->andReturn(
-            new \GuzzleHttp\Psr7\Response(
+            new Response(
                 200,
                 [],
                 json_encode([
@@ -72,13 +73,13 @@ test('ipinfo returns default when response is invalid', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
         ->times(1)
         ->andReturn(
-            new \GuzzleHttp\Psr7\Response(400, [])
+            new Response(400, [])
         );
 
     $ip = new IPGeolocation($config, $client);
@@ -115,13 +116,13 @@ test('ipinfo returns raw data', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
         ->times(1)
         ->andReturn(
-            new \GuzzleHttp\Psr7\Response(
+            new Response(
                 200,
                 [],
                 json_encode($mockResponse)
@@ -142,12 +143,12 @@ test('ipinfo returns empty array when request throws exception', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
         ->times(1)
-        ->andThrow(new RequestException('Error Communicating with Server', new \GuzzleHttp\Psr7\Request('GET', 'test')));
+        ->andThrow(new RequestException('Error Communicating with Server', new Request('GET', 'test')));
 
     $ip = new IPGeolocation($config, $client);
     $ip = $ip->setIp('8.8.8.8');

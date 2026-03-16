@@ -9,7 +9,7 @@ use PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException;
 class IP2LocationDriver extends AbstractIPGeolocationDriver implements IPGeolocationInterface
 {
     /**
-     * @throws InvalidCredentialsException
+     * @throws \PulkitJalan\IPGeolocation\Exceptions\InvalidCredentialsException
      */
     public function __construct(array $config, ?GuzzleClient $guzzle = null)
     {

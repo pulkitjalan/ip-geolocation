@@ -23,7 +23,7 @@ class IPGeolocationManager
     protected $config;
 
     /**
-     * @var \GuzzleHttp\Client
+     * @var \GuzzleHttp\Client|null
      */
     protected $guzzle;
 

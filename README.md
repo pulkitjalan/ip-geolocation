@@ -14,7 +14,9 @@ This package provides an easy way to get geolocation information from IP address
 
 ## Requirements
 
-- PHP >= 8.1
+- PHP >= 8.2
+- Laravel 11.x or 12.x on PHP 8.2+
+- Laravel 13.x on PHP 8.3+
 
 ## Installation
 
@@ -48,7 +50,7 @@ php artisan vendor:publish --provider="PulkitJalan\IPGeolocation\IPGeolocationSe
 
 #### Using an older version of PHP / Laravel?
 
-If you are on a PHP version below 8.1 or a Laravel version below 9.0, use an older version of this package.
+If you are on a PHP version below 8.2 or a Laravel version below 11.0, use an older version of this package.
 
 ## Usage
 
