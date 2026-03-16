@@ -11,7 +11,7 @@ This document describes the conventions and guidelines for contributing to this 
 
 ## Code Style
 
-Code style is enforced with [Laravel Pint](https://github.com/laravel/pint) using the `laravel` preset. Imports are sorted by length. The `fully_qualified_strict_types` rule has `phpdoc_tags` set to `[]` so it only affects PHP type declarations, never docblocks. Run the linter with:
+Code style is enforced with [Laravel Pint](https://github.com/laravel/pint) using the `laravel` preset. Imports are sorted by length. The `fully_qualified_strict_types` rule has `phpdoc_tags` set to `[]` so it only affects PHP type declarations, never docblocks. To run Pint locally, first install it (for example: `composer require --dev laravel/pint`), then run:
 
 ```bash
 vendor/bin/pint
