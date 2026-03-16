@@ -1,7 +1,6 @@
 <?php
 
 use GuzzleHttp\Client;
-use Mockery\MockInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Exception\RequestException;
@@ -29,7 +28,7 @@ test('ipinfo returns correct data', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -74,7 +73,7 @@ test('ipinfo returns default when response is invalid', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -117,7 +116,7 @@ test('ipinfo returns raw data', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
@@ -144,7 +143,7 @@ test('ipinfo returns empty array when request throws exception', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')

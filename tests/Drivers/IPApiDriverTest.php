@@ -1,7 +1,6 @@
 <?php
 
 use GuzzleHttp\Client;
-use Mockery\MockInterface;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Psr7\Response;
 use PulkitJalan\IPGeolocation\IPGeolocation;
@@ -115,7 +114,7 @@ test('ip api with custom language', function () {
         ],
     ];
 
-    /** @var MockInterface|Client $client */
+    /** @var \Mockery\MockInterface|\GuzzleHttp\Client $client */
     $client = Mockery::mock(Client::class);
 
     $client->shouldReceive('get')
