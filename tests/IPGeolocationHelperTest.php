@@ -1,6 +1,6 @@
 <?php
 
-global $ipGeolocationHelperFake;
+use PulkitJalan\IPGeolocation\IPGeolocation;
 
 $ipGeolocationHelperFake = new class
 {
@@ -20,6 +20,10 @@ if (! function_exists('app')) {
 }
 
 test('helper resolves snake case keys through getter methods', function () use ($ipGeolocationHelperFake) {
+    if (method_exists(app(), 'instance')) {
+        app()->instance(IPGeolocation::class, $ipGeolocationHelperFake);
+    }
+
     expect(ipGeolocation())->toBe($ipGeolocationHelperFake)
         ->and(ipGeolocation('ip_address'))->toBe('127.0.0.1');
 });
