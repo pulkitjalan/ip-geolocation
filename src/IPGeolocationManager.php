@@ -5,6 +5,7 @@ namespace PulkitJalan\IPGeolocation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client as GuzzleClient;
+use PulkitJalan\IPGeolocation\Drivers\IP2GeoDriver;
 use PulkitJalan\IPGeolocation\Drivers\IPApiDriver;
 use PulkitJalan\IPGeolocation\Drivers\IPInfoDriver;
 use PulkitJalan\IPGeolocation\Drivers\IPQueryDriver;
@@ -103,5 +104,13 @@ class IPGeolocationManager
     protected function createIpqueryDriver(array $data): IPQueryDriver
     {
         return new IPQueryDriver($data, $this->guzzle);
+    }
+
+    /**
+     * Get the ip2geo driver.
+     */
+    protected function createIp2geoDriver(array $data): IP2GeoDriver
+    {
+        return new IP2GeoDriver($data, $this->guzzle);
     }
 }
